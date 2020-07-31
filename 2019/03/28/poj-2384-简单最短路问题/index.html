@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Wqr_">
+  <meta name="keywords" content="">
+  <title>poj-2384 简单最短路问题 - Wqr_Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/01/08/1cZtX5Mh4dWAYFr.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-03-28 00:28">
+      2019年3月28日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      643 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="link"><a href="#link" class="headerlink" title="link"></a><a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/A">link</a></h1><h2 id="Dijkstra无优化版本-AC"><a href="#Dijkstra无优化版本-AC" class="headerlink" title="Dijkstra无优化版本 (AC)"></a>Dijkstra无优化版本 (AC)</h2><pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
+<span class="hljs-comment">    &gt; File Name : 2384.cpp</span>
+<span class="hljs-comment">    &gt; Author : Wqr_</span>
+<span class="hljs-comment">    &gt; Mail : xueduanwei@126.com</span>
+<span class="hljs-comment">    &gt; Created Time : 19 03 18 19:01:57</span>
+<span class="hljs-comment">**********************************************************/</span>
+<span class="hljs-comment">// 邻接矩阵表示 141ms</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> INF 1&lt;&lt;28</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">int</span> <span class="hljs-built_in">map</span>[<span class="hljs-number">1050</span>][<span class="hljs-number">1050</span>];
+<span class="hljs-keyword">int</span> t, n;
+<span class="hljs-keyword">int</span> d[<span class="hljs-number">1050</span>];
+<span class="hljs-keyword">bool</span> used[<span class="hljs-number">1050</span>];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bell</span><span class="hljs-params">(<span class="hljs-keyword">int</span> f)</span></span>&#123;
+    fill(d, d + n + <span class="hljs-number">1</span>, INF);
+    <span class="hljs-built_in">memset</span>(used, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(used));
+    d[f] = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+        <span class="hljs-keyword">int</span> v = <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> u = <span class="hljs-number">1</span>;  u &lt; n + <span class="hljs-number">1</span>; u++)&#123;
+            <span class="hljs-keyword">if</span> (!used[u] &amp;&amp; (v == <span class="hljs-number">-1</span> || d[u] &lt; d[v])) v = u;
+        &#125;
+        <span class="hljs-keyword">if</span>(v == <span class="hljs-number">-1</span>) <span class="hljs-keyword">break</span>;
+        used[v] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> u = <span class="hljs-number">1</span>; u &lt; n + <span class="hljs-number">1</span>; u++)&#123;
+            d[u] = min(d[u], d[v] + <span class="hljs-built_in">map</span>[v][u]);
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span> &gt;&gt; t &gt;&gt; n)&#123;
+        <span class="hljs-keyword">int</span> a, b, c;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n + <span class="hljs-number">1</span>; i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n + <span class="hljs-number">1</span>; j++) &#123;
+                <span class="hljs-built_in">map</span>[i][j] = INF;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; t; i++)&#123;
+            <span class="hljs-built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+            <span class="hljs-keyword">if</span>(c &lt; <span class="hljs-built_in">map</span>[a][b])&#123;
+                <span class="hljs-built_in">map</span>[a][b] = c;
+                <span class="hljs-built_in">map</span>[b][a] = c;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n + <span class="hljs-number">1</span>; i++)&#123;
+            <span class="hljs-built_in">map</span>[i][i] = <span class="hljs-number">0</span>;
+        &#125;
+        bell(<span class="hljs-number">1</span>);
+        <span class="hljs-built_in">cout</span> &lt;&lt; d[n] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<h2 id="Dijkstra-邻接表-堆优化-AC"><a href="#Dijkstra-邻接表-堆优化-AC" class="headerlink" title="Dijkstra 邻接表 + 堆优化 (AC)"></a>Dijkstra 邻接表 + 堆优化 (AC)</h2><pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
+<span class="hljs-comment">    &gt; File Name : 2384.cpp</span>
+<span class="hljs-comment">    &gt; Author : Wqr_</span>
+<span class="hljs-comment">    &gt; Mail : xueduanwei@126.com</span>
+<span class="hljs-comment">    &gt; Created Time : 19 03 18 19:01:57</span>
+<span class="hljs-comment">**********************************************************/</span>
+<span class="hljs-comment">// 邻接表表示+堆优化 141ms</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> INF 1&lt;&lt;28</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">road</span>&#123;</span><span class="hljs-keyword">int</span> to, cost; &#125;;
+<span class="hljs-comment">// first为最短距离, second为编号</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-built_in">pair</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; P;
+<span class="hljs-keyword">int</span> n, t;
+<span class="hljs-built_in">vector</span>&lt;road&gt; G[<span class="hljs-number">1010</span>];
+<span class="hljs-keyword">int</span> d[<span class="hljs-number">1010</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dij</span><span class="hljs-params">(<span class="hljs-keyword">int</span> f)</span></span>&#123;
+    <span class="hljs-comment">//优先队列 首先按照pair.first进行排序, first相同时按照second进行排序</span>
+    <span class="hljs-built_in">priority_queue</span>&lt;P, <span class="hljs-built_in">vector</span>&lt;P&gt;, greater&lt;P&gt; &gt; q;
+    fill(d, d + n + <span class="hljs-number">1</span>, INF);
+    d[f] = <span class="hljs-number">0</span>;
+    q.push(P(<span class="hljs-number">0</span>, f));
+
+    <span class="hljs-keyword">while</span> (!q.empty()) &#123;
+        <span class="hljs-comment">//每次选择出距离f最近的点为v</span>
+        P p = q.top();
+        q.pop();
+        <span class="hljs-keyword">int</span> v = p.second;
+        <span class="hljs-keyword">if</span>(d[v] &lt; p.first) <span class="hljs-keyword">continue</span>;
+        <span class="hljs-comment">// 以v为跳板更新其他边的最小距离</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; G[v].size(); i++)&#123;
+            road e = G[v][i];
+            <span class="hljs-keyword">if</span>(d[e.to] &gt; d[v] + e.cost)&#123;
+                d[e.to] = d[v] + e.cost;
+                q.push(P(d[e.to], e.to));
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">cin</span> &gt;&gt; t &gt;&gt; n) &#123;
+        <span class="hljs-keyword">int</span> a, b, c;
+        <span class="hljs-comment">// 邻接表的输入</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; t; i++) &#123;
+            <span class="hljs-built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+            road tmp;
+            tmp.to = b;
+            tmp.cost = c;
+            <span class="hljs-comment">//将各个边push进G[a]</span>
+            G[a].push_back(tmp);
+            tmp.to = a;
+            tmp.cost = c;
+            <span class="hljs-comment">//将各个边push进G[b]</span>
+            G[b].push_back(tmp);
+        &#125;
+        dij(<span class="hljs-number">1</span>);
+        <span class="hljs-built_in">cout</span> &lt;&lt; d[n] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/acm/">acm</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/">最短路</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/03/28/poj-2253-poj-1797-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%8F%98%E5%BD%A2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">poj-2253 poj-1797 最短路变形</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "meM3uHGq9z45FBQ56ImqSOr8-gzGzoHsz# 从 LeanCloud 的应用中得到的 appId",
+          app_key: "hJ2FaNHCoGx3sVnGkhBUGk3B# 从 LeanCloud 的应用中得到的 APP Key",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "poj-2384 简单最短路问题&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

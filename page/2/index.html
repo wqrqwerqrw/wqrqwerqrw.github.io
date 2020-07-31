@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Wqr_">
+  <meta name="keywords" content="">
+  <title>Wqr_Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/01/08/1cZtX5Mh4dWAYFr.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/05/10/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3STL%E6%80%BB%E7%BB%93/">排列组合以及相关STL总结</a>
+
+      <a href="/2019/05/10/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3STL%E6%80%BB%E7%BB%93/" class="index-excerpt">
+        
+        
+          
+        
+        <div>#排列组合以及相关STL总结
+相关链接
+相关文档
+next_permutation
+prev_permutation
+
+
+相关博客
+ACM~排列组合&amp;&amp;hdu例子
+ACM学习历程21——各种排列组合问题
+
+
+
+有关组合数学的公式
+排列公式P(n,r)=n!/r!
+组合公式C(n,r)=n!/(r!*(n-r)!) C(n,r)=C(n-1,r)+C(n-1,r-1)
+错排公式   </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-10
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/">排列组合</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/05/08/STL-map-%E6%80%BB%E7%BB%93/">STL-map 总结</a>
+
+      <a href="/2019/05/08/STL-map-%E6%80%BB%E7%BB%93/" class="index-excerpt">
+        
+        
+          
+        
+        <div>STL-map 总结文档链接map基本操作
+在STL的头文件中&lt;map&gt;中定义了模版类map和multimap，用有序二叉树表存储类型为pair&lt;const Key, T&gt;的元素对序列. 序列中的元素以 const Key 部分作为标识, map 中所有元素的Key值必须是唯一的，multimap 则允许有重复的 Key 值.
+可以将map看作是由Key标识元素的元素集合，</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/map/">map</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/30/java-%E5%A4%A7%E6%95%B0%E7%B1%BB%E7%9A%84%E5%BA%94%E7%94%A8/">java 大数类的应用</a>
+
+      <a href="/2019/03/30/java-%E5%A4%A7%E6%95%B0%E7%B1%BB%E7%9A%84%E5%BA%94%E7%94%A8/" class="index-excerpt">
+        
+        
+          
+        
+        <div>BigInteger
+文档地址;
+
+常用操作进制转换
+文档地址
+
+BigInteger a = BigInteger.ValueOf(&quot;1111111&quot;);
+System.out.println(a.toString(n));
+// n == 2 时转二进制 n == 3 时转三进制 以此类推
+
+运算valueOf(parament); 将参数转换为指定类型
+add(); //</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-30
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%A4%A7%E6%95%B0%E7%B1%BB/">大数类</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/poj-1182-%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86/">poj-1182 带权并查集</a>
+
+      <a href="/2019/03/28/poj-1182-%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="index-excerpt">
+        
+        
+          
+        
+        <div>link带权并查集做法 (向量)
+参考博文
+带权并查集与普通并查集的区别主要在find()和uni()上 在进行两项操作的同时要对节点的权值进行更新, 参考参考博文的做法, 使用了类似向量的思想
+
+变量解释
+node中
+per父节点
+rel与父节点(即向量指向的节点)的关系
+0=&gt;同类 1=&gt;被父节点吃 2=&gt;吃父节点
+
+
+high高度, 本题中没有 (至少我的码里没用..)
+
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/poj-1860-poj-3295-Bellman-Ford%E5%88%A4%E6%96%AD%E8%B4%9F%E6%9D%83%E5%9B%9E%E8%B7%AF/">poj-1860 poj-3295 Bellman-Ford判断负权回路</a>
+
+      <a href="/2019/03/28/poj-1860-poj-3295-Bellman-Ford%E5%88%A4%E6%96%AD%E8%B4%9F%E6%9D%83%E5%9B%9E%E8%B7%AF/" class="index-excerpt">
+        
+        
+          
+        
+        <div>poj-1860
+link
+
+题目大意
+有多个兑换点, 每个兑换点可以兑换两种货币. 假设本来有的货币种类为s, 问能否通过不断兑换最终回到s并且使总金增加
+
+理解
+如果存在正权回路则说明可以钱无限增加, 找到正权回路直接输出YES就行了, 否则输出NO
+
+code/**********************************************************
+    &gt</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/">最短路</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/%E6%89%8B%E6%9C%BA%E7%AB%AF-Termux-linux-vim-c-%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE/">手机端 Termux linux vim c++ 环境的配置</a>
+
+      <a href="/2019/03/28/%E6%89%8B%E6%9C%BA%E7%AB%AF-Termux-linux-vim-c-%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE/" class="index-excerpt">
+        
+        
+          
+        
+        <div>前言
+完成效果图
+
+
+
+本文在Termux 高级终端安装使用配置教程的基础上进行vim的更深一步配置
+
+感谢大佬的教程
+
+
+1. gcc的安装
+输入pkg install clang
+这个我不确定对不对了,如果出了错误请按照如下操作
+输入gcc会弹出一些信息,其中有一个pkg install ***输入就可以了
+
+
+
+2. vimrc的配置
+输入命令vim ~/.vimrc
+
+在vimrc中添加如</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%8E%AF%E5%A2%83/">环境</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+              <a href="/tags/Termux/">Termux</a>
+            
+              <a href="/tags/android/">android</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/WSL-%E4%B8%8B-vim-%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%97%B4%E5%A4%8D%E5%88%B6/">WSL 下 vim 的系统间复制</a>
+
+      <a href="/2019/03/28/WSL-%E4%B8%8B-vim-%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%97%B4%E5%A4%8D%E5%88%B6/" class="index-excerpt">
+        
+        
+          
+        
+        <div>
+WSL 通过 clip.exe 可以与 windows 的剪切板连接
+
+通过指令
+:w !clip.exe
+
+
+通过 vim 的 nmap 可以使用快捷键快速操作
+
+在~/.vimrc中添加
+
+
+namp &lt;c-c&gt; :w !clip.exe
+
+
+
+也可以使用同样的方式仅复制一部分内容
+
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%8E%AF%E5%A2%83/">环境</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+              <a href="/tags/wsl/">wsl</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3tsp%E4%BB%A5%E5%8F%8A%E4%B8%8D%E9%97%AD%E5%90%88tsp%E9%97%AE%E9%A2%98/">蚁群算法解决tsp以及不闭合tsp问题</a>
+
+      <a href="/2019/03/28/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3tsp%E4%BB%A5%E5%8F%8A%E4%B8%8D%E9%97%AD%E5%90%88tsp%E9%97%AE%E9%A2%98/" class="index-excerpt">
+        
+        
+          
+        
+        <div>前言
+思路来源, 这篇文章里介绍的真的是非常详细, 文章中有大连理工大学的pdf, 也可也学到很多
+
+蚁群算法属于智能算法, 并不一定收敛到最优解, 但对75点一下规模的问题能很好的解决
+
+代码参考
+
+
+思路
+tsp问题的思路在前言中的文章里已经有了详细的介绍, 所以只介绍我解决不闭合tsp问题的思路
+
+tsp问题的解决
+原理见前言文章与code, 仅展示下结果和逻辑图
+
+30个点感觉并不是很好
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%9E%8E%E6%90%9E/">瞎搞</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/poj-2253-poj-1797-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%8F%98%E5%BD%A2/">poj-2253 poj-1797 最短路变形</a>
+
+      <a href="/2019/03/28/poj-2253-poj-1797-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%8F%98%E5%BD%A2/" class="index-excerpt">
+        
+        
+          
+        
+        <div>poj-2253题意
+复制一下别人的题意，有两只青蛙和若干块石头，现在已知这些东西的坐标，两只青蛙A坐标和青蛙B坐标是第一个和第二个坐标，现在A青蛙想要到B青蛙那里去，并且A青蛙可以借助任意石头的跳跃，而从A到B有若干通路，问从A到B的所有通路上的最大边
+
+从a到b有n条路径, 寻找n条路经中边最大长度最小的
+
+code
+
+
+/***********************************</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/">最短路</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/03/28/poj-2384-%E7%AE%80%E5%8D%95%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98/">poj-2384 简单最短路问题</a>
+
+      <a href="/2019/03/28/poj-2384-%E7%AE%80%E5%8D%95%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98/" class="index-excerpt">
+        
+        
+          
+        
+        <div>linkDijkstra无优化版本 (AC)/**********************************************************
+    &gt; File Name : 2384.cpp
+    &gt; Author : Wqr_
+    &gt; Mail : xueduanwei@126.com
+    &gt; Created Time : 19 03 </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-03-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/">最短路</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "创造美好&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

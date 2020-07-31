@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Wqr_">
+  <meta name="keywords" content="">
+  <title>STL-map 总结 - Wqr_Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/01/08/1cZtX5Mh4dWAYFr.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-05-08 07:57">
+      2019年5月8日 早上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="STL-map-总结"><a href="#STL-map-总结" class="headerlink" title="STL-map 总结"></a>STL-map 总结</h1><h2 id="文档链接"><a href="#文档链接" class="headerlink" title="文档链接"></a><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/map">文档链接</a></h2><h2 id="map基本操作"><a href="#map基本操作" class="headerlink" title="map基本操作"></a>map基本操作</h2><ul>
+<li>在STL的头文件中<code>&lt;map&gt;</code>中定义了模版类map和multimap，用有序二叉树表存储类型为<code>pair&lt;const Key, T&gt;</code>的元素对序列. 序列中的元素以 const Key 部分作为标识, map 中所有元素的Key值必须是唯一的，multimap 则允许有重复的 Key 值.</li>
+<li>可以将map看作是由Key标识元素的元素集合，这类容器也被称为“关联容器”，可以通过一个Key值来快速决定一个元素，因此非常适合于需要按照Key值查找元素的容器. </li>
+<li>map模版类需要四个模版参数，第一个是键值类型，第二个是元素类型，第三个是比较算子，第四个是分配器类型。其中键值类型和元素类型是必要的.</li>
+<li>定义map对象的代码示例：<pre><code class="hljs cpp"><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; m;</code></pre></li>
+<li>基本操作<br>&lt;!–hexoPostRenderEscape:<pre><code class="hljs cpp"><span class="hljs-comment">/*  向map中插入元素  */</span><br><span class="hljs-comment">// [key]操作是map很有特色的操作,如果在map中存在键值为key的元素对, 则返回该元素对的值域部分,否则将会创建一个键值为key的元素对,值域为默认值。所以可以用该操作向map中插入元素对或修改已经存在的元素对的值域部分.</span><br>m[key] = value;<br>m.insert(<span class="hljs-built_in">make_pair</span>(key, value));    <span class="hljs-comment">//  也可以直接调用insert方法插入元素对,insert操作会返回一个pair,当map中没有与key相匹配的键值时,其first是指向插入元素对的迭代器,其second为true;若map中已经存在与key相等的键值时,其first是指向该元素对的迭代器,second为false。</span></li>
+</ul>
+<p><span class="hljs-comment">/*  查找元素  */</span><br><span class="hljs-comment">// 要注意的是,当与该键值相匹配的元素对不存在时,会创建键值为key（当另一个元素是整形时，m[key]=0）的元素对.</span><br><span class="hljs-keyword">int</span> i = m[key];<br><span class="hljs-comment">// 如果map中存在与key相匹配的键值时,find操作将返回指向该元素对的迭代器,否则,返回的迭代器等于map的end()(参见vector中提到的begin()和end()操作).</span><br><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;::iterator it = m.find(key);   </p>
+<p><span class="hljs-comment">/*  删除元素  */</span><br><span class="hljs-comment">// 删除与指定key键值相匹配的元素对,并返回被删除的元素的个数.</span><br>m.erase(key);<br><span class="hljs-comment">//  删除由迭代器it所指定的元素对,并返回指向下一个元素对的迭代器.</span><br>m.erase(it);    </p>
+<p><span class="hljs-comment">/*  其他操作  */</span><br>m.size();       <span class="hljs-comment">//  返回元素个数</span><br>m.empty();      <span class="hljs-comment">//  判断是否为空</span><br>m.clear();      <span class="hljs-comment">//  清空所有元素</span></code></pre>:hexoPostRenderEscape–&gt;</p>
+<h2 id="map的排序"><a href="#map的排序" class="headerlink" title="map的排序"></a>map的排序</h2><ul>
+<li><p>为了实现快速查找, map内部本身就是按序存储的(比如红黑树). 在我们插入<code>&lt;key, value&gt;</code>键值对时, 就会按照key的大小顺序进行存储, 这也是作为key的类型必须能够进行&lt;运算比较的原因. 但有些时候需要用特殊的规则进行排序, 这时可以用<code>vector</code>进行间接地排序</p>
+</li>
+<li><p>map中通过<code>pair</code>储存数据, 所以定义</p>
+<pre><code class="hljs cpp"><span class="hljs-built_in">map</span>&lt;key, value&gt; m;
+<span class="hljs-keyword">typedef</span> <span class="hljs-built_in">pair</span>&lt;key, value&gt; pa;
+<span class="hljs-comment">//把m中的值复制到vec中</span>
+<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;pa&gt; <span class="hljs-title">vec</span><span class="hljs-params">(m.begin(), m.end())</span></span>;</code></pre></li>
+<li><p>之后定义排序函数通过<code>vector</code>排序</p>
+</li>
+<li><p>例题<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1236">hdu-1236</a><br>&lt;!–hexoPostRenderEscape:<pre><code class="hljs cpp"><span class="hljs-comment">/*<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></span><br><span class="hljs-comment">    &gt; File Name: c.cpp</span><br><span class="hljs-comment">    &gt; Author: Wqr_</span><br><span class="hljs-comment">    &gt; Mail: <a href="mailto:&#120;&#x75;&#x65;&#x64;&#117;&#x61;&#110;&#x77;&#x65;&#105;&#x40;&#x31;&#x32;&#54;&#x2e;&#x63;&#x6f;&#109;">&#120;&#x75;&#x65;&#x64;&#117;&#x61;&#110;&#x77;&#x65;&#105;&#x40;&#x31;&#x32;&#54;&#x2e;&#x63;&#x6f;&#109;</a> </span><br><span class="hljs-comment">    &gt; Created Time: 2019年05月06日 星期一 19时40分20秒</span><br><span class="hljs-comment"> <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</span></p>
+</li>
+</ul>
+<p><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">typedef</span> <span class="hljs-built_in">pair</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; pa;<br><span class="hljs-keyword">int</span> fen[<span class="hljs-number">20</span>];<br><span class="hljs-comment">//定义比较函数</span><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-keyword">const</span> pa &amp;a, <span class="hljs-keyword">const</span> pa &amp;b)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(a.second != b.second)<br>        <span class="hljs-keyword">return</span> a.second &gt; b.second;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> a.first.compare(b.first) &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n, m, g;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;m, &amp;g);<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; jifen;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)&#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, fen + i + <span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-built_in">string</span> hao;<br>            <span class="hljs-keyword">int</span> num;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; hao &gt;&gt; num;<br>            jifen[hao] = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; num; j++)&#123;<br>                <span class="hljs-keyword">int</span> in;<br>                <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;in);<br>                jifen[hao] += fen[in];<br>            &#125;<br>            <span class="hljs-keyword">if</span>(jifen[hao] &gt;= g)&#123;<br>                ans++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;<br>        <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;pa&gt; <span class="hljs-title">vec</span><span class="hljs-params">(jifen.begin(), jifen.end())</span></span>;<br>        <span class="hljs-comment">// 排序</span><br>        sort(vec.begin(), vec.end(), cmp);<br>        <span class="hljs-keyword">for</span>(pa vecc : vec)&#123;<br>            <span class="hljs-keyword">if</span>(vecc.second &gt;= g)<br>            <span class="hljs-built_in">cout</span> &lt;&lt; vecc.first &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; vecc.second &lt;&lt; <span class="hljs-built_in">endl</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;</code></pre>:hexoPostRenderEscape–&gt;</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/acm/">acm</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/map/">map</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/10/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3STL%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排列组合以及相关STL总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/03/30/java-%E5%A4%A7%E6%95%B0%E7%B1%BB%E7%9A%84%E5%BA%94%E7%94%A8/">
+                        <span class="hidden-mobile">java 大数类的应用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "meM3uHGq9z45FBQ56ImqSOr8-gzGzoHsz# 从 LeanCloud 的应用中得到的 appId",
+          app_key: "hJ2FaNHCoGx3sVnGkhBUGk3B# 从 LeanCloud 的应用中得到的 APP Key",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "STL-map 总结&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

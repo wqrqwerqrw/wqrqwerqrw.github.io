@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Wqr_">
+  <meta name="keywords" content="">
+  <title>Wqr_Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/01/08/1cZtX5Mh4dWAYFr.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/01/17/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/">树的直径</a>
+
+      <a href="/2020/01/17/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/" class="index-excerpt">
+        
+        
+          
+        
+        <div>树的直径定义
+树中所有最短路径距离的最大值即为树的直径
+
+求法
+首先在树上任取一点u, 记录距离u最远的节点为d1, d1即为树直径的端点之一
+寻找距离d1最远的节点d2
+d1到d2的路径即为树的直径
+
+
+可以使用两次dfs搜索答案
+
+// vector G[v];
+void dfs(int in)&#123;
+    vis[in] = 1;
+    for(auto e : G[in])&#1</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-01-17
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%A0%91/">树</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/09/18/%E6%A8%A1%E6%9D%BF-%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/">[模板]-树链剖分</a>
+
+      <a href="/2019/09/18/%E6%A8%A1%E6%9D%BF-%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" class="index-excerpt">
+        
+        
+          
+        
+        <div>本文存在大量修改空间, 待更新[模板]-树链剖分必要前驱知识点
+链式向前星
+dfs序
+线段树(区间)相关博客
+
+
+link相关题目以及代码
+luogu-P3384
+
+// Author : Wqr_
+// Time : 19/09/16
+// luogu 3384
+#include &lt;bits/stdc++.h&gt;
+#define iofuck std::ios::sync_with_s</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-09-18
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/09/11/acm-vscode%E9%85%8D%E7%BD%AE/">ACM VSCode Win 配置</a>
+
+      <a href="/2019/09/11/acm-vscode%E9%85%8D%E7%BD%AE/" class="index-excerpt">
+        
+        
+          
+        
+        <div>ACM VSCode 配置(备份)效果
+一 安装gcc并添加到PATH
+略
+
+二 配置
+在储存代码的目录新建一个文件夹.vscode, 并新建三个文件
+
+c_cpp_properties.json
+&#123;
+&quot;configurations&quot;: [
+  &#123;
+      &quot;name&quot;: &quot;MinGW64&quot;,
+      &quo</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-09-11
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%8E%AF%E5%A2%83/">环境</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vscode/">vscode</a>
+            
+              <a href="/tags/acm/">acm</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/06/06/19-6-5-Educational-CF-Round-66-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/">19.6.5 Educational-CF-Round-66-Div-2 解题报告</a>
+
+      <a href="/2019/06/06/19-6-5-Educational-CF-Round-66-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" class="index-excerpt">
+        
+        
+          
+        
+        <div>19.5.15 Educational CF Round 65 (Div. 2) (2 / 7)linkA. From Hero to Zero
+用乘法代替循环以防止超时
+ac代码
+
+/*************************************************************************
+    &gt; File Name: a.cpp
+    &gt</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-06-06
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/codeforces/">codeforces</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/06/04/19-5-17-CF-563-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/">19.5.17 CF #563 (Div. 2) 解题报告</a>
+
+      <a href="/2019/06/04/19-5-17-CF-563-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" class="index-excerpt">
+        
+        
+          
+        
+        <div>19.5.17 CF #563 (Div. 2) 解题报告
+这场a b c全有3k+的人做出来, 罚时有点多了, 难受.
+
+linkhttp://codeforces.com/contest/1174A. Ehab Fails to Be Thanos
+排序后判断前后两半是否相等
+ac代码
+
+/****************************************************</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-06-04
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/codeforces/">codeforces</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/06/02/19-6-2-CF-2019-GR3-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/">19.6.2 CF 2019 GR3 解题报告</a>
+
+      <a href="/2019/06/02/19-6-2-CF-2019-GR3-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" class="index-excerpt">
+        
+        
+          
+        
+        <div>19.6.2 CF 2019 GR3 解题报告 (4 / 8)linkA. Another One Bites The Dust
+直接猜
+ac代码
+
+/*************************************************************************
+    &gt; File Name: a.cpp
+    &gt; Author: Wqr_
+  </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-06-02
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/codeforces/">codeforces</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/05/27/19-5-17-CF-562-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/">19.5.17 CF #562 (Div. 2) 解题报告</a>
+
+      <a href="/2019/05/27/19-5-17-CF-562-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" class="index-excerpt">
+        
+        
+          
+        
+        <div>19.5.17 CF #562 (Div. 2) 解题报告 (2 / 5)linkA. Circle Metro
+直接模拟即可
+ac代码  
+
+/*************************************************************************
+    &gt; File Name: a.cpp
+    &gt; Author: Wqr_
+    &</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-27
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/codeforces/">codeforces</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/05/22/2019-CCPC-%E5%90%89%E6%9E%97%E7%9C%81%E8%B5%9B%E4%BB%A5%E5%8F%8A%E4%B8%9C%E5%8C%97%E5%9B%9B%E7%9C%81%E8%B5%9B%E5%B0%8F%E8%AE%A1/">2019 CCPC 吉林省赛以及东北四省赛小计</a>
+
+      <a href="/2019/05/22/2019-CCPC-%E5%90%89%E6%9E%97%E7%9C%81%E8%B5%9B%E4%BB%A5%E5%8F%8A%E4%B8%9C%E5%8C%97%E5%9B%9B%E7%9C%81%E8%B5%9B%E5%B0%8F%E8%AE%A1/" class="index-excerpt">
+        
+        
+          
+        
+        <div>2019 CCPC 吉林省赛以及东北四省赛小计队名 : “玄学研究学会”关于对举办方的吐槽
+中午午餐竟然是一块巨大的面包 + 一根香肠 + 一瓶营养快线. 虽然不错, 但是还是有点失落感;
+记录账号密码的小条发的有点慢, 难受
+键盘难受, 键位蜜汁不标准, 难受
+没vim, 难受
+厕所没坑, 难受
+衣服丑, 竟然是荧光绿, 衣柜不能填新衣服了, 难受;
+不过总体上还是不错的, 志愿者很棒
+
+吉林省</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-22
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ccpc/">ccpc</a>
+            
+              <a href="/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/05/18/19-5-17-CF-561-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/">19.5.17 CF #561 (Div. 2) 解题报告</a>
+
+      <a href="/2019/05/18/19-5-17-CF-561-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" class="index-excerpt">
+        
+        
+          
+        
+        <div>19.5.17 CF #561 (Div. 2) 解题报告(3 / 6)linkA. Silent Classroom
+统计每个首字母出现的次数,设为n, 然后累加C(n, 2)
+ac代码
+
+/*************************************************************************
+    &gt; File Name: a.cpp
+   </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-18
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/codeforces/">codeforces</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/05/16/19-5-15-Educational-CF-Round-65-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/">19.5.15 Educational CF Round 65 (Div. 2) 解题报告</a>
+
+      <a href="/2019/05/16/19-5-15-Educational-CF-Round-65-Div-2-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" class="index-excerpt">
+        
+        
+          
+        
+        <div>19.5.15 Educational CF Round 65 (Div. 2) (4 / 7)linkA. Telephone Number
+判断下8出现的第一个位置然后剪一下再判断就行了
+11打成8wa了一发..
+ac代码
+
+
+/*************************************************************************
+    &gt; </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-16
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/acm/">acm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/codeforces/">codeforces</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "创造美好&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

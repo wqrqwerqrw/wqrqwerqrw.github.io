@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Wqr_">
+  <meta name="keywords" content="">
+  <title>手机端 Termux linux vim c++ 环境的配置 - Wqr_Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/01/08/1cZtX5Mh4dWAYFr.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-03-28 01:01">
+      2019年3月28日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li><p>完成效果图</p>
+</li>
+<li><p><img src="https://i.loli.net/2018/10/21/5bcc26357626f.png" srcset="/img/loading.gif"></p>
+</li>
+<li><p>本文在<a target="_blank" rel="noopener" href="http://www.sqlsec.com/2018/05/termux.html#more">Termux 高级终端安装使用配置教程</a>的基础上进行vim的更深一步配置</p>
+</li>
+<li><p>感谢大佬的教程</p>
+</li>
+</ul>
+<h1 id="1-gcc的安装"><a href="#1-gcc的安装" class="headerlink" title="1. gcc的安装"></a>1. gcc的安装</h1><ul>
+<li>输入<code>pkg install clang</code></li>
+<li>这个我不确定对不对了,如果出了错误请按照如下操作<blockquote>
+<p>输入<code>gcc</code><br>会弹出一些信息,其中有一个pkg install ***<br>输入就可以了</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="2-vimrc的配置"><a href="#2-vimrc的配置" class="headerlink" title="2. vimrc的配置"></a>2. vimrc的配置</h1><ol>
+<li><p>输入命令<code>vim ~/.vimrc</code></p>
+</li>
+<li><p>在vimrc中添加如下代码</p>
+</li>
+</ol>
+<pre><code class="hljs vim"><span class="hljs-keyword">nmap</span> <span class="hljs-symbol">&lt;c-c&gt;</span> :w! ~/storage/shared/<span class="hljs-keyword">copy</span>.txt
+
+<span class="hljs-keyword">set</span> tabstop=<span class="hljs-number">4</span>
+<span class="hljs-keyword">set</span> softtabstop=<span class="hljs-number">4</span>
+<span class="hljs-keyword">set</span> <span class="hljs-built_in">shiftwidth</span>=<span class="hljs-number">4</span>
+<span class="hljs-keyword">set</span> autoindent
+<span class="hljs-keyword">set</span> <span class="hljs-built_in">cindent</span>
+<span class="hljs-keyword">set</span> smarttab
+:<span class="hljs-keyword">set</span> <span class="hljs-keyword">ts</span>=<span class="hljs-number">4</span>
+:<span class="hljs-keyword">set</span> expandtab
+:%retab!
+<span class="hljs-keyword">syntax</span> <span class="hljs-keyword">on</span>
+<span class="hljs-keyword">set</span> laststatus=<span class="hljs-number">0</span>
+<span class="hljs-keyword">set</span> <span class="hljs-keyword">number</span>
+<span class="hljs-keyword">filetype</span> <span class="hljs-keyword">on</span>
+<span class="hljs-keyword">set</span> showcmd
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">version</span> &gt;= <span class="hljs-number">603</span>
+    <span class="hljs-keyword">set</span> helplang=<span class="hljs-keyword">cn</span>
+    <span class="hljs-keyword">set</span> encoding=utf-<span class="hljs-number">8</span>
+<span class="hljs-keyword">endif</span>
+<span class="hljs-keyword">autocmd</span> BufNewFile *.cpp,*.[ch],*.<span class="hljs-keyword">sh</span>,*.java exec <span class="hljs-string">&quot;:call SetTitle()&quot;</span>
+func SetTitle()
+    <span class="hljs-keyword">if</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;sh&#x27;</span>
+        <span class="hljs-keyword">call</span> <span class="hljs-built_in">setline</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;\#########################################################################&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>), <span class="hljs-string">&quot;\# File Name: &quot;</span>.<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;%&quot;</span>))
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">1</span>, <span class="hljs-string">&quot;\# Author: Wqr_&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">2</span>, <span class="hljs-string">&quot;\# mail: xueduanwei@126.com&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">3</span>, <span class="hljs-string">&quot;\# Created Time: &quot;</span>.<span class="hljs-built_in">strftime</span>(<span class="hljs-string">&quot;%c&quot;</span>))
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">4</span>, <span class="hljs-string">&quot;\#########################################################################&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">5</span>, <span class="hljs-string">&quot;\#!/bin/bash&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">6</span>, <span class="hljs-string">&quot;&quot;</span>)
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">call</span> <span class="hljs-built_in">setline</span>(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;/*************************************************************************&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>), <span class="hljs-string">&quot;    &gt; File Name: &quot;</span>.<span class="hljs-built_in">expand</span>(<span class="hljs-string">&quot;%&quot;</span>))
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">1</span>, <span class="hljs-string">&quot;    &gt; Author: Wqr_&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">2</span>, <span class="hljs-string">&quot;    &gt; Mail: xueduanwei@126.com &quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">3</span>, <span class="hljs-string">&quot;    &gt; Created Time: &quot;</span>.<span class="hljs-built_in">strftime</span>(<span class="hljs-string">&quot;%c&quot;</span>))
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">4</span>, <span class="hljs-string">&quot; ************************************************************************/&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">5</span>, <span class="hljs-string">&quot;&quot;</span>)
+    <span class="hljs-keyword">endif</span>
+    <span class="hljs-keyword">if</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;cpp&#x27;</span>
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">6</span>, <span class="hljs-string">&quot;#include&lt;iostream&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">7</span>, <span class="hljs-string">&quot;#include&lt;cstdio&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">8</span>, <span class="hljs-string">&quot;#include&lt;cstring&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">9</span>, <span class="hljs-string">&quot;#include&lt;string&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">10</span>, <span class="hljs-string">&quot;#include&lt;vector&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">11</span>, <span class="hljs-string">&quot;#include&lt;algorithm&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">12</span>, <span class="hljs-string">&quot;using namespace std;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">13</span>, <span class="hljs-string">&quot;&quot;</span>)
+    <span class="hljs-keyword">endif</span>
+    <span class="hljs-keyword">if</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;c&#x27;</span>
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">6</span>, <span class="hljs-string">&quot;#include&lt;stdio.h&gt;&quot;</span>)
+        <span class="hljs-keyword">call</span> <span class="hljs-keyword">append</span>(<span class="hljs-built_in">line</span>(<span class="hljs-string">&quot;.&quot;</span>)+<span class="hljs-number">7</span>, <span class="hljs-string">&quot;&quot;</span>)
+    <span class="hljs-keyword">endif</span>
+    <span class="hljs-keyword">autocmd</span> BufNewFile * <span class="hljs-keyword">normal</span> G
+endfunc
+<span class="hljs-keyword">map</span> <span class="hljs-symbol">&lt;c-g&gt;</span> :<span class="hljs-keyword">call</span> CompileRunGcc()<span class="hljs-symbol">&lt;CR&gt;</span>
+func! CompileRunGcc()
+    exec <span class="hljs-string">&quot;w&quot;</span>
+    <span class="hljs-keyword">if</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;c&#x27;</span>
+        exec <span class="hljs-string">&quot;!g++ % -o %&lt;&quot;</span>
+        exec <span class="hljs-string">&quot;! ./%&lt;&quot;</span>
+    <span class="hljs-keyword">elseif</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;cpp&#x27;</span>
+        exec <span class="hljs-string">&quot;!g++ % -o %&lt;&quot;</span>
+        exec <span class="hljs-string">&quot;! ./%&lt;&quot;</span>
+    <span class="hljs-keyword">elseif</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;java&#x27;</span>
+        exec <span class="hljs-string">&quot;!javac %&quot;</span>
+        exec <span class="hljs-string">&quot;!java %&lt;&quot;</span>
+    <span class="hljs-keyword">elseif</span> &amp;<span class="hljs-keyword">filetype</span> == <span class="hljs-string">&#x27;sh&#x27;</span>
+        :!./%
+    <span class="hljs-keyword">endif</span>
+endfunc
+<span class="hljs-keyword">map</span> <span class="hljs-symbol">&lt;c-d&gt;</span> :<span class="hljs-keyword">call</span> Rungdb()<span class="hljs-symbol">&lt;CR&gt;</span>
+
+func! Rungdb()
+
+    exec <span class="hljs-string">&quot;w&quot;</span>
+
+    exec <span class="hljs-string">&quot;!g++ % -g -o %&lt;&quot;</span>
+
+    exec <span class="hljs-string">&quot;!gdb ./%&lt;&quot;</span>
+
+endfunc
+<span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">c</span>,cpp <span class="hljs-keyword">map</span> <span class="hljs-symbol">&lt;buffer&gt;</span> <span class="hljs-symbol">&lt;leader&gt;</span><span class="hljs-symbol">&lt;space&gt;</span> :<span class="hljs-keyword">w</span><span class="hljs-symbol">&lt;cr&gt;</span>:<span class="hljs-keyword">make</span><span class="hljs-symbol">&lt;cr&gt;</span>
+<span class="hljs-keyword">set</span> completeopt=preview,<span class="hljs-keyword">menu</span>
+
+<span class="hljs-comment">&quot;允许插件</span>
+<span class="hljs-keyword">filetype</span> plugin <span class="hljs-keyword">on</span>
+<span class="hljs-comment">&quot;共享剪贴板</span>
+
+<span class="hljs-keyword">set</span> clipboard+=unnamed
+<span class="hljs-keyword">set</span> autowrite
+<span class="hljs-keyword">set</span> enc=utf-<span class="hljs-number">8</span>
+<span class="hljs-keyword">set</span> fencs=utf-<span class="hljs-number">8</span>,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+<span class="hljs-comment">&quot;语言设置</span>
+
+<span class="hljs-keyword">set</span> langmenu=zh_CN.UTF-<span class="hljs-number">8</span>
+
+<span class="hljs-keyword">set</span> helplang=<span class="hljs-keyword">cn</span>
+<span class="hljs-keyword">filetype</span> plugin <span class="hljs-keyword">on</span>
+<span class="hljs-keyword">filetype</span> <span class="hljs-built_in">indent</span> <span class="hljs-keyword">on</span>
+<span class="hljs-keyword">set</span> iskeyword+=_,$,@,%,#,-
+:<span class="hljs-keyword">inoremap</span> ( ()<span class="hljs-symbol">&lt;ESC&gt;</span>i
+
+:<span class="hljs-keyword">inoremap</span> ) <span class="hljs-symbol">&lt;c-r&gt;</span>=ClosePair(<span class="hljs-string">&#x27;)&#x27;</span>)<span class="hljs-symbol">&lt;CR&gt;</span>
+
+:<span class="hljs-keyword">inoremap</span> &#123; &#123;<span class="hljs-symbol">&lt;CR&gt;</span>&#125;<span class="hljs-symbol">&lt;ESC&gt;</span>O
+
+:<span class="hljs-keyword">inoremap</span> &#125; <span class="hljs-symbol">&lt;c-r&gt;</span>=ClosePair(<span class="hljs-string">&#x27;&#125;&#x27;</span>)<span class="hljs-symbol">&lt;CR&gt;</span>
+
+:<span class="hljs-keyword">inoremap</span> [ []<span class="hljs-symbol">&lt;ESC&gt;</span>i
+
+:<span class="hljs-keyword">inoremap</span> ] <span class="hljs-symbol">&lt;c-r&gt;</span>=ClosePair(<span class="hljs-string">&#x27;]&#x27;</span>)<span class="hljs-symbol">&lt;CR&gt;</span>
+
+:<span class="hljs-keyword">inoremap</span> <span class="hljs-string">&quot; &quot;</span><span class="hljs-comment">&quot;&lt;ESC&gt;i</span>
+:<span class="hljs-keyword">inoremap</span> <span class="hljs-string">&#x27; &#x27;</span><span class="hljs-string">&#x27;&lt;ESC&gt;i</span>
+<span class="hljs-string">function! ClosePair(char)</span>
+<span class="hljs-string">    if getline(&#x27;</span>.<span class="hljs-string">&#x27;)[col(&#x27;</span>.<span class="hljs-string">&#x27;) - 1] == a:char</span>
+<span class="hljs-string">        return &quot;\&lt;Right&gt;&quot;</span>
+<span class="hljs-string">    else</span>
+<span class="hljs-string">        return a:char</span>
+<span class="hljs-string">    endif</span>
+<span class="hljs-string">endfunction</span>
+<span class="hljs-string">filetype plugin indent on</span>
+<span class="hljs-string">&quot;打开文件类型检测, 加了这句才可以用智能补全</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">set completeopt=longest,menu</span></code></pre>
+
+<ol>
+<li><p>解释</p>
+<ul>
+<li><p>我在根目录下创建了一个名为<code>copy.txt</code>的文件,用来作为系统间复制的桥梁,这个copy.txt需要手动进行创建</p>
+<ul>
+<li><code>&lt;c-c&gt;</code>代表ctrl + c 以此类推</li>
+<li>在此操作后会执行命令<code>:w! ~/storage/shared/copy.txt</code>将文件保存到copy.txt中</li>
+<li>需要注意的是,执行此操作需要文件有相应的权限,使用<code>chmod</code>指令操作,由于条件比较复杂,具体请自行百度</li>
+</ul>
+</li>
+<li><p><code>ctrl + g</code>可以启用gcc进行编译,<code>ctrl + d</code>可以启用gdb进行调试</p>
+</li>
+<li><p>预添加了头文件和一些信息,可以按需求修改</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="3-插件的安装-可跳过"><a href="#3-插件的安装-可跳过" class="headerlink" title="3. 插件的安装(可跳过)"></a>3. 插件的安装(可跳过)</h1><h2 id="1-安装vundle"><a href="#1-安装vundle" class="headerlink" title="1. 安装vundle"></a>1. 安装<a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">vundle</a></h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">link</a></p>
+</li>
+<li><p>首先<code>cd ~/.vim</code>如果没有此文件夹则使用<code>mkdir</code>创建一个</p>
+</li>
+<li><p>在.vim文件夹中创建文件夹bundle<code>mkdir bundle</code></p>
+</li>
+<li><p>执行<code>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></p>
+<ul>
+<li>可能没有git 按提示操作即可</li>
+</ul>
+</li>
+<li><p>在.vimrc中前添加如下代码</p>
+</li>
+</ol>
+<pre><code class="hljs vim"><span class="hljs-keyword">set</span> nocompatible              <span class="hljs-comment">&quot; be iMproved, required</span>
+<span class="hljs-keyword">filetype</span> off                  <span class="hljs-comment">&quot; required</span>
+
+<span class="hljs-comment">&quot; set the runtime path to include Vundle and initialize</span>
+<span class="hljs-keyword">set</span> rtp+=~/.<span class="hljs-keyword">vim</span>/bundle/Vundle.<span class="hljs-keyword">vim</span>
+<span class="hljs-keyword">call</span> vundle#begin()
+<span class="hljs-comment">&quot; alternatively, pass a path where Vundle should install plugins</span>
+<span class="hljs-comment">&quot;call vundle#begin(&#x27;~/some/path/here&#x27;)</span>
+
+<span class="hljs-comment">&quot; let Vundle manage Vundle, required</span>
+Plugin <span class="hljs-string">&#x27;VundleVim/Vundle.vim&#x27;</span>
+
+<span class="hljs-comment">&quot; The following are examples of different formats supported.</span>
+<span class="hljs-comment">&quot; Keep Plugin commands between vundle#begin/end.</span>
+<span class="hljs-comment">&quot; plugin on GitHub repo</span>
+Plugin <span class="hljs-string">&#x27;tpope/vim-fugitive&#x27;</span>
+<span class="hljs-comment">&quot; plugin from http://vim-scripts.org/vim/scripts.html</span>
+<span class="hljs-comment">&quot; Plugin &#x27;L9&#x27;</span>
+<span class="hljs-comment">&quot; Git plugin not hosted on GitHub</span>
+Plugin <span class="hljs-string">&#x27;git://git.wincent.com/command-t.git&#x27;</span>
+<span class="hljs-comment">&quot; git repos on your local machine (i.e. when working on your own plugin)</span>
+Plugin <span class="hljs-string">&#x27;file:///home/gmarik/path/to/plugin&#x27;</span>
+<span class="hljs-comment">&quot; The sparkup vim script is in a subdirectory of this repo called vim.</span>
+<span class="hljs-comment">&quot; Pass the path to set the runtimepath properly.</span>
+Plugin <span class="hljs-string">&#x27;rstacruz/sparkup&#x27;</span>, &#123;<span class="hljs-string">&#x27;rtp&#x27;</span>: <span class="hljs-string">&#x27;vim/&#x27;</span>&#125;
+<span class="hljs-comment">&quot; Install L9 and avoid a Naming conflict if you&#x27;ve already installed a</span>
+<span class="hljs-comment">&quot; different version somewhere else.</span>
+<span class="hljs-comment">&quot; Plugin &#x27;ascenator/L9&#x27;, &#123;&#x27;name&#x27;: &#x27;newL9&#x27;&#125;</span>
+
+<span class="hljs-comment">&quot; All of your Plugins must be added before the following line</span>
+<span class="hljs-keyword">call</span> vundle#end()            <span class="hljs-comment">&quot; required</span>
+<span class="hljs-keyword">filetype</span> plugin <span class="hljs-built_in">indent</span> <span class="hljs-keyword">on</span>    <span class="hljs-comment">&quot; required</span>
+<span class="hljs-comment">&quot; To ignore plugin indent changes, instead use:</span>
+<span class="hljs-comment">&quot;filetype plugin on</span>
+<span class="hljs-comment">&quot;</span>
+<span class="hljs-comment">&quot; Brief help</span>
+<span class="hljs-comment">&quot; :PluginList       - lists configured plugins</span>
+<span class="hljs-comment">&quot; :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span>
+<span class="hljs-comment">&quot; :PluginSearch foo - searches for foo; append `!` to refresh local cache</span>
+<span class="hljs-comment">&quot; :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span>
+<span class="hljs-comment">&quot;</span>
+<span class="hljs-comment">&quot; see :h vundle for more details or wiki for FAQ</span>
+<span class="hljs-comment">&quot; Put your non-Plugin stuff after this line</span></code></pre>
+
+<h2 id="2-安装缩进可视化插件"><a href="#2-安装缩进可视化插件" class="headerlink" title="2. 安装缩进可视化插件"></a>2. 安装<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/indentLine">缩进可视化插件</a></h2><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/indentLine">link</a></li>
+<li>将文件下载并解压到<code>~/.vim/bundle/</code>目录下</li>
+<li>在前面刚添加的代码块中添加<code>Plugin &#39;Yggdroot/indentLine&#39;</code></li>
+<li>在前面添加的代码块后添加<code>let g:indentLine_color_term = 239</code></li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83/">环境</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Termux/">Termux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/android/">android</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/03/28/poj-1860-poj-3295-Bellman-Ford%E5%88%A4%E6%96%AD%E8%B4%9F%E6%9D%83%E5%9B%9E%E8%B7%AF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">poj-1860 poj-3295 Bellman-Ford判断负权回路</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/03/28/WSL-%E4%B8%8B-vim-%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%97%B4%E5%A4%8D%E5%88%B6/">
+                        <span class="hidden-mobile">WSL 下 vim 的系统间复制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "meM3uHGq9z45FBQ56ImqSOr8-gzGzoHsz# 从 LeanCloud 的应用中得到的 appId",
+          app_key: "hJ2FaNHCoGx3sVnGkhBUGk3B# 从 LeanCloud 的应用中得到的 APP Key",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "手机端 Termux linux vim c++ 环境的配置&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
