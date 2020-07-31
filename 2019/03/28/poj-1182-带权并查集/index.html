@@ -30,6 +30,8 @@
   
 
   
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -510,22 +512,27 @@
               <div class="comments" id="comments">
                 
                 
+  <div id="gitalk-container"></div>
   <script type="text/javascript">
-    function loadUtterances() {
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.defer = false
-      s.setAttribute('repo', 'wqrqwerqrw/commentsOfBlog');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', 'github-light');
-      s.setAttribute('crossorigin', 'anonymous');
-      var e = document.getElementsByTagName('script')[0];
-      e.parentNode.insertBefore(s, e);
+    function loadGitalk(){
+      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: 'e443848883eb959d9fc9',
+          clientSecret: 'dcd6e13b83098c27fd90adba7add78536fd7e65d',
+          repo: 'wqrqwerqrw.github.io',
+          owner: 'wqrqwerqrw',
+          admin: '['wqrqwerqrw']',
+          id: '9fd1a70958b4c1867746b8f646c3ead0',
+          language: 'zh-CN',
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: 'true',
+          distractionFreeMode: 'false'
+        });
+        gitalk.render('gitalk-container');
+      });
     }
-    createObserver(loadUtterances, 'comments')
+    createObserver(loadGitalk, 'gitalk-container');
   </script>
 
 
