@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                poj-1182 带权并查集
+              
             </span>
 
             
@@ -206,47 +208,67 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="link"><a href="#link" class="headerlink" title="link"></a><a target="_blank" rel="noopener" href="https://vjudge.net/contest/66964#problem/E">link</a></h1><h1 id="带权并查集做法-向量"><a href="#带权并查集做法-向量" class="headerlink" title="带权并查集做法 (向量)"></a>带权并查集做法 (向量)</h1><ul>
+              <h1 id="link"><a class="markdownIt-Anchor" href="#link"></a> <a target="_blank" rel="noopener" href="https://vjudge.net/contest/66964#problem/E">link</a></h1>
+<h1 id="带权并查集做法-向量"><a class="markdownIt-Anchor" href="#带权并查集做法-向量"></a> 带权并查集做法 (向量)</h1>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/niushuai666/article/details/6981689">参考博文</a></li>
 <li>带权并查集与普通并查集的区别主要在<code>find()</code>和<code>uni()</code>上 在进行两项操作的同时要对节点的权值进行更新, 参考参考博文的做法, 使用了类似向量的思想</li>
 </ul>
-<h2 id="变量解释"><a href="#变量解释" class="headerlink" title="变量解释"></a>变量解释</h2><ul>
-<li>node中<ul>
+<h2 id="变量解释"><a class="markdownIt-Anchor" href="#变量解释"></a> 变量解释</h2>
+<ul>
+<li>node中
+<ul>
 <li><code>per</code>父节点</li>
-<li><code>rel</code>与父节点(即向量指向的节点)的关系<ul>
+<li><code>rel</code>与父节点(即向量指向的节点)的关系
+<ul>
 <li>0=&gt;同类 1=&gt;被父节点吃 2=&gt;吃父节点</li>
 </ul>
 </li>
-<li><code>high</code>高度, 本题中没有 (至少我的码里没用..)</li>
+<li><code>high</code>高度, 本题中没有 (至少我的码里没用…)</li>
 </ul>
 </li>
 </ul>
-<h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><p>－假设有 pa, a, pb, b 四个节点, a 与 b 有关系, 具体如图</p>
+<h2 id="合并"><a class="markdownIt-Anchor" href="#合并"></a> 合并</h2>
+<p>－假设有 pa, a, pb, b 四个节点, a 与 b 有关系, 具体如图</p>
 <ul>
-<li><p><img src="https://i.postimg.cc/vHRYKsZg/1.jpg" srcset="/img/loading.gif"></p>
+<li>
+<p><img src="https://i.postimg.cc/vHRYKsZg/1.jpg" srcset="/img/loading.gif" alt="" /></p>
 </li>
-<li><p>将 pb 连接到 pa 时侯, 就可以很容易的得到 pa 与 pb 的关系</p>
+<li>
+<p>将 pb 连接到 pa 时侯, 就可以很容易的得到 pa 与 pb 的关系</p>
 </li>
-<li><p><img src="https://i.postimg.cc/Nf1sqzKN/2.jpg" srcset="/img/loading.gif"></p>
+<li>
+<p><img src="https://i.postimg.cc/Nf1sqzKN/2.jpg" srcset="/img/loading.gif" alt="" /></p>
 </li>
-<li><p><code>b-&gt;pb + pb-&gt;pa = b-&gt;a + a-&gt;pa</code> 推出<code>pb-&gt;pa = b-&gt;a + a-&gt;pa - b-&gt;pb</code><br>转化为代码 <code>node[pb].rel = (d + node[a].rel - node[b].rel + 3) % 3;</code></p>
-</li>
-</ul>
-<h2 id="find-同时压缩路径"><a href="#find-同时压缩路径" class="headerlink" title="find() (同时压缩路径)"></a>find() (同时压缩路径)</h2><ul>
-<li><p>假设有 a, b, c 三个节点, 关系如图</p>
-</li>
-<li><p><img src="https://i.postimg.cc/GmKb9TJG/3.jpg" srcset="/img/loading.gif"></p>
-</li>
-<li><p>将 c 连接到 a 时</p>
-</li>
-<li><p><img src="https://i.postimg.cc/bwpzz9bq/4.jpg" srcset="/img/loading.gif"></p>
-</li>
-<li><p><code>c-&gt;a = c-&gt;b + b-&gt;a</code><br>转化为代码<code>node[a].rel = (node[a].rel + node[tmp].rel + 3) % 3;</code></p>
-</li>
-<li><p>通过 tmp 进行递归迭代进行路径压缩</p>
+<li>
+<p><code>b-&gt;pb + pb-&gt;pa = b-&gt;a + a-&gt;pa</code> 推出<code>pb-&gt;pa = b-&gt;a + a-&gt;pa - b-&gt;pb</code><br />
+转化为代码 <code>node[pb].rel = (d + node[a].rel - node[b].rel + 3) % 3;</code></p>
 </li>
 </ul>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
+<h2 id="find-同时压缩路径"><a class="markdownIt-Anchor" href="#find-同时压缩路径"></a> find() (同时压缩路径)</h2>
+<ul>
+<li>
+<p>假设有 a, b, c 三个节点, 关系如图</p>
+</li>
+<li>
+<p><img src="https://i.postimg.cc/GmKb9TJG/3.jpg" srcset="/img/loading.gif" alt="" /></p>
+</li>
+<li>
+<p>将 c 连接到 a 时</p>
+</li>
+<li>
+<p><img src="https://i.postimg.cc/bwpzz9bq/4.jpg" srcset="/img/loading.gif" alt="" /></p>
+</li>
+<li>
+<p><code>c-&gt;a = c-&gt;b + b-&gt;a</code><br />
+转化为代码<code>node[a].rel = (node[a].rel + node[tmp].rel + 3) % 3;</code></p>
+</li>
+<li>
+<p>通过 tmp 进行递归迭代进行路径压缩</p>
+</li>
+</ul>
+<h2 id="code"><a class="markdownIt-Anchor" href="#code"></a> code</h2>
+<pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
 <span class="hljs-comment">    &gt; File Name : poj-1182-jq.cpp</span>
 <span class="hljs-comment">    &gt; Author : Wqr_</span>
 <span class="hljs-comment">    &gt; Mail : xueduanwei@126.com</span>
@@ -357,8 +379,8 @@
     solve();
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
-<h1 id="白书做法-分类"><a href="#白书做法-分类" class="headerlink" title="白书做法 (分类)"></a>白书做法 (分类)</h1><pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
+<h1 id="白书做法-分类"><a class="markdownIt-Anchor" href="#白书做法-分类"></a> 白书做法 (分类)</h1>
+<pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
 <span class="hljs-comment">    &gt; File Name : poj-2236.cpp</span>
 <span class="hljs-comment">    &gt; Author : Wqr_</span>
 <span class="hljs-comment">    &gt; Mail : xueduanwei@126.com</span>
@@ -631,31 +653,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "poj-1182 带权并查集&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -697,6 +703,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                [模板]-树链剖分
+              
             </span>
 
             
@@ -206,13 +208,20 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="本文存在大量修改空间-待更新"><a href="#本文存在大量修改空间-待更新" class="headerlink" title="本文存在大量修改空间, 待更新"></a><strong>本文存在大量修改空间, 待更新</strong></h1><h1 id="模板-树链剖分"><a href="#模板-树链剖分" class="headerlink" title="[模板]-树链剖分"></a>[模板]-树链剖分</h1><h2 id="必要前驱知识点"><a href="#必要前驱知识点" class="headerlink" title="必要前驱知识点"></a>必要前驱知识点</h2><ol>
+              <h1 id="本文存在大量修改空间-待更新"><a class="markdownIt-Anchor" href="#本文存在大量修改空间-待更新"></a> <strong>本文存在大量修改空间, 待更新</strong></h1>
+<h1 id="模板-树链剖分"><a class="markdownIt-Anchor" href="#模板-树链剖分"></a> [模板]-树链剖分</h1>
+<h2 id="必要前驱知识点"><a class="markdownIt-Anchor" href="#必要前驱知识点"></a> 必要前驱知识点</h2>
+<ol>
 <li>链式向前星</li>
 <li>dfs序</li>
-<li>线段树(区间)<h2 id="相关博客"><a href="#相关博客" class="headerlink" title="相关博客"></a>相关博客</h2></li>
+<li>线段树(区间)</li>
 </ol>
+<h2 id="相关博客"><a class="markdownIt-Anchor" href="#相关博客"></a> 相关博客</h2>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chinhhh/p/7965433.html">link</a><h2 id="相关题目以及代码"><a href="#相关题目以及代码" class="headerlink" title="相关题目以及代码"></a>相关题目以及代码</h2></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chinhhh/p/7965433.html">link</a></li>
+</ul>
+<h2 id="相关题目以及代码"><a class="markdownIt-Anchor" href="#相关题目以及代码"></a> 相关题目以及代码</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.org/problem/P3384">luogu-P3384</a></li>
 </ul>
 <pre><code class="hljs cpp"><span class="hljs-comment">// Author : Wqr_</span>
@@ -783,31 +792,15 @@ ll head[nmax], e = <span class="hljs-number">0</span>;
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "[模板]-树链剖分&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -849,6 +842,13 @@ ll head[nmax], e = <span class="hljs-number">0</span>;
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                手机端 Termux linux vim c++ 环境的配置
+              
             </span>
 
             
@@ -206,27 +208,38 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
-<li><p>完成效果图</p>
+              <h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<ul>
+<li>
+<p>完成效果图</p>
 </li>
-<li><p><img src="https://i.loli.net/2018/10/21/5bcc26357626f.png" srcset="/img/loading.gif"></p>
+<li>
+<p><img src="https://i.loli.net/2018/10/21/5bcc26357626f.png" srcset="/img/loading.gif" alt="" /></p>
 </li>
-<li><p>本文在<a target="_blank" rel="noopener" href="http://www.sqlsec.com/2018/05/termux.html#more">Termux 高级终端安装使用配置教程</a>的基础上进行vim的更深一步配置</p>
+<li>
+<p>本文在<a target="_blank" rel="noopener" href="http://www.sqlsec.com/2018/05/termux.html#more">Termux 高级终端安装使用配置教程</a>的基础上进行vim的更深一步配置</p>
 </li>
-<li><p>感谢大佬的教程</p>
+<li>
+<p>感谢大佬的教程</p>
 </li>
 </ul>
-<h1 id="1-gcc的安装"><a href="#1-gcc的安装" class="headerlink" title="1. gcc的安装"></a>1. gcc的安装</h1><ul>
+<h1 id="1-gcc的安装"><a class="markdownIt-Anchor" href="#1-gcc的安装"></a> 1. gcc的安装</h1>
+<ul>
 <li>输入<code>pkg install clang</code></li>
-<li>这个我不确定对不对了,如果出了错误请按照如下操作<blockquote>
-<p>输入<code>gcc</code><br>会弹出一些信息,其中有一个pkg install ***<br>输入就可以了</p>
-</blockquote>
-</li>
+<li>这个我不确定对不对了,如果出了错误请按照如下操作</li>
 </ul>
-<h1 id="2-vimrc的配置"><a href="#2-vimrc的配置" class="headerlink" title="2. vimrc的配置"></a>2. vimrc的配置</h1><ol>
-<li><p>输入命令<code>vim ~/.vimrc</code></p>
+<blockquote>
+<p>输入<code>gcc</code><br />
+会弹出一些信息,其中有一个pkg install ***<br />
+输入就可以了</p>
+</blockquote>
+<h1 id="2-vimrc的配置"><a class="markdownIt-Anchor" href="#2-vimrc的配置"></a> 2. vimrc的配置</h1>
+<ol>
+<li>
+<p>输入命令<code>vim ~/.vimrc</code></p>
 </li>
-<li><p>在vimrc中添加如下代码</p>
+<li>
+<p>在vimrc中添加如下代码</p>
 </li>
 </ol>
 <pre><code class="hljs vim"><span class="hljs-keyword">nmap</span> <span class="hljs-symbol">&lt;c-c&gt;</span> :w! ~/storage/shared/<span class="hljs-keyword">copy</span>.txt
@@ -356,37 +369,47 @@ endfunc
 <span class="hljs-string">&quot;打开文件类型检测, 加了这句才可以用智能补全</span>
 <span class="hljs-string"></span>
 <span class="hljs-string">set completeopt=longest,menu</span></code></pre>
-
 <ol>
-<li><p>解释</p>
+<li>
+<p>解释</p>
 <ul>
-<li><p>我在根目录下创建了一个名为<code>copy.txt</code>的文件,用来作为系统间复制的桥梁,这个copy.txt需要手动进行创建</p>
+<li>
+<p>我在根目录下创建了一个名为<code>copy.txt</code>的文件,用来作为系统间复制的桥梁,这个copy.txt需要手动进行创建</p>
 <ul>
 <li><code>&lt;c-c&gt;</code>代表ctrl + c 以此类推</li>
 <li>在此操作后会执行命令<code>:w! ~/storage/shared/copy.txt</code>将文件保存到copy.txt中</li>
 <li>需要注意的是,执行此操作需要文件有相应的权限,使用<code>chmod</code>指令操作,由于条件比较复杂,具体请自行百度</li>
 </ul>
 </li>
-<li><p><code>ctrl + g</code>可以启用gcc进行编译,<code>ctrl + d</code>可以启用gdb进行调试</p>
+<li>
+<p><code>ctrl + g</code>可以启用gcc进行编译,<code>ctrl + d</code>可以启用gdb进行调试</p>
 </li>
-<li><p>预添加了头文件和一些信息,可以按需求修改</p>
+<li>
+<p>预添加了头文件和一些信息,可以按需求修改</p>
 </li>
 </ul>
 </li>
 </ol>
-<h1 id="3-插件的安装-可跳过"><a href="#3-插件的安装-可跳过" class="headerlink" title="3. 插件的安装(可跳过)"></a>3. 插件的安装(可跳过)</h1><h2 id="1-安装vundle"><a href="#1-安装vundle" class="headerlink" title="1. 安装vundle"></a>1. 安装<a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">vundle</a></h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">link</a></p>
+<h1 id="3-插件的安装可跳过"><a class="markdownIt-Anchor" href="#3-插件的安装可跳过"></a> 3. 插件的安装(可跳过)</h1>
+<h2 id="1-安装vundle"><a class="markdownIt-Anchor" href="#1-安装vundle"></a> 1. 安装<a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">vundle</a></h2>
+<ol>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">link</a></p>
 </li>
-<li><p>首先<code>cd ~/.vim</code>如果没有此文件夹则使用<code>mkdir</code>创建一个</p>
+<li>
+<p>首先<code>cd ~/.vim</code>如果没有此文件夹则使用<code>mkdir</code>创建一个</p>
 </li>
-<li><p>在.vim文件夹中创建文件夹bundle<code>mkdir bundle</code></p>
+<li>
+<p>在.vim文件夹中创建文件夹bundle<code>mkdir bundle</code></p>
 </li>
-<li><p>执行<code>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></p>
+<li>
+<p>执行<code>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></p>
 <ul>
 <li>可能没有git 按提示操作即可</li>
 </ul>
 </li>
-<li><p>在.vimrc中前添加如下代码</p>
+<li>
+<p>在.vimrc中前添加如下代码</p>
 </li>
 </ol>
 <pre><code class="hljs vim"><span class="hljs-keyword">set</span> nocompatible              <span class="hljs-comment">&quot; be iMproved, required</span>
@@ -432,11 +455,11 @@ Plugin <span class="hljs-string">&#x27;rstacruz/sparkup&#x27;</span>, &#123;<spa
 <span class="hljs-comment">&quot;</span>
 <span class="hljs-comment">&quot; see :h vundle for more details or wiki for FAQ</span>
 <span class="hljs-comment">&quot; Put your non-Plugin stuff after this line</span></code></pre>
-
-<h2 id="2-安装缩进可视化插件"><a href="#2-安装缩进可视化插件" class="headerlink" title="2. 安装缩进可视化插件"></a>2. 安装<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/indentLine">缩进可视化插件</a></h2><ol>
+<h2 id="2-安装缩进可视化插件"><a class="markdownIt-Anchor" href="#2-安装缩进可视化插件"></a> 2. 安装<a target="_blank" rel="noopener" href="https://github.com/Yggdroot/indentLine">缩进可视化插件</a></h2>
+<ol>
 <li><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/indentLine">link</a></li>
 <li>将文件下载并解压到<code>~/.vim/bundle/</code>目录下</li>
-<li>在前面刚添加的代码块中添加<code>Plugin &#39;Yggdroot/indentLine&#39;</code></li>
+<li>在前面刚添加的代码块中添加<code>Plugin 'Yggdroot/indentLine'</code></li>
 <li>在前面添加的代码块后添加<code>let g:indentLine_color_term = 239</code></li>
 </ol>
 
@@ -618,31 +641,15 @@ Plugin <span class="hljs-string">&#x27;rstacruz/sparkup&#x27;</span>, &#123;<spa
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "手机端 Termux linux vim c++ 环境的配置&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -684,6 +691,13 @@ Plugin <span class="hljs-string">&#x27;rstacruz/sparkup&#x27;</span>, &#123;<spa
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

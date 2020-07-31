@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                java 大数类的应用
+              
             </span>
 
             
@@ -206,17 +208,20 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><ul>
+              <h1 id="biginteger"><a class="markdownIt-Anchor" href="#biginteger"></a> BigInteger</h1>
+<ul>
 <li><a href="%E6%96%B9ttp://tool.oschina.net/apidocs/apidoc?api=jdk-zh">文档地址</a>;</li>
 </ul>
-<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><ul>
+<h2 id="常用操作"><a class="markdownIt-Anchor" href="#常用操作"></a> 常用操作</h2>
+<h3 id="进制转换"><a class="markdownIt-Anchor" href="#进制转换"></a> 进制转换</h3>
+<ul>
 <li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk-zh">文档地址</a></li>
 </ul>
 <pre><code class="hljs java">BigInteger a = BigInteger.ValueOf(<span class="hljs-string">&quot;1111111&quot;</span>);
 System.out.println(a.toString(n));
 <span class="hljs-comment">// n == 2 时转二进制 n == 3 时转三进制 以此类推</span></code></pre>
-
-<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><pre><code class="hljs java">valueOf(parament); 将参数转换为指定类型
+<h3 id="运算"><a class="markdownIt-Anchor" href="#运算"></a> 运算</h3>
+<pre><code class="hljs java">valueOf(parament); 将参数转换为指定类型
 add(); <span class="hljs-comment">//大数加法</span>
 substract(); <span class="hljs-comment">//减法</span>
 multiply(); <span class="hljs-comment">//乘法</span>
@@ -230,11 +235,12 @@ mod(); <span class="hljs-comment">//a.mod(b) = a % b = a.remainder(b)</span>
 max(); min();
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">//比较</span>
 <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">//比较是否相等</span></code></pre>
-
-<h1 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h1><ul>
+<h1 id="bigdecimal"><a class="markdownIt-Anchor" href="#bigdecimal"></a> BigDecimal</h1>
+<ul>
 <li><a target="_blank" rel="noopener" href="http://tool.oschina.net/uploads/apidocs/jdk-zh/java/math/BigDecimal.html">文档地址</a>;</li>
 </ul>
-<h3 id="运算-1"><a href="#运算-1" class="headerlink" title="运算"></a>运算</h3><ul>
+<h3 id="运算-2"><a class="markdownIt-Anchor" href="#运算-2"></a> 运算</h3>
+<ul>
 <li>与<code>BigInteger</code>的差不多</li>
 </ul>
 
@@ -412,31 +418,15 @@ max(); min();
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "java 大数类的应用&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -478,6 +468,13 @@ max(); min();
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

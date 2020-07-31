@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                19.5.15 Educational CF Round 65 (Div. 2) 解题报告
+              
             </span>
 
             
@@ -206,9 +208,12 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="19-5-15-Educational-CF-Round-65-Div-2-4-7"><a href="#19-5-15-Educational-CF-Round-65-Div-2-4-7" class="headerlink" title="19.5.15 Educational CF Round 65 (Div. 2) (4 / 7)"></a>19.5.15 Educational CF Round 65 (Div. 2) (4 / 7)</h1><h2 id="link"><a href="#link" class="headerlink" title="link"></a><a target="_blank" rel="noopener" href="http://codeforces.com/contest/1167">link</a></h2><h2 id="A-Telephone-Number"><a href="#A-Telephone-Number" class="headerlink" title="A. Telephone Number"></a>A. Telephone Number</h2><ul>
+              <h1 id="19515-educational-cf-round-65-div-2-4-7"><a class="markdownIt-Anchor" href="#19515-educational-cf-round-65-div-2-4-7"></a> 19.5.15 Educational CF Round 65 (Div. 2) (4 / 7)</h1>
+<h2 id="link"><a class="markdownIt-Anchor" href="#link"></a> <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1167">link</a></h2>
+<h2 id="a-telephone-number"><a class="markdownIt-Anchor" href="#a-telephone-number"></a> A. Telephone Number</h2>
+<ul>
 <li>判断下8出现的第一个位置然后剪一下再判断就行了</li>
-<li><code>11</code>打成<code>8</code>wa了一发..</li>
+<li><code>11</code>打成<code>8</code>wa了一发…</li>
 <li>ac代码</li>
 </ul>
 <pre><code class="hljs cpp">
@@ -259,15 +264,16 @@
     &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
-<h2 id="B-Lost-Numbers"><a href="#B-Lost-Numbers" class="headerlink" title="B. Lost Numbers"></a>B. Lost Numbers</h2><ul>
+<h2 id="b-lost-numbers"><a class="markdownIt-Anchor" href="#b-lost-numbers"></a> B. Lost Numbers</h2>
+<ul>
 <li>第一次做交互体题, 懵逼. 不过看了下别人的代码马上理解是个什么东西了</li>
-<li>题意 : <ul>
+<li>题意 :
+<ul>
 <li>总共有６个数, 每一个可能为<code>4 8 15 16 23 42</code>中的一个, 并且每个数出现仅一次. 四次询问, 每次输出形如<code>? a b</code>, 系统会返回第a个数与第b个数的乘积</li>
 <li>按顺序输出这6个数</li>
 </ul>
 </li>
-<li>知道了意思就很好做了, 设这 6 个数为ans[6], 问<code>ans[0] * ans[1]</code>, <code>ans[1] * ans[2]</code>, <code>ans[2] * ans[3]</code>, <code>ans[3] * ans[4]</code>. 然后就可以判断出所有的数了. </li>
+<li>知道了意思就很好做了, 设这 6 个数为ans[6], 问<code>ans[0] * ans[1]</code>, <code>ans[1] * ans[2]</code>, <code>ans[2] * ans[3]</code>, <code>ans[3] * ans[4]</code>. 然后就可以判断出所有的数了.</li>
 <li>ac代码</li>
 </ul>
 <pre><code class="hljs cpp"><span class="hljs-comment">/*************************************************************************</span>
@@ -343,8 +349,8 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 </code></pre>
-
-<h2 id="C-News-Distribution"><a href="#C-News-Distribution" class="headerlink" title="C. News Distribution"></a>C. News Distribution</h2><ul>
+<h2 id="c-news-distribution"><a class="markdownIt-Anchor" href="#c-news-distribution"></a> C. News Distribution</h2>
+<ul>
 <li>很明显的并查集, 但是重点是时间复杂度的优化, 刚开始朴素写法超时了几次, 后来再<code>unite</code></li>
 <li>ac代码</li>
 </ul>
@@ -436,8 +442,8 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 </code></pre>
-
-<h2 id="D-Bicolored-RBS"><a href="#D-Bicolored-RBS" class="headerlink" title="D. Bicolored RBS"></a>D. Bicolored RBS</h2><ul>
+<h2 id="d-bicolored-rbs"><a class="markdownIt-Anchor" href="#d-bicolored-rbs"></a> D. Bicolored RBS</h2>
+<ul>
 <li>思维题, 想出来就很好写了</li>
 <li>刚开始用的dfs, 然后超时了几发, 后来经<strong>dalao</strong>指点, 发现可以遍历一次就出答案</li>
 <li>思路 : 从<code>string[1]</code>开始遍历, 如果与上一个字符相同就换颜色涂, 不同就不换颜色涂</li>
@@ -655,31 +661,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "19.5.15 Educational CF Round 65 (Div. 2) 解题报告&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -721,6 +711,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

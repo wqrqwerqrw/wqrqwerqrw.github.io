@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                WSL 下 vim 的系统间复制
+              
             </span>
 
             
@@ -207,20 +209,17 @@
             
             <article class="markdown-body">
               <ul>
-<li><p>WSL 通过 clip.exe 可以与 windows 的剪切板连接</p>
-</li>
-<li><p>通过指令</p>
+<li>WSL 通过 clip.exe 可以与 windows 的剪切板连接</li>
+<li>通过指令</li>
+</ul>
 <pre><code class="hljs css"><span class="hljs-selector-pseudo">:w</span> !<span class="hljs-selector-tag">clip</span><span class="hljs-selector-class">.exe</span>
 </code></pre>
-</li>
-<li><p>通过 vim 的 nmap 可以使用快捷键快速操作</p>
-</li>
-<li><p>在~/.vimrc中添加</p>
-</li>
+<ul>
+<li>通过 vim 的 nmap 可以使用快捷键快速操作</li>
+<li>在~/.vimrc中添加</li>
 </ul>
 <pre><code class="hljs llvm">namp &lt;<span class="hljs-keyword">c</span>-<span class="hljs-keyword">c</span>&gt; :w <span class="hljs-title">!clip.exe</span>
 </code></pre>
-
 <ul>
 <li>也可以使用同样的方式仅复制一部分内容</li>
 </ul>
@@ -401,31 +400,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "WSL 下 vim 的系统间复制&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -467,6 +450,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

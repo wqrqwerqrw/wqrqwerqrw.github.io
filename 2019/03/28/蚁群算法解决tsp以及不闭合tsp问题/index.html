@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                蚁群算法解决tsp以及不闭合tsp问题
+              
             </span>
 
             
@@ -206,36 +208,50 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
-<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#_label0">思路来源</a>, 这篇文章里介绍的真的是非常详细, 文章中有大连理工大学的pdf, 也可也学到很多</p>
+              <h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#_label0">思路来源</a>, 这篇文章里介绍的真的是非常详细, 文章中有大连理工大学的pdf, 也可也学到很多</p>
 </li>
-<li><p>蚁群算法属于智能算法, 并不一定收敛到最优解, 但对75点一下规模的问题能很好的解决</p>
+<li>
+<p>蚁群算法属于智能算法, 并不一定收敛到最优解, 但对75点一下规模的问题能很好的解决</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wenzhunpu/article/details/54100051">代码参考</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wenzhunpu/article/details/54100051">代码参考</a></p>
 </li>
 </ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ul>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ul>
 <li>tsp问题的思路在前言中的文章里已经有了详细的介绍, 所以只介绍我解决不闭合tsp问题的思路</li>
 </ul>
-<h1 id="tsp问题的解决"><a href="#tsp问题的解决" class="headerlink" title="tsp问题的解决"></a>tsp问题的解决</h1><ul>
-<li><p>原理见前言文章与code, 仅展示下结果和逻辑图</p>
+<h1 id="tsp问题的解决"><a class="markdownIt-Anchor" href="#tsp问题的解决"></a> tsp问题的解决</h1>
+<ul>
+<li>
+<p>原理见前言文章与code, 仅展示下结果和逻辑图</p>
 </li>
-<li><p>30个点感觉并不是很好</p>
+<li>
+<p>30个点感觉并不是很好</p>
 </li>
-<li><p><img src="https://i.loli.net/2018/11/05/5bdfa083a99f4.png" srcset="/img/loading.gif"></p>
+<li>
+<p><img src="https://i.loli.net/2018/11/05/5bdfa083a99f4.png" srcset="/img/loading.gif" alt="" /></p>
 </li>
-<li><p><img src="https://i.loli.net/2018/11/05/5bdfa00f46a2d.png" srcset="/img/loading.gif"></p>
+<li>
+<p><img src="https://i.loli.net/2018/11/05/5bdfa00f46a2d.png" srcset="/img/loading.gif" alt="" /></p>
 </li>
-<li><p>50点</p>
+<li>
+<p>50点</p>
 </li>
-<li><p><img src="https://i.loli.net/2018/11/05/5bdfa021768e2.png" srcset="/img/loading.gif"></p>
+<li>
+<p><img src="https://i.loli.net/2018/11/05/5bdfa021768e2.png" srcset="/img/loading.gif" alt="" /></p>
 </li>
 </ul>
-<h1 id="不闭合tsp问题的解决"><a href="#不闭合tsp问题的解决" class="headerlink" title="不闭合tsp问题的解决"></a>不闭合tsp问题的解决</h1><ul>
+<h1 id="不闭合tsp问题的解决"><a class="markdownIt-Anchor" href="#不闭合tsp问题的解决"></a> 不闭合tsp问题的解决</h1>
+<ul>
 <li>与tsp问题类似, 但主要差别只遍历所有的点但不返回原点.</li>
 </ul>
 <ol>
-<li><p>第一阶段</p>
+<li>
+<p>第一阶段</p>
 <ol>
 <li>在随机的城市生成蚂蚁, 蚂蚁的总数量与城市数量相等</li>
 <li>每一只蚂蚁通过由信息素与能见度共同决定的规则产生前往不同城市的概率, 并以这个概率随机决定下一个城市</li>
@@ -243,7 +259,8 @@
 <li>达到遍历次数后进入第二阶段</li>
 </ol>
 </li>
-<li><p>第二阶段</p>
+<li>
+<p>第二阶段</p>
 <ol>
 <li>在随机的城市生成SUPER蚂蚁, SUPER蚂蚁的总数量与城市数量相等</li>
 <li>每一只SUPER蚂蚁通过由信息素与能见度共同决定的规则产生前往不同城市的概率, 并以这个概率随机决定下一个城市</li>
@@ -252,28 +269,30 @@
 <li>达到迭代次数后输出最短路径的SUPER蚂蚁</li>
 </ol>
 <ul>
-<li><img src="https://i.loli.net/2018/11/05/5bdf9ed0e3448.png" srcset="/img/loading.gif" alt="第一阶段"></li>
-<li><img src="https://i.loli.net/2018/11/05/5bdf9ef73961d.png" srcset="/img/loading.gif" alt="第二阶段"></li>
+<li><img src="https://i.loli.net/2018/11/05/5bdf9ed0e3448.png" srcset="/img/loading.gif" alt="第一阶段" /></li>
+<li><img src="https://i.loli.net/2018/11/05/5bdf9ef73961d.png" srcset="/img/loading.gif" alt="第二阶段" /></li>
 </ul>
 </li>
 </ol>
 <ul>
-<li><p>与简单贪心的比较</p>
+<li>
+<p>与简单贪心的比较</p>
 <ul>
 <li>30 点</li>
-<li><img src="https://i.loli.net/2018/11/05/5bdf9f80441c0.png" srcset="/img/loading.gif"></li>
+<li><img src="https://i.loli.net/2018/11/05/5bdf9f80441c0.png" srcset="/img/loading.gif" alt="" /></li>
 <li>50 点</li>
-<li><img src="https://i.loli.net/2018/11/05/5bdf9fa745a41.png" srcset="/img/loading.gif"></li>
+<li><img src="https://i.loli.net/2018/11/05/5bdf9fa745a41.png" srcset="/img/loading.gif" alt="" /></li>
 </ul>
 </li>
-<li><p>code </p>
+<li>
+<p>code</p>
 </li>
 </ul>
 <pre><code class="hljs cpp"><span class="hljs-comment">/*************************************************************************</span>
-<span class="hljs-comment">    &gt; File Name: YiQun_Tsp.cpp</span>
-<span class="hljs-comment">    &gt; Author: Wqr_</span>
-<span class="hljs-comment">    &gt; Mail: xueduanwei@126.com</span>
-<span class="hljs-comment">    &gt; Created Time: Sun Oct 14 22:56:12 2018</span>
+<span class="hljs-comment">	&gt; File Name: YiQun_Tsp.cpp</span>
+<span class="hljs-comment">	&gt; Author: Wqr_</span>
+<span class="hljs-comment">	&gt; Mail: xueduanwei@126.com</span>
+<span class="hljs-comment">	&gt; Created Time: Sun Oct 14 22:56:12 2018</span>
 <span class="hljs-comment"> ************************************************************************/</span>
 
 <span class="hljs-comment">// 这个是返回的</span>
@@ -302,14 +321,14 @@
 <span class="hljs-comment">//返回指定范围内的随机整数</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rnd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nLow, <span class="hljs-keyword">int</span> nUpper)</span></span>
 <span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">return</span> nLow + (nUpper - nLow)*rand() / (RAND_MAX + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">return</span> nLow + (nUpper - nLow)*rand() / (RAND_MAX + <span class="hljs-number">1</span>);
 &#125;
 
 <span class="hljs-comment">//返回指定范围内的随机浮点数</span>
 <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">rnd</span><span class="hljs-params">(<span class="hljs-keyword">double</span> dbLow, <span class="hljs-keyword">double</span> dbUpper)</span></span>
 <span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">double</span> dbTemp = rand() / ((<span class="hljs-keyword">double</span>)RAND_MAX + <span class="hljs-number">1.0</span>);
-    <span class="hljs-keyword">return</span> dbLow + dbTemp * (dbUpper - dbLow);
+	<span class="hljs-keyword">double</span> dbTemp = rand() / ((<span class="hljs-keyword">double</span>)RAND_MAX + <span class="hljs-number">1.0</span>);
+	<span class="hljs-keyword">return</span> dbLow + dbTemp * (dbUpper - dbLow);
 &#125;
 
 <span class="hljs-comment">// 蚁群的语句</span>
@@ -317,272 +336,271 @@
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Ant</span></span>
 <span class="hljs-class">&#123;</span>
 
-    <span class="hljs-keyword">int</span> Path[CITY_NUM];  <span class="hljs-comment">//路径顺序</span>
-    <span class="hljs-keyword">double</span> length;  <span class="hljs-comment">//路径长度</span>
-    <span class="hljs-keyword">int</span> visit[CITY_NUM]; <span class="hljs-comment">//记录城市是否被访问过</span>
-    <span class="hljs-keyword">int</span> now;   <span class="hljs-comment">//当前城市</span>
-    <span class="hljs-keyword">int</span> visitNo;    <span class="hljs-comment">//第几个城市</span>
-    <span class="hljs-comment">//初始化</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(visit));
-        length = <span class="hljs-number">0</span>;
-        now = rnd(<span class="hljs-number">0</span>, CITY_NUM);<span class="hljs-comment">//随机选择一个出发城市</span>
-        Path[<span class="hljs-number">0</span>] = now;
-        visit[now] = <span class="hljs-number">1</span>;
-        visitNo = <span class="hljs-number">1</span>;
-    &#125;
-    <span class="hljs-comment">//选择下一个城市</span>
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">chooseNextCity</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> next = <span class="hljs-number">-1</span>; <span class="hljs-comment">//下一个城市的编号</span>
-        <span class="hljs-comment">//计算当前城市和没去过的城市之间的信息素总和</span>
-        <span class="hljs-keyword">double</span> dbTotal = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">double</span> gaiLv[CITY_NUM]; <span class="hljs-comment">//各个城市被选中的概率</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">if</span> (!visit[i])
-            &#123;
-                gaiLv[i] = <span class="hljs-built_in">pow</span>(info[now][i], ALPHA)
-                    *<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> / dis[now][i], BETA);
-                dbTotal += gaiLv[i];
-            &#125;
-            <span class="hljs-keyword">else</span>
-            &#123;
-                gaiLv[i] = <span class="hljs-number">0</span>;
-            &#125;
-        &#125;
-        <span class="hljs-comment">//进行轮盘赌博 (随缘</span>
-        <span class="hljs-keyword">double</span> dbTemp = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">if</span> (dbTotal &gt; <span class="hljs-number">0.0</span>)
-        &#123;
-            dbTemp = rnd(<span class="hljs-number">0.0</span>, dbTotal);
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
-            &#123;
-                <span class="hljs-keyword">if</span> (!visit[i])
-                &#123;
-                    dbTemp -= gaiLv[i];
-                    <span class="hljs-keyword">if</span> (dbTemp &lt; <span class="hljs-number">0.0</span>)
-                    &#123;
-                        next = i;
-                        <span class="hljs-keyword">break</span>;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
+	<span class="hljs-keyword">int</span> Path[CITY_NUM];  <span class="hljs-comment">//路径顺序</span>
+	<span class="hljs-keyword">double</span> length;  <span class="hljs-comment">//路径长度</span>
+	<span class="hljs-keyword">int</span> visit[CITY_NUM]; <span class="hljs-comment">//记录城市是否被访问过</span>
+	<span class="hljs-keyword">int</span> now;   <span class="hljs-comment">//当前城市</span>
+	<span class="hljs-keyword">int</span> visitNo;    <span class="hljs-comment">//第几个城市</span>
+	<span class="hljs-comment">//初始化</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(visit));
+		length = <span class="hljs-number">0</span>;
+		now = rnd(<span class="hljs-number">0</span>, CITY_NUM);<span class="hljs-comment">//随机选择一个出发城市</span>
+		Path[<span class="hljs-number">0</span>] = now;
+		visit[now] = <span class="hljs-number">1</span>;
+		visitNo = <span class="hljs-number">1</span>;
+	&#125;
+	<span class="hljs-comment">//选择下一个城市</span>
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">chooseNextCity</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">int</span> next = <span class="hljs-number">-1</span>; <span class="hljs-comment">//下一个城市的编号</span>
+		<span class="hljs-comment">//计算当前城市和没去过的城市之间的信息素总和</span>
+		<span class="hljs-keyword">double</span> dbTotal = <span class="hljs-number">0.0</span>;
+		<span class="hljs-keyword">double</span> gaiLv[CITY_NUM]; <span class="hljs-comment">//各个城市被选中的概率</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">if</span> (!visit[i])
+			&#123;
+				gaiLv[i] = <span class="hljs-built_in">pow</span>(info[now][i], ALPHA)
+					*<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> / dis[now][i], BETA);
+				dbTotal += gaiLv[i];
+			&#125;
+			<span class="hljs-keyword">else</span>
+			&#123;
+				gaiLv[i] = <span class="hljs-number">0</span>;
+			&#125;
+		&#125;
+		<span class="hljs-comment">//进行轮盘赌博 (随缘</span>
+		<span class="hljs-keyword">double</span> dbTemp = <span class="hljs-number">0.0</span>;
+		<span class="hljs-keyword">if</span> (dbTotal &gt; <span class="hljs-number">0.0</span>)
+		&#123;
+			dbTemp = rnd(<span class="hljs-number">0.0</span>, dbTotal);
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
+			&#123;
+				<span class="hljs-keyword">if</span> (!visit[i])
+				&#123;
+					dbTemp -= gaiLv[i];
+					<span class="hljs-keyword">if</span> (dbTemp &lt; <span class="hljs-number">0.0</span>)
+					&#123;
+						next = i;
+						<span class="hljs-keyword">break</span>;
+					&#125;
+				&#125;
+			&#125;
+		&#125;
 
-        <span class="hljs-comment">// 如果信息素含量很小, 就选出现的第一个</span>
+		<span class="hljs-comment">// 如果信息素含量很小, 就选出现的第一个</span>
 
-        <span class="hljs-keyword">if</span> (next == <span class="hljs-number">-1</span>)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-            &#123;
-                <span class="hljs-keyword">if</span> (!visit[i])
-                &#123;
-                    next = i;
-                    <span class="hljs-keyword">break</span>;
-                &#125;
-            &#125;
-        &#125;
+		<span class="hljs-keyword">if</span> (next == <span class="hljs-number">-1</span>)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+			&#123;
+				<span class="hljs-keyword">if</span> (!visit[i])
+				&#123;
+					next = i;
+					<span class="hljs-keyword">break</span>;
+				&#125;
+			&#125;
+		&#125;
 
-        <span class="hljs-keyword">return</span> next;
-    &#125;
+		<span class="hljs-keyword">return</span> next;
+	&#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Move</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> next = chooseNextCity();
-        Path[visitNo] = next;
-        visit[next] = <span class="hljs-number">1</span>;
-        now = next;
-        <span class="hljs-comment">// 计算新的距离</span>
-        length += dis[Path[visitNo - <span class="hljs-number">1</span>]][Path[visitNo]];
-        visitNo++;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Move</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">int</span> next = chooseNextCity();
+		Path[visitNo] = next;
+		visit[next] = <span class="hljs-number">1</span>;
+		now = next;
+		<span class="hljs-comment">// 计算新的距离</span>
+		length += dis[Path[visitNo - <span class="hljs-number">1</span>]][Path[visitNo]];
+		visitNo++;
 
-    &#125;
+	&#125;
 
-    <span class="hljs-comment">// 搜索</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        Init();
-        <span class="hljs-comment">// 经过所有城市</span>
-        <span class="hljs-keyword">while</span> (visitNo &lt; CITY_NUM)
-        &#123;
-            Move();
-        &#125;
-        <span class="hljs-comment">// 回到起始点</span>
-        length += dis[Path[CITY_NUM - <span class="hljs-number">1</span>]][Path[<span class="hljs-number">0</span>]];
-    &#125;
+	<span class="hljs-comment">// 搜索</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		Init();
+		<span class="hljs-comment">// 经过所有城市</span>
+		<span class="hljs-keyword">while</span> (visitNo &lt; CITY_NUM)
+		&#123;
+			Move();
+		&#125;
+		<span class="hljs-comment">// 回到起始点</span>
+		length += dis[Path[CITY_NUM - <span class="hljs-number">1</span>]][Path[<span class="hljs-number">0</span>]];
+	&#125;
 &#125;;
 
 
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TSP</span></span>
 <span class="hljs-class">&#123;</span>
-    Ant ants[ANT_NUM];  <span class="hljs-comment">//一群蚂蚁</span>
-    Ant bestAnt; <span class="hljs-comment">// 路径最短的蚂蚁</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-comment">//初始化环境信息素</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++)
-            &#123;
-                info[i][j] = ANT_NUM * <span class="hljs-number">15</span> / tanXindis;
-            &#125;
-        &#125;
-    &#125;
+	Ant ants[ANT_NUM];  <span class="hljs-comment">//一群蚂蚁</span>
+	Ant bestAnt; <span class="hljs-comment">// 路径最短的蚂蚁</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-comment">//初始化环境信息素</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++)
+			&#123;
+				info[i][j] = ANT_NUM * <span class="hljs-number">15</span> / tanXindis;
+			&#125;
+		&#125;
+	&#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Updateinfo</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">double</span> tmpinfo[CITY_NUM][CITY_NUM];
-        <span class="hljs-built_in">memset</span>(tmpinfo, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(tmpinfo));
-        <span class="hljs-keyword">int</span> m = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;
-        <span class="hljs-comment">//遍历每只蚂蚁</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ANT_NUM; i++) &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt; CITY_NUM; j++)
-            &#123;
-                m = ants[i].Path[j];
-                n = ants[i].Path[j - <span class="hljs-number">1</span>];
-                tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
-                tmpinfo[m][n] = tmpinfo[n][m];
-            &#125;
-            <span class="hljs-comment">//最后城市和开始城市之间的信息素</span>
-            n = ants[i].Path[<span class="hljs-number">0</span>];
-            tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
-            tmpinfo[m][n] = tmpinfo[n][m];
-        &#125;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Updateinfo</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">double</span> tmpinfo[CITY_NUM][CITY_NUM];
+		<span class="hljs-built_in">memset</span>(tmpinfo, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(tmpinfo));
+		<span class="hljs-keyword">int</span> m = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;
+		<span class="hljs-comment">//遍历每只蚂蚁</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ANT_NUM; i++) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt; CITY_NUM; j++)
+			&#123;
+				m = ants[i].Path[j];
+				n = ants[i].Path[j - <span class="hljs-number">1</span>];
+				tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
+				tmpinfo[m][n] = tmpinfo[n][m];
+			&#125;
+			<span class="hljs-comment">//最后城市和开始城市之间的信息素</span>
+			n = ants[i].Path[<span class="hljs-number">0</span>];
+			tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
+			tmpinfo[m][n] = tmpinfo[n][m];
+		&#125;
 
-        <span class="hljs-comment">//更新环境信息素</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++) &#123;
-                <span class="hljs-comment">//最新的环境信息素 = 留存的信息素 + 新留下的信息素</span>
-                info[i][j] = info[i][j] * <span class="hljs-number">0.5</span> + tmpinfo[i][j];
+		<span class="hljs-comment">//更新环境信息素</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++) &#123;
+				<span class="hljs-comment">//最新的环境信息素 = 留存的信息素 + 新留下的信息素</span>
+				info[i][j] = info[i][j] * <span class="hljs-number">0.5</span> + tmpinfo[i][j];
 
-            &#125;
-        &#125;
-    &#125;
-    <span class="hljs-comment">//寻找路径，迭代TNUM次</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        bestAnt.length = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">21</span>;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TNUM; i++) &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; ANT_NUM; j++) &#123;
-                ants[j].Search();
-            &#125;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; ANT_NUM; j++) &#123;
-                <span class="hljs-keyword">if</span> (bestAnt.length &gt; ants[j].length) &#123;
-                    bestAnt = ants[j];
-                &#125;
-            &#125;
-            Updateinfo();
-        &#125;
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-comment">//寻找路径，迭代TNUM次</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		bestAnt.length = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">21</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TNUM; i++) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; ANT_NUM; j++) &#123;
+				ants[j].Search();
+			&#125;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; ANT_NUM; j++) &#123;
+				<span class="hljs-keyword">if</span> (bestAnt.length &gt; ants[j].length) &#123;
+					bestAnt = ants[j];
+				&#125;
+			&#125;
+			Updateinfo();
+		&#125;
 
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++) &#123;
-            <span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
-            <span class="hljs-built_in">cout</span> &lt;&lt; bestAnt.Path[i];
-        &#125;
-        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span> &lt;&lt; bestAnt.Path[<span class="hljs-number">0</span>];
-        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span>;
-        <span class="hljs-built_in">cout</span> &lt;&lt; bestAnt.length &lt;&lt; <span class="hljs-built_in">endl</span>;
-    &#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++) &#123;
+			<span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
+			<span class="hljs-built_in">cout</span> &lt;&lt; bestAnt.Path[i];
+		&#125;
+		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span> &lt;&lt; bestAnt.Path[<span class="hljs-number">0</span>];
+		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span>;
+		<span class="hljs-built_in">cout</span> &lt;&lt; bestAnt.length &lt;&lt; <span class="hljs-built_in">endl</span>;
+	&#125;
 &#125;;
 
 
 
 <span class="hljs-comment">// 贪心法的语句</span>
 <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">TanXin</span><span class="hljs-params">(<span class="hljs-keyword">int</span> from, <span class="hljs-keyword">int</span>* visit, <span class="hljs-keyword">double</span> sum, <span class="hljs-keyword">int</span>* shunXv, <span class="hljs-keyword">int</span> pointNum)</span> </span>&#123;
-    <span class="hljs-keyword">int</span> flag = <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (visit[i] == <span class="hljs-number">0</span>) &#123;
-            flag = <span class="hljs-literal">false</span>;
-            <span class="hljs-keyword">break</span>;
-        &#125;
-    &#125;
+	<span class="hljs-keyword">int</span> flag = <span class="hljs-literal">true</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (visit[i] == <span class="hljs-number">0</span>) &#123;
+			flag = <span class="hljs-literal">false</span>;
+			<span class="hljs-keyword">break</span>;
+		&#125;
+	&#125;
 
-    <span class="hljs-keyword">if</span> (flag) <span class="hljs-keyword">return</span> sum;
+	<span class="hljs-keyword">if</span> (flag) <span class="hljs-keyword">return</span> sum;
 
-    <span class="hljs-keyword">double</span> min = <span class="hljs-number">1000000</span>;
-    <span class="hljs-keyword">int</span> to;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (dis[from][i] &lt; min &amp;&amp; visit[i] == <span class="hljs-number">0</span>) &#123;
-            min = dis[from][i];
-            to = i;
-        &#125;
-    &#125;
-    sum += dis[from][to];
-    visit[to] = <span class="hljs-number">1</span>;
-    shunXv[pointNum++] = to;
-    <span class="hljs-keyword">return</span> TanXin(to, visit, sum, shunXv, pointNum);
+	<span class="hljs-keyword">double</span> min = <span class="hljs-number">1000000</span>;
+	<span class="hljs-keyword">int</span> to;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (dis[from][i] &lt; min &amp;&amp; visit[i] == <span class="hljs-number">0</span>) &#123;
+			min = dis[from][i];
+			to = i;
+		&#125;
+	&#125;
+	sum += dis[from][to];
+	visit[to] = <span class="hljs-number">1</span>;
+	shunXv[pointNum++] = to;
+	<span class="hljs-keyword">return</span> TanXin(to, visit, sum, shunXv, pointNum);
 &#125;
 
 <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">qiujv</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x1, <span class="hljs-keyword">int</span> y1, <span class="hljs-keyword">int</span> x2, <span class="hljs-keyword">int</span> y2)</span> </span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>((<span class="hljs-keyword">double</span>)(x1 - x2)*(x1 - x2) + (<span class="hljs-keyword">double</span>)(y1 - y2)*(y1 - y2));
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>((<span class="hljs-keyword">double</span>)(x1 - x2)*(x1 - x2) + (<span class="hljs-keyword">double</span>)(y1 - y2)*(y1 - y2));
 &#125;
 
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> &#123;</span>
-    <span class="hljs-keyword">int</span> x;
-    <span class="hljs-keyword">int</span> y;
+	<span class="hljs-keyword">int</span> x;
+	<span class="hljs-keyword">int</span> y;
 &#125;;
 
 <span class="hljs-comment">// 主函数</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-comment">// fanWei 代表范围</span>
-    <span class="hljs-comment">// chuShi 代表起始位置, 即0</span>
-    <span class="hljs-keyword">int</span> fanWei;
-    <span class="hljs-keyword">int</span> chuShi = <span class="hljs-number">0</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;请输入范围 : &quot;</span>;
-    <span class="hljs-built_in">cin</span> &gt;&gt; fanWei;
-    point point[NUM];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        point[i].x = random(fanWei);
-        point[i].y = random(fanWei);
-    &#125;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; NUM; j++) &#123;
-            dis[i][j] = qiujv(point[i].x, point[i].y, point[j].x, point[j].y);
-        &#125;
-    &#125;
-    <span class="hljs-keyword">double</span> min = <span class="hljs-number">100000</span>; <span class="hljs-comment">// 最小值</span>
-    <span class="hljs-keyword">int</span> to; <span class="hljs-comment">//要去的</span>
-    <span class="hljs-keyword">double</span> sum = <span class="hljs-number">0</span>; <span class="hljs-comment">//总数</span>
-    <span class="hljs-keyword">int</span> shunXv[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 顺序</span>
-    <span class="hljs-keyword">int</span> visit[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 储存访问过的点</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (dis[<span class="hljs-number">0</span>][i] &lt; min) &#123;
-            min = dis[<span class="hljs-number">0</span>][i];
-            to = i;
-        &#125;
-    &#125;
-    sum += dis[<span class="hljs-number">0</span>][to];
-    shunXv[<span class="hljs-number">1</span>] = to;
-    visit[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
-    visit[to] = <span class="hljs-number">1</span>;
-    tanXindis = TanXin(to, visit, sum, shunXv, <span class="hljs-number">2</span>);
-    tanXindis += dis[shunXv[<span class="hljs-number">49</span>]][<span class="hljs-number">0</span>];
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 贪心的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
-        <span class="hljs-built_in">cout</span> &lt;&lt; shunXv[i];
-    &#125;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span> &lt;&lt; <span class="hljs-number">0</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span> &lt;&lt; tanXindis &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 蚁群的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    TSP tsp;
-    tsp.Init();
-    tsp.Search();
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-comment">// fanWei 代表范围</span>
+	<span class="hljs-comment">// chuShi 代表起始位置, 即0</span>
+	<span class="hljs-keyword">int</span> fanWei;
+	<span class="hljs-keyword">int</span> chuShi = <span class="hljs-number">0</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;请输入范围 : &quot;</span>;
+	<span class="hljs-built_in">cin</span> &gt;&gt; fanWei;
+	point point[NUM];
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		point[i].x = random(fanWei);
+		point[i].y = random(fanWei);
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; NUM; j++) &#123;
+			dis[i][j] = qiujv(point[i].x, point[i].y, point[j].x, point[j].y);
+		&#125;
+	&#125;
+	<span class="hljs-keyword">double</span> min = <span class="hljs-number">100000</span>; <span class="hljs-comment">// 最小值</span>
+	<span class="hljs-keyword">int</span> to; <span class="hljs-comment">//要去的</span>
+	<span class="hljs-keyword">double</span> sum = <span class="hljs-number">0</span>; <span class="hljs-comment">//总数</span>
+	<span class="hljs-keyword">int</span> shunXv[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 顺序</span>
+	<span class="hljs-keyword">int</span> visit[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 储存访问过的点</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (dis[<span class="hljs-number">0</span>][i] &lt; min) &#123;
+			min = dis[<span class="hljs-number">0</span>][i];
+			to = i;
+		&#125;
+	&#125;
+	sum += dis[<span class="hljs-number">0</span>][to];
+	shunXv[<span class="hljs-number">1</span>] = to;
+	visit[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+	visit[to] = <span class="hljs-number">1</span>;
+	tanXindis = TanXin(to, visit, sum, shunXv, <span class="hljs-number">2</span>);
+	tanXindis += dis[shunXv[<span class="hljs-number">49</span>]][<span class="hljs-number">0</span>];
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 贪心的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
+		<span class="hljs-built_in">cout</span> &lt;&lt; shunXv[i];
+	&#125;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span> &lt;&lt; <span class="hljs-number">0</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span> &lt;&lt; tanXindis &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 蚁群的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	TSP tsp;
+	tsp.Init();
+	tsp.Search();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
 <pre><code class="hljs cpp"><span class="hljs-comment">/*************************************************************************</span>
-<span class="hljs-comment">    &gt; File Name: YiQun.cpp</span>
-<span class="hljs-comment">    &gt; Author: Wqr_</span>
-<span class="hljs-comment">    &gt; Mail: xueduanwei@126.com</span>
-<span class="hljs-comment">    &gt; Created Time: Sun Oct 14 22:56:12 2018</span>
+<span class="hljs-comment">	&gt; File Name: YiQun.cpp</span>
+<span class="hljs-comment">	&gt; Author: Wqr_</span>
+<span class="hljs-comment">	&gt; Mail: xueduanwei@126.com</span>
+<span class="hljs-comment">	&gt; Created Time: Sun Oct 14 22:56:12 2018</span>
 <span class="hljs-comment"> ************************************************************************/</span>
 <span class="hljs-comment">// 这个是不返回起点的</span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&quot;pch.h&quot;</span></span>
@@ -611,14 +629,14 @@
 <span class="hljs-comment">//返回指定范围内的随机整数</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rnd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nLow, <span class="hljs-keyword">int</span> nUpper)</span></span>
 <span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">return</span> nLow + (nUpper - nLow)*rand() / (RAND_MAX + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">return</span> nLow + (nUpper - nLow)*rand() / (RAND_MAX + <span class="hljs-number">1</span>);
 &#125;
 
 <span class="hljs-comment">//返回指定范围内的随机浮点数</span>
 <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">rnd</span><span class="hljs-params">(<span class="hljs-keyword">double</span> dbLow, <span class="hljs-keyword">double</span> dbUpper)</span></span>
 <span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">double</span> dbTemp = rand() / ((<span class="hljs-keyword">double</span>)RAND_MAX + <span class="hljs-number">1.0</span>);
-    <span class="hljs-keyword">return</span> dbLow + dbTemp * (dbUpper - dbLow);
+	<span class="hljs-keyword">double</span> dbTemp = rand() / ((<span class="hljs-keyword">double</span>)RAND_MAX + <span class="hljs-number">1.0</span>);
+	<span class="hljs-keyword">return</span> dbLow + dbTemp * (dbUpper - dbLow);
 &#125;
 
 <span class="hljs-comment">// 蚁群的语句</span>
@@ -626,372 +644,371 @@
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Ant</span></span>
 <span class="hljs-class">&#123;</span>
 
-    <span class="hljs-keyword">int</span> Path[CITY_NUM];  <span class="hljs-comment">//路径顺序</span>
-    <span class="hljs-keyword">double</span> length;  <span class="hljs-comment">//路径长度</span>
-    <span class="hljs-keyword">int</span> visit[CITY_NUM]; <span class="hljs-comment">//记录城市是否被访问过</span>
-    <span class="hljs-keyword">int</span> now;   <span class="hljs-comment">//当前城市</span>
-    <span class="hljs-keyword">int</span> visitNo;    <span class="hljs-comment">//第几个城市</span>
-    <span class="hljs-comment">//初始化</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(visit));
-        length = <span class="hljs-number">0</span>;
-        now = rnd(<span class="hljs-number">1</span>, CITY_NUM);<span class="hljs-comment">//随机选择一个除0的城市出发城市</span>
-        Path[<span class="hljs-number">0</span>] = now;
-        visit[now] = <span class="hljs-number">1</span>;
-        visitNo = <span class="hljs-number">1</span>;
-    &#125;
-    <span class="hljs-comment">//选择下一个城市</span>
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">chooseNextCity</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> next = <span class="hljs-number">-1</span>; <span class="hljs-comment">//下一个城市的编号</span>
-        <span class="hljs-comment">//计算当前城市和没去过的城市之间的信息素总和</span>
-        <span class="hljs-keyword">double</span> dbTotal = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">double</span> gaiLv[CITY_NUM]; <span class="hljs-comment">//各个城市被选中的概率</span>
-        <span class="hljs-comment">// 因为0点作为起点, 所以不计入循环</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">if</span> (!visit[i])
-            &#123;
-                gaiLv[i] = <span class="hljs-built_in">pow</span>(info[now][i], ALPHA)
-                    *<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> / dis[now][i], BETA);
-                dbTotal += gaiLv[i];
-            &#125;
-            <span class="hljs-keyword">else</span>
-            &#123;
-                gaiLv[i] = <span class="hljs-number">0</span>;
-            &#125;
-        &#125;
-        <span class="hljs-comment">//进行轮盘赌博 (随缘</span>
-        <span class="hljs-keyword">double</span> dbTemp = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">if</span> (dbTotal &gt; <span class="hljs-number">0.0</span>)
-        &#123;
-            dbTemp = rnd(<span class="hljs-number">0.0</span>, dbTotal);
-            <span class="hljs-comment">// 因为0点作为起点, 所以不计入循环</span>
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-            &#123;
-                <span class="hljs-keyword">if</span> (!visit[i])
-                &#123;
-                    dbTemp -= gaiLv[i];
-                    <span class="hljs-keyword">if</span> (dbTemp &lt; <span class="hljs-number">0.0</span>)
-                    &#123;
-                        next = i;
-                        <span class="hljs-keyword">break</span>;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
+	<span class="hljs-keyword">int</span> Path[CITY_NUM];  <span class="hljs-comment">//路径顺序</span>
+	<span class="hljs-keyword">double</span> length;  <span class="hljs-comment">//路径长度</span>
+	<span class="hljs-keyword">int</span> visit[CITY_NUM]; <span class="hljs-comment">//记录城市是否被访问过</span>
+	<span class="hljs-keyword">int</span> now;   <span class="hljs-comment">//当前城市</span>
+	<span class="hljs-keyword">int</span> visitNo;    <span class="hljs-comment">//第几个城市</span>
+	<span class="hljs-comment">//初始化</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(visit));
+		length = <span class="hljs-number">0</span>;
+		now = rnd(<span class="hljs-number">1</span>, CITY_NUM);<span class="hljs-comment">//随机选择一个除0的城市出发城市</span>
+		Path[<span class="hljs-number">0</span>] = now;
+		visit[now] = <span class="hljs-number">1</span>;
+		visitNo = <span class="hljs-number">1</span>;
+	&#125;
+	<span class="hljs-comment">//选择下一个城市</span>
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">chooseNextCity</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">int</span> next = <span class="hljs-number">-1</span>; <span class="hljs-comment">//下一个城市的编号</span>
+		<span class="hljs-comment">//计算当前城市和没去过的城市之间的信息素总和</span>
+		<span class="hljs-keyword">double</span> dbTotal = <span class="hljs-number">0.0</span>;
+		<span class="hljs-keyword">double</span> gaiLv[CITY_NUM]; <span class="hljs-comment">//各个城市被选中的概率</span>
+		<span class="hljs-comment">// 因为0点作为起点, 所以不计入循环</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">if</span> (!visit[i])
+			&#123;
+				gaiLv[i] = <span class="hljs-built_in">pow</span>(info[now][i], ALPHA)
+					*<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> / dis[now][i], BETA);
+				dbTotal += gaiLv[i];
+			&#125;
+			<span class="hljs-keyword">else</span>
+			&#123;
+				gaiLv[i] = <span class="hljs-number">0</span>;
+			&#125;
+		&#125;
+		<span class="hljs-comment">//进行轮盘赌博 (随缘</span>
+		<span class="hljs-keyword">double</span> dbTemp = <span class="hljs-number">0.0</span>;
+		<span class="hljs-keyword">if</span> (dbTotal &gt; <span class="hljs-number">0.0</span>)
+		&#123;
+			dbTemp = rnd(<span class="hljs-number">0.0</span>, dbTotal);
+			<span class="hljs-comment">// 因为0点作为起点, 所以不计入循环</span>
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+			&#123;
+				<span class="hljs-keyword">if</span> (!visit[i])
+				&#123;
+					dbTemp -= gaiLv[i];
+					<span class="hljs-keyword">if</span> (dbTemp &lt; <span class="hljs-number">0.0</span>)
+					&#123;
+						next = i;
+						<span class="hljs-keyword">break</span>;
+					&#125;
+				&#125;
+			&#125;
+		&#125;
 
-        <span class="hljs-comment">// 如果信息素含量很小, 就选出现的第一个</span>
+		<span class="hljs-comment">// 如果信息素含量很小, 就选出现的第一个</span>
 
-        <span class="hljs-keyword">if</span> (next == <span class="hljs-number">-1</span>)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-            &#123;
-                <span class="hljs-keyword">if</span> (!visit[i])
-                &#123;
-                    next = i;
-                    <span class="hljs-keyword">break</span>;
-                &#125;
-            &#125;
-        &#125;
+		<span class="hljs-keyword">if</span> (next == <span class="hljs-number">-1</span>)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+			&#123;
+				<span class="hljs-keyword">if</span> (!visit[i])
+				&#123;
+					next = i;
+					<span class="hljs-keyword">break</span>;
+				&#125;
+			&#125;
+		&#125;
 
-        <span class="hljs-keyword">return</span> next;
-    &#125;
+		<span class="hljs-keyword">return</span> next;
+	&#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Move</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> next = chooseNextCity();
-        Path[visitNo] = next;
-        visit[next] = <span class="hljs-number">1</span>;
-        now = next;
-        <span class="hljs-comment">// 计算新的距离</span>
-        length += dis[Path[visitNo - <span class="hljs-number">1</span>]][Path[visitNo]];
-        visitNo++;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Move</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">int</span> next = chooseNextCity();
+		Path[visitNo] = next;
+		visit[next] = <span class="hljs-number">1</span>;
+		now = next;
+		<span class="hljs-comment">// 计算新的距离</span>
+		length += dis[Path[visitNo - <span class="hljs-number">1</span>]][Path[visitNo]];
+		visitNo++;
 
-    &#125;
+	&#125;
 
-    <span class="hljs-comment">// 搜索</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        Init();
-        <span class="hljs-comment">// 经过除去零点的所有城市</span>
-        <span class="hljs-keyword">while</span> (visitNo &lt; CITY_NUM - <span class="hljs-number">1</span>)
-        &#123;
-            Move();
-        &#125;
-        <span class="hljs-comment">// 回到0点</span>
-        Path[CITY_NUM - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
-        visit[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
-        length += dis[Path[CITY_NUM - <span class="hljs-number">1</span> - <span class="hljs-number">1</span>]][Path[CITY_NUM - <span class="hljs-number">1</span>]];
-    &#125;
+	<span class="hljs-comment">// 搜索</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		Init();
+		<span class="hljs-comment">// 经过除去零点的所有城市</span>
+		<span class="hljs-keyword">while</span> (visitNo &lt; CITY_NUM - <span class="hljs-number">1</span>)
+		&#123;
+			Move();
+		&#125;
+		<span class="hljs-comment">// 回到0点</span>
+		Path[CITY_NUM - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+		visit[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+		length += dis[Path[CITY_NUM - <span class="hljs-number">1</span> - <span class="hljs-number">1</span>]][Path[CITY_NUM - <span class="hljs-number">1</span>]];
+	&#125;
 
 &#125;;
 
 <span class="hljs-comment">// 从零点出发的超级蚂蚁</span>
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SuperAnt</span> &#123;</span>
 
-    <span class="hljs-keyword">int</span> Path[CITY_NUM];  <span class="hljs-comment">//路径顺序</span>
-    <span class="hljs-keyword">double</span> length;  <span class="hljs-comment">//路径长度</span>
-    <span class="hljs-keyword">int</span> visit[CITY_NUM]; <span class="hljs-comment">//记录城市是否被访问过</span>
-    <span class="hljs-keyword">int</span> now;   <span class="hljs-comment">//当前城市</span>
-    <span class="hljs-keyword">int</span> visitNo;    <span class="hljs-comment">//第几个城市</span>
-    <span class="hljs-comment">//初始化</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(visit));
-        length = <span class="hljs-number">0</span>;
-        now = <span class="hljs-number">0</span>; <span class="hljs-comment">// 以0为起始城市</span>
-        Path[<span class="hljs-number">0</span>] = now;
-        visit[now] = <span class="hljs-number">1</span>;
-        visitNo = <span class="hljs-number">1</span>;
-    &#125;
+	<span class="hljs-keyword">int</span> Path[CITY_NUM];  <span class="hljs-comment">//路径顺序</span>
+	<span class="hljs-keyword">double</span> length;  <span class="hljs-comment">//路径长度</span>
+	<span class="hljs-keyword">int</span> visit[CITY_NUM]; <span class="hljs-comment">//记录城市是否被访问过</span>
+	<span class="hljs-keyword">int</span> now;   <span class="hljs-comment">//当前城市</span>
+	<span class="hljs-keyword">int</span> visitNo;    <span class="hljs-comment">//第几个城市</span>
+	<span class="hljs-comment">//初始化</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(visit));
+		length = <span class="hljs-number">0</span>;
+		now = <span class="hljs-number">0</span>; <span class="hljs-comment">// 以0为起始城市</span>
+		Path[<span class="hljs-number">0</span>] = now;
+		visit[now] = <span class="hljs-number">1</span>;
+		visitNo = <span class="hljs-number">1</span>;
+	&#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">chooseNextCity</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> next = <span class="hljs-number">-1</span>;
-        <span class="hljs-keyword">double</span> dbTotal = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">double</span> gaiLv[CITY_NUM];
-        <span class="hljs-comment">// 因为 0 已经被选中 , 不再重复选择</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">if</span> (!visit[i])
-            &#123;
-                gaiLv[i] = <span class="hljs-built_in">pow</span>(info[now][i], ALPHA)
-                    *<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> / dis[now][i], BETA);
-                dbTotal += gaiLv[i];
-            &#125;
-            <span class="hljs-keyword">else</span>
-            &#123;
-                gaiLv[i] = <span class="hljs-number">0</span>;
-            &#125;
-        &#125;
-        <span class="hljs-comment">//进行轮盘赌博 (随缘</span>
-        <span class="hljs-keyword">double</span> dbTemp = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">if</span> (dbTotal &gt; <span class="hljs-number">0.0</span>)
-        &#123;
-            dbTemp = rnd(<span class="hljs-number">0.0</span>, dbTotal);
-            <span class="hljs-comment">// 因为 0 已经被选中 , 不再重复选择</span>
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-            &#123;
-                <span class="hljs-keyword">if</span> (!visit[i])
-                &#123;
-                    dbTemp -= gaiLv[i];
-                    <span class="hljs-keyword">if</span> (dbTemp &lt; <span class="hljs-number">0.0</span>)
-                    &#123;
-                        next = i;
-                        <span class="hljs-keyword">break</span>;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">chooseNextCity</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">int</span> next = <span class="hljs-number">-1</span>;
+		<span class="hljs-keyword">double</span> dbTotal = <span class="hljs-number">0.0</span>;
+		<span class="hljs-keyword">double</span> gaiLv[CITY_NUM];
+		<span class="hljs-comment">// 因为 0 已经被选中 , 不再重复选择</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">if</span> (!visit[i])
+			&#123;
+				gaiLv[i] = <span class="hljs-built_in">pow</span>(info[now][i], ALPHA)
+					*<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> / dis[now][i], BETA);
+				dbTotal += gaiLv[i];
+			&#125;
+			<span class="hljs-keyword">else</span>
+			&#123;
+				gaiLv[i] = <span class="hljs-number">0</span>;
+			&#125;
+		&#125;
+		<span class="hljs-comment">//进行轮盘赌博 (随缘</span>
+		<span class="hljs-keyword">double</span> dbTemp = <span class="hljs-number">0.0</span>;
+		<span class="hljs-keyword">if</span> (dbTotal &gt; <span class="hljs-number">0.0</span>)
+		&#123;
+			dbTemp = rnd(<span class="hljs-number">0.0</span>, dbTotal);
+			<span class="hljs-comment">// 因为 0 已经被选中 , 不再重复选择</span>
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+			&#123;
+				<span class="hljs-keyword">if</span> (!visit[i])
+				&#123;
+					dbTemp -= gaiLv[i];
+					<span class="hljs-keyword">if</span> (dbTemp &lt; <span class="hljs-number">0.0</span>)
+					&#123;
+						next = i;
+						<span class="hljs-keyword">break</span>;
+					&#125;
+				&#125;
+			&#125;
+		&#125;
 
-        <span class="hljs-keyword">if</span> (next == <span class="hljs-number">-1</span>)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
-            &#123;
-                <span class="hljs-keyword">if</span> (!visit[i]) <span class="hljs-comment">//城市没去过</span>
-                &#123;
-                    next = i;
-                    <span class="hljs-keyword">break</span>;
-                &#125;
-            &#125;
-        &#125;
-        <span class="hljs-keyword">return</span> next;
-    &#125;
+		<span class="hljs-keyword">if</span> (next == <span class="hljs-number">-1</span>)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; CITY_NUM; i++)
+			&#123;
+				<span class="hljs-keyword">if</span> (!visit[i]) <span class="hljs-comment">//城市没去过</span>
+				&#123;
+					next = i;
+					<span class="hljs-keyword">break</span>;
+				&#125;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> next;
+	&#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Move</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> next = chooseNextCity();
-        Path[visitNo] = next;
-        visit[next] = <span class="hljs-number">1</span>;
-        now = next;
-        length += dis[Path[visitNo - <span class="hljs-number">1</span>]][Path[visitNo]];
-        visitNo++;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Move</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-keyword">int</span> next = chooseNextCity();
+		Path[visitNo] = next;
+		visit[next] = <span class="hljs-number">1</span>;
+		now = next;
+		length += dis[Path[visitNo - <span class="hljs-number">1</span>]][Path[visitNo]];
+		visitNo++;
 
-    &#125;
-    <span class="hljs-comment">//搜索</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        Init();
-        <span class="hljs-comment">// 让超级蚂蚁经过所有城市</span>
-        <span class="hljs-keyword">while</span> (visitNo &lt; CITY_NUM)
-        &#123;
-            Move();
-        &#125;
-    &#125;
+	&#125;
+	<span class="hljs-comment">//搜索</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		Init();
+		<span class="hljs-comment">// 让超级蚂蚁经过所有城市</span>
+		<span class="hljs-keyword">while</span> (visitNo &lt; CITY_NUM)
+		&#123;
+			Move();
+		&#125;
+	&#125;
 &#125;;
 
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TSP</span></span>
 <span class="hljs-class">&#123;</span>
-    Ant ants[ANT_NUM];  <span class="hljs-comment">//一群蚂蚁</span>
-    SuperAnt SuperAnts[ANT_NUM]; <span class="hljs-comment">//一群超级蚂蚁</span>
-    SuperAnt bestSuperAnt; <span class="hljs-comment">// 路径最短的超级蚂蚁</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-comment">//初始化环境信息素</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++)
-            &#123;
-                info[i][j] = ANT_NUM * <span class="hljs-number">15</span> / tanXindis;
-            &#125;
-        &#125;
-    &#125;
+	Ant ants[ANT_NUM];  <span class="hljs-comment">//一群蚂蚁</span>
+	SuperAnt SuperAnts[ANT_NUM]; <span class="hljs-comment">//一群超级蚂蚁</span>
+	SuperAnt bestSuperAnt; <span class="hljs-comment">// 路径最短的超级蚂蚁</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-comment">//初始化环境信息素</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++)
+			&#123;
+				info[i][j] = ANT_NUM * <span class="hljs-number">15</span> / tanXindis;
+			&#125;
+		&#125;
+	&#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Updateinfo</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-comment">//puts(&quot;update info&quot;);</span>
-        <span class="hljs-keyword">double</span> tmpinfo[CITY_NUM][CITY_NUM];
-        <span class="hljs-built_in">memset</span>(tmpinfo, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(tmpinfo));
-        <span class="hljs-keyword">int</span> m = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;
-        <span class="hljs-comment">//遍历每只蚂蚁</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ANT_NUM; i++) &#123;
-            <span class="hljs-comment">//puts(&quot;&quot;);</span>
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt; CITY_NUM; j++)
-            &#123;
-                m = ants[i].Path[j];
-                n = ants[i].Path[j - <span class="hljs-number">1</span>];
-                <span class="hljs-comment">//printf(&quot;%d %d\n&quot;, m, n);</span>
-                tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
-                tmpinfo[m][n] = tmpinfo[n][m];
-            &#125;
-            <span class="hljs-comment">//最后城市和开始城市之间的信息素</span>
-            n = ants[i].Path[<span class="hljs-number">0</span>];
-            tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
-            tmpinfo[m][n] = tmpinfo[n][m];
-        &#125;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Updateinfo</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
+		<span class="hljs-comment">//puts(&quot;update info&quot;);</span>
+		<span class="hljs-keyword">double</span> tmpinfo[CITY_NUM][CITY_NUM];
+		<span class="hljs-built_in">memset</span>(tmpinfo, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(tmpinfo));
+		<span class="hljs-keyword">int</span> m = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;
+		<span class="hljs-comment">//遍历每只蚂蚁</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ANT_NUM; i++) &#123;
+			<span class="hljs-comment">//puts(&quot;&quot;);</span>
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt; CITY_NUM; j++)
+			&#123;
+				m = ants[i].Path[j];
+				n = ants[i].Path[j - <span class="hljs-number">1</span>];
+				<span class="hljs-comment">//printf(&quot;%d %d\n&quot;, m, n);</span>
+				tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
+				tmpinfo[m][n] = tmpinfo[n][m];
+			&#125;
+			<span class="hljs-comment">//最后城市和开始城市之间的信息素</span>
+			n = ants[i].Path[<span class="hljs-number">0</span>];
+			tmpinfo[n][m] = tmpinfo[n][m] + <span class="hljs-number">3</span> * ANT_NUM / ants[i].length;
+			tmpinfo[m][n] = tmpinfo[n][m];
+		&#125;
 
-        <span class="hljs-comment">//更新环境信息素</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
-        &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++) &#123;
-                <span class="hljs-comment">//最新的环境信息素 = 留存的信息素 + 新留下的信息素</span>
-                info[i][j] = info[i][j] * <span class="hljs-number">0.5</span> + tmpinfo[i][j];
+		<span class="hljs-comment">//更新环境信息素</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++)
+		&#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; CITY_NUM; j++) &#123;
+				<span class="hljs-comment">//最新的环境信息素 = 留存的信息素 + 新留下的信息素</span>
+				info[i][j] = info[i][j] * <span class="hljs-number">0.5</span> + tmpinfo[i][j];
 
-            &#125;
-        &#125;
-    &#125;
-    <span class="hljs-comment">//寻找路径，迭代TMAC次</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-comment">//寻找路径，迭代TMAC次</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Search</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">	</span>&#123;
 
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TNUM; i++) &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; ANT_NUM; j++) &#123;
-                ants[j].Search();
-            &#125;
-            <span class="hljs-comment">//更新环境信息素</span>
-            Updateinfo();
-        &#125;
-        bestSuperAnt.length = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">21</span>;
-        <span class="hljs-comment">// 从起点出发多只蚂蚁</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; TNUM; j++) &#123;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ANT_NUM; i++) &#123;
-                SuperAnts[i].Search();
-                <span class="hljs-keyword">if</span> (SuperAnts[i].length &lt; bestSuperAnt.length) &#123;
-                    bestSuperAnt = SuperAnts[i];
-                &#125;
-            &#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TNUM; i++) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; ANT_NUM; j++) &#123;
+				ants[j].Search();
+			&#125;
+			<span class="hljs-comment">//更新环境信息素</span>
+			Updateinfo();
+		&#125;
+		bestSuperAnt.length = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">21</span>;
+		<span class="hljs-comment">// 从起点出发多只蚂蚁</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; TNUM; j++) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ANT_NUM; i++) &#123;
+				SuperAnts[i].Search();
+				<span class="hljs-keyword">if</span> (SuperAnts[i].length &lt; bestSuperAnt.length) &#123;
+					bestSuperAnt = SuperAnts[i];
+				&#125;
+			&#125;
 
-        &#125;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++) &#123;
-            <span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
-            <span class="hljs-built_in">cout</span> &lt;&lt; bestSuperAnt.Path[i];
-        &#125;
-        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span>;
-        <span class="hljs-built_in">cout</span> &lt;&lt; bestSuperAnt.length &lt;&lt; <span class="hljs-built_in">endl</span>;
-    &#125;
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; CITY_NUM; i++) &#123;
+			<span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
+			<span class="hljs-built_in">cout</span> &lt;&lt; bestSuperAnt.Path[i];
+		&#125;
+		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span>;
+		<span class="hljs-built_in">cout</span> &lt;&lt; bestSuperAnt.length &lt;&lt; <span class="hljs-built_in">endl</span>;
+	&#125;
 &#125;;
 
 
 
 <span class="hljs-comment">// 贪心法的语句</span>
 <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">TanXin</span><span class="hljs-params">(<span class="hljs-keyword">int</span> from, <span class="hljs-keyword">int</span>* visit, <span class="hljs-keyword">double</span> sum, <span class="hljs-keyword">int</span>* shunXv, <span class="hljs-keyword">int</span> pointNum)</span> </span>&#123;
-    <span class="hljs-keyword">int</span> flag = <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (visit[i] == <span class="hljs-number">0</span>) &#123;
-            flag = <span class="hljs-literal">false</span>;
-            <span class="hljs-keyword">break</span>;
-        &#125;
-    &#125;
+	<span class="hljs-keyword">int</span> flag = <span class="hljs-literal">true</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (visit[i] == <span class="hljs-number">0</span>) &#123;
+			flag = <span class="hljs-literal">false</span>;
+			<span class="hljs-keyword">break</span>;
+		&#125;
+	&#125;
 
-    <span class="hljs-keyword">if</span> (flag) <span class="hljs-keyword">return</span> sum;
+	<span class="hljs-keyword">if</span> (flag) <span class="hljs-keyword">return</span> sum;
 
-    <span class="hljs-keyword">double</span> min = <span class="hljs-number">1000000</span>;
-    <span class="hljs-keyword">int</span> to;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (dis[from][i] &lt; min &amp;&amp; visit[i] == <span class="hljs-number">0</span>) &#123;
-            min = dis[from][i];
-            to = i;
-        &#125;
-    &#125;
-    sum += dis[from][to];
-    visit[to] = <span class="hljs-number">1</span>;
-    shunXv[pointNum++] = to;
-    <span class="hljs-keyword">return</span> TanXin(to, visit, sum, shunXv, pointNum);
+	<span class="hljs-keyword">double</span> min = <span class="hljs-number">1000000</span>;
+	<span class="hljs-keyword">int</span> to;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (dis[from][i] &lt; min &amp;&amp; visit[i] == <span class="hljs-number">0</span>) &#123;
+			min = dis[from][i];
+			to = i;
+		&#125;
+	&#125;
+	sum += dis[from][to];
+	visit[to] = <span class="hljs-number">1</span>;
+	shunXv[pointNum++] = to;
+	<span class="hljs-keyword">return</span> TanXin(to, visit, sum, shunXv, pointNum);
 &#125;
 
 <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">qiujv</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x1, <span class="hljs-keyword">int</span> y1, <span class="hljs-keyword">int</span> x2, <span class="hljs-keyword">int</span> y2)</span> </span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>((<span class="hljs-keyword">double</span>)(x1 - x2)*(x1 - x2) + (<span class="hljs-keyword">double</span>)(y1 - y2)*(y1 - y2));
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>((<span class="hljs-keyword">double</span>)(x1 - x2)*(x1 - x2) + (<span class="hljs-keyword">double</span>)(y1 - y2)*(y1 - y2));
 &#125;
 
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> &#123;</span>
-    <span class="hljs-keyword">int</span> x;
-    <span class="hljs-keyword">int</span> y;
+	<span class="hljs-keyword">int</span> x;
+	<span class="hljs-keyword">int</span> y;
 &#125;;
 
 <span class="hljs-comment">// 主函数</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-comment">// fanWei 代表范围</span>
-    <span class="hljs-comment">// chuShi 代表起始位置, 即0</span>
-    <span class="hljs-keyword">int</span> fanWei;
-    <span class="hljs-keyword">int</span> chuShi = <span class="hljs-number">0</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;请输入范围 : &quot;</span>;
-    <span class="hljs-built_in">cin</span> &gt;&gt; fanWei;
-    point point[NUM];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        point[i].x = random(fanWei);
-        point[i].y = random(fanWei);
-    &#125;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; NUM; j++) &#123;
-            dis[i][j] = qiujv(point[i].x, point[i].y, point[j].x, point[j].y);
-        &#125;
-    &#125;
-    <span class="hljs-keyword">double</span> min = <span class="hljs-number">100000</span>; <span class="hljs-comment">// 最小值</span>
-    <span class="hljs-keyword">int</span> to; <span class="hljs-comment">//要去的</span>
-    <span class="hljs-keyword">double</span> sum = <span class="hljs-number">0</span>; <span class="hljs-comment">//总数</span>
-    <span class="hljs-keyword">int</span> shunXv[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 顺序</span>
-    <span class="hljs-keyword">int</span> visit[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 储存访问过的点</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (dis[<span class="hljs-number">0</span>][i] &lt; min) &#123;
-            min = dis[<span class="hljs-number">0</span>][i];
-            to = i;
-        &#125;
-    &#125;
-    sum += dis[<span class="hljs-number">0</span>][to];
-    shunXv[<span class="hljs-number">1</span>] = to;
-    visit[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
-    visit[to] = <span class="hljs-number">1</span>;
-    tanXindis = TanXin(to, visit, sum, shunXv, <span class="hljs-number">2</span>);
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 贪心的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
-        <span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
-        <span class="hljs-built_in">cout</span> &lt;&lt; shunXv[i];
-    &#125;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span> &lt;&lt; tanXindis &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 蚁群的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
-    TSP tsp;
-    tsp.Init();
-    tsp.Search();
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-comment">// fanWei 代表范围</span>
+	<span class="hljs-comment">// chuShi 代表起始位置, 即0</span>
+	<span class="hljs-keyword">int</span> fanWei;
+	<span class="hljs-keyword">int</span> chuShi = <span class="hljs-number">0</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;请输入范围 : &quot;</span>;
+	<span class="hljs-built_in">cin</span> &gt;&gt; fanWei;
+	point point[NUM];
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		point[i].x = random(fanWei);
+		point[i].y = random(fanWei);
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; NUM; j++) &#123;
+			dis[i][j] = qiujv(point[i].x, point[i].y, point[j].x, point[j].y);
+		&#125;
+	&#125;
+	<span class="hljs-keyword">double</span> min = <span class="hljs-number">100000</span>; <span class="hljs-comment">// 最小值</span>
+	<span class="hljs-keyword">int</span> to; <span class="hljs-comment">//要去的</span>
+	<span class="hljs-keyword">double</span> sum = <span class="hljs-number">0</span>; <span class="hljs-comment">//总数</span>
+	<span class="hljs-keyword">int</span> shunXv[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 顺序</span>
+	<span class="hljs-keyword">int</span> visit[NUM] = &#123; <span class="hljs-number">0</span> &#125;; <span class="hljs-comment">// 储存访问过的点</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (dis[<span class="hljs-number">0</span>][i] &lt; min) &#123;
+			min = dis[<span class="hljs-number">0</span>][i];
+			to = i;
+		&#125;
+	&#125;
+	sum += dis[<span class="hljs-number">0</span>][to];
+	shunXv[<span class="hljs-number">1</span>] = to;
+	visit[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+	visit[to] = <span class="hljs-number">1</span>;
+	tanXindis = TanXin(to, visit, sum, shunXv, <span class="hljs-number">2</span>);
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 贪心的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++) &#123;
+		<span class="hljs-keyword">if</span> (i) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;-&gt;&quot;</span>;
+		<span class="hljs-built_in">cout</span> &lt;&lt; shunXv[i];
+	&#125;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;距离为 : &quot;</span> &lt;&lt; tanXindis &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;*********** 蚁群的结果 **********&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	TSP tsp;
+	tsp.Init();
+	tsp.Search();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
 
             </article>
             <hr>
@@ -1167,31 +1184,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "蚁群算法解决tsp以及不闭合tsp问题&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -1233,6 +1234,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

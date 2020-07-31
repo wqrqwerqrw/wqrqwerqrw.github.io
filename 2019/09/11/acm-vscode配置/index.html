@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                ACM VSCode Win 配置
+              
             </span>
 
             
@@ -165,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      718 字
+      1.8k 字
     </span>
   
 
@@ -175,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      33
        分钟
     </span>
   
@@ -206,155 +208,160 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="ACM-VSCode-配置-备份"><a href="#ACM-VSCode-配置-备份" class="headerlink" title="ACM VSCode 配置(备份)"></a>ACM VSCode 配置(备份)</h1><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="https://i.postimg.cc/JhXZ8pMP/TIM-20190911170343.png" srcset="/img/loading.gif" alt="TIM-20190911170343.png"></p>
-<h2 id="一-安装gcc并添加到PATH"><a href="#一-安装gcc并添加到PATH" class="headerlink" title="一 安装gcc并添加到PATH"></a>一 安装gcc并添加到PATH</h2><ul>
+              <h1 id="acm-vscode-配置备份"><a class="markdownIt-Anchor" href="#acm-vscode-配置备份"></a> ACM VSCode 配置(备份)</h1>
+<h2 id="效果"><a class="markdownIt-Anchor" href="#效果"></a> 效果</h2>
+<p><img src="https://i.postimg.cc/JhXZ8pMP/TIM-20190911170343.png" srcset="/img/loading.gif" alt="TIM-20190911170343.png" /></p>
+<h2 id="一-安装gcc并添加到path"><a class="markdownIt-Anchor" href="#一-安装gcc并添加到path"></a> 一 安装gcc并添加到PATH</h2>
+<ul>
 <li>略</li>
 </ul>
-<h2 id="二-配置"><a href="#二-配置" class="headerlink" title="二 配置"></a>二 配置</h2><ul>
-<li><p>在储存代码的目录新建一个文件夹<code>.vscode</code>, 并新建三个文件</p>
+<h2 id="二-配置"><a class="markdownIt-Anchor" href="#二-配置"></a> 二 配置</h2>
 <ul>
-<li><p>c_cpp_properties.json</p>
-<pre><code class="hljs json">&#123;
-<span class="hljs-attr">&quot;configurations&quot;</span>: [
-  &#123;
-      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;MinGW64&quot;</span>,
-      <span class="hljs-attr">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span>,
-      <span class="hljs-attr">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;C:/MinGw/bin/g++.exe&quot;</span>,
-      <span class="hljs-attr">&quot;includePath&quot;</span>: [
-          <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>
-      ],
-      <span class="hljs-attr">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++14&quot;</span>
-  &#125;
-],
-<span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-number">4</span>
-&#125;</code></pre></li>
-<li><p>launch.json</p>
-<pre><code class="hljs json">&#123;
-<span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,
-<span class="hljs-attr">&quot;configurations&quot;</span>: [
-
-  &#123;   
-      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;C++ Launch (GDB)&quot;</span>,
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>,
-      <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,
-      <span class="hljs-attr">&quot;targetArchitecture&quot;</span>: <span class="hljs-string">&quot;x64&quot;</span>,
-      <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,
-      <span class="hljs-attr">&quot;args&quot;</span>: [ ],
-      <span class="hljs-attr">&quot;stopAtEntry&quot;</span>: <span class="hljs-literal">false</span>,
-      <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;/&quot;</span>,
-      <span class="hljs-attr">&quot;externalConsole&quot;</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">&quot;internalConsoleOptions&quot;</span>: <span class="hljs-string">&quot;neverOpen&quot;</span>,
-      <span class="hljs-attr">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,
-      <span class="hljs-attr">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;C:/MinGw/bin/gdb.exe&quot;</span>,
-      <span class="hljs-attr">&quot;setupCommands&quot;</span>: [
-          &#123;
-              <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;Enable pretty-printing for GDB&quot;</span>,
-              <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,
-              <span class="hljs-attr">&quot;ignoreFailures&quot;</span>: <span class="hljs-literal">true</span>
-          &#125;
-      ],
-      <span class="hljs-attr">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;Compile&quot;</span> 
-  &#125;
-]
-&#125;</code></pre>
-</li>
-<li><p>tasks.json</p>
-<pre><code class="hljs json">&#123;
-<span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,
-<span class="hljs-attr">&quot;tasks&quot;</span>: [
-  &#123;
-      <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;Compile&quot;</span>,
-      <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,
-      <span class="hljs-attr">&quot;args&quot;</span>: [
-          <span class="hljs-string">&quot;-g&quot;</span>,
-          <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,   <span class="hljs-comment">// 指定编译源代码文件</span>
-          <span class="hljs-string">&quot;-o&quot;</span>,
-          <span class="hljs-string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>, <span class="hljs-comment">// 指定输出文件名，不加该参数则默认输出a.exe</span>
-          <span class="hljs-comment">//&quot;-O2&quot;,      // 优化级别</span>
-          <span class="hljs-comment">//&quot;-ggdb3&quot;,   // 生成和调试有关的信息</span>
-          <span class="hljs-comment">//&quot;-Wall&quot;,    // 开启额外警告</span>
-          <span class="hljs-comment">//&quot;-static-libgcc&quot;,   // 静态链接</span>
-          <span class="hljs-comment">//&quot;-std=c++14&quot;,       // 使用c++17标准</span>
-          <span class="hljs-comment">//&quot;-finput-charset=UTF-8&quot;,    //输入编译器文本编码 默认为UTF-8</span>
-          <span class="hljs-comment">//&quot;-fexec-charset=GB18030&quot;,   //输出exe文件的编码</span>
-          <span class="hljs-comment">//&quot;-D _USE_MATH_DEFINES&quot;</span>
-      ],
-      <span class="hljs-attr">&quot;problemMatcher&quot;</span>: &#123;
-          <span class="hljs-attr">&quot;owner&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,
-          <span class="hljs-attr">&quot;fileLocation&quot;</span>: [
-              <span class="hljs-string">&quot;absolute&quot;</span>,
+<li>
+<p>在储存代码的目录新建一个文件夹<code>.vscode</code>, 并新建三个文件</p>
+<ul>
+<li>c_cpp_properties.json</li>
+</ul>
+  <pre><code class="hljs json">&#123;
+  <span class="hljs-attr">&quot;configurations&quot;</span>: [
+      &#123;
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;MinGW64&quot;</span>,
+          <span class="hljs-attr">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span>,
+          <span class="hljs-attr">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;C:/MinGw/bin/g++.exe&quot;</span>,
+          <span class="hljs-attr">&quot;includePath&quot;</span>: [
+              <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>
           ],
-          <span class="hljs-attr">&quot;pattern&quot;</span>: &#123;
-              <span class="hljs-attr">&quot;regexp&quot;</span>: <span class="hljs-string">&quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;</span>,
-              <span class="hljs-attr">&quot;file&quot;</span>: <span class="hljs-number">1</span>,
-              <span class="hljs-attr">&quot;line&quot;</span>: <span class="hljs-number">2</span>,
-              <span class="hljs-attr">&quot;column&quot;</span>: <span class="hljs-number">3</span>,
-              <span class="hljs-attr">&quot;severity&quot;</span>: <span class="hljs-number">4</span>,
-              <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-number">5</span>
-          &#125;
-      &#125;,
-      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,            
-      <span class="hljs-attr">&quot;group&quot;</span>: &#123;
-          <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,
-          <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span>
+          <span class="hljs-attr">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++14&quot;</span>
       &#125;
-  &#125;
-]
-&#125;</code></pre>
+  ],
+  <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-number">4</span>
 </li>
 </ul>
-</li>
-<li><p>以上主要用于需要断点调试的时候</p>
-</li>
-<li><p>快速编译可以安装coderunner插件</p>
+<p>&#125;</code></pre>:hexoPostRenderEscape–&gt;<br />
+- launch.json<br />
+&lt;!–hexoPostRenderEscape:<pre><code class="hljs json">&#123;<br />
+<span class="hljs-attr">“version”</span>: <span class="hljs-string">“0.2.0”</span>,<br />
+<span class="hljs-attr">“configurations”</span>: [</p>
+<pre><code>    &amp;#123;   
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;C++ Launch (GDB)&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;cppdbg&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;request&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;launch&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;targetArchitecture&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;x64&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;program&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;$&amp;#123;fileDirname&amp;#125;/$&amp;#123;fileBasenameNoExtension&amp;#125;.exe&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;args&amp;quot;&lt;/span&gt;: [ ],
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;stopAtEntry&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;cwd&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;$&amp;#123;fileDirname&amp;#125;/&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;externalConsole&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;internalConsoleOptions&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;neverOpen&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;MIMode&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;gdb&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;miDebuggerPath&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;C:/MinGw/bin/gdb.exe&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;setupCommands&amp;quot;&lt;/span&gt;: [
+            &amp;#123;
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Enable pretty-printing for GDB&amp;quot;&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;-enable-pretty-printing&amp;quot;&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;ignoreFailures&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
+            &amp;#125;
+        ],
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;preLaunchTask&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Compile&amp;quot;&lt;/span&gt; 
+    &amp;#125;
+]
+</code></pre>
+<p>}</code></pre>:hexoPostRenderEscape–&gt;</p>
+<pre><code>- tasks.json
+&lt;!--hexoPostRenderEscape:&lt;pre&gt;&lt;code class=&quot;hljs json&quot;&gt;&amp;#123;
+&lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;version&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;2.0.0&amp;quot;&lt;/span&gt;,
+&lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;tasks&amp;quot;&lt;/span&gt;: [
+    &amp;#123;
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;label&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Compile&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;command&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;g++&amp;quot;&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;args&amp;quot;&lt;/span&gt;: [
+            &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;-g&amp;quot;&lt;/span&gt;,
+            &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;$&amp;#123;file&amp;#125;&amp;quot;&lt;/span&gt;,   &lt;span class=&quot;hljs-comment&quot;&gt;// 指定编译源代码文件&lt;/span&gt;
+            &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;-o&amp;quot;&lt;/span&gt;,
+            &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;$&amp;#123;fileDirname&amp;#125;/$&amp;#123;fileBasenameNoExtension&amp;#125;.exe&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-comment&quot;&gt;// 指定输出文件名，不加该参数则默认输出a.exe&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-O2&amp;quot;,      // 优化级别&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-ggdb3&amp;quot;,   // 生成和调试有关的信息&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-Wall&amp;quot;,    // 开启额外警告&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-static-libgcc&amp;quot;,   // 静态链接&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-std=c++14&amp;quot;,       // 使用c++17标准&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-finput-charset=UTF-8&amp;quot;,    //输入编译器文本编码 默认为UTF-8&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-fexec-charset=GB18030&amp;quot;,   //输出exe文件的编码&lt;/span&gt;
+            &lt;span class=&quot;hljs-comment&quot;&gt;//&amp;quot;-D _USE_MATH_DEFINES&amp;quot;&lt;/span&gt;
+        ],
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;problemMatcher&amp;quot;&lt;/span&gt;: &amp;#123;
+            &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;owner&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;cpp&amp;quot;&lt;/span&gt;,
+            &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;fileLocation&amp;quot;&lt;/span&gt;: [
+                &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;absolute&amp;quot;&lt;/span&gt;,
+            ],
+            &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;: &amp;#123;
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;regexp&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&amp;quot;&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;file&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;line&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;severity&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;,
+                &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;
+            &amp;#125;
+        &amp;#125;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;shell&amp;quot;&lt;/span&gt;,            
+        &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;group&amp;quot;&lt;/span&gt;: &amp;#123;
+            &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;kind&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;build&amp;quot;&lt;/span&gt;,
+            &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;isDefault&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
+        &amp;#125;
+    &amp;#125;
+]
+</code></pre>
+<p>}</code></pre>:hexoPostRenderEscape–&gt;</p>
+<ul>
+<li>以上主要用于需要断点调试的时候</li>
+<li>快速编译可以安装coderunner插件
 <ol>
 <li>安装coderunner</li>
-<li>在<code>.vscode</code>新建<code>setting.json</code><pre><code class="hljs json">&#123;
-<span class="hljs-attr">&quot;code-runner.runInTerminal&quot;</span>: <span class="hljs-literal">true</span>,
-<span class="hljs-attr">&quot;code-runner.fileDirectoryAsCwd&quot;</span>: <span class="hljs-literal">true</span>,
-<span class="hljs-attr">&quot;code-runner.executorMap&quot;</span>: &#123;
- <span class="hljs-attr">&quot;c&quot;</span>: <span class="hljs-string">&quot;gcc $fileName -o build/$fileNameWithoutExt.exe &amp;&amp; .\\build\\$fileNameWithoutExt.exe&quot;</span>,
- <span class="hljs-attr">&quot;cpp&quot;</span>: <span class="hljs-string">&quot;g++ $fileName -o build/$fileNameWithoutExt.exe -Wall -O2 -static-libgcc -std=c++14 &amp;&amp; .\\build\\$fileNameWithoutExt.exe&quot;</span>
-&#125;,
-<span class="hljs-attr">&quot;code-runner.preserveFocus&quot;</span>: <span class="hljs-literal">false</span>,
-<span class="hljs-attr">&quot;code-runner.saveFileBeforeRun&quot;</span>: <span class="hljs-literal">true</span>
-&#125;</code></pre>
-
-</li>
+<li>在<code>.vscode</code>新建<code>setting.json</code></li>
 </ol>
+  <pre><code class="hljs json">&#123;
+  <span class="hljs-attr">&quot;code-runner.runInTerminal&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">&quot;code-runner.fileDirectoryAsCwd&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">&quot;code-runner.executorMap&quot;</span>: &#123;
+      <span class="hljs-attr">&quot;c&quot;</span>: <span class="hljs-string">&quot;gcc $fileName -o build/$fileNameWithoutExt.exe &amp;&amp; .\\build\\$fileNameWithoutExt.exe&quot;</span>,
+      <span class="hljs-attr">&quot;cpp&quot;</span>: <span class="hljs-string">&quot;g++ $fileName -o build/$fileNameWithoutExt.exe -Wall -O2 -static-libgcc -std=c++14 &amp;&amp; .\\build\\$fileNameWithoutExt.exe&quot;</span>
+  &#125;,
+  <span class="hljs-attr">&quot;code-runner.preserveFocus&quot;</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">&quot;code-runner.saveFileBeforeRun&quot;</span>: <span class="hljs-literal">true</span>
 </li>
 </ul>
-<h2 id="三-快速编辑"><a href="#三-快速编辑" class="headerlink" title="三 快速编辑"></a>三 快速编辑</h2><ul>
-<li>在<code>文件</code>-&gt;<code>首选项</code>-&gt;<code>用户代码片段</code>-&gt;<code>cpp.json</code>中添加<pre><code class="hljs json">&#123;
-  <span class="hljs-attr">&quot;acminit&quot;</span> : &#123;
-      <span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;acminit&quot;</span>,
-      <span class="hljs-attr">&quot;body&quot;</span>: [
-          <span class="hljs-string">&quot;// Author : Wqr_&quot;</span>,
-          <span class="hljs-string">&quot;// Time : $&#123;CURRENT_YEAR_SHORT&#125;/$&#123;CURRENT_MONTH&#125;/$&#123;CURRENT_DATE&#125;&quot;</span>,
-          <span class="hljs-string">&quot;#include&lt;bits/stdc++.h&gt;&quot;</span>,
-          <span class="hljs-string">&quot;#define iofuck std::ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)&quot;</span>,
-          <span class="hljs-string">&quot;#define INF 0x3f3f3f3f&quot;</span>,
-          <span class="hljs-string">&quot;using namespace std;&quot;</span>,
-          <span class="hljs-string">&quot;typedef long long ll;&quot;</span>,
-          <span class="hljs-string">&quot;int main()&#123;&quot;</span>,
-          <span class="hljs-string">&quot;    $0&quot;</span>,
-          <span class="hljs-string">&quot;&#125;&quot;</span>
-      ],
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;acminit&quot;</span>
-  &#125;,
-  <span class="hljs-attr">&quot;filein&quot;</span> : &#123;
-      <span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;filein&quot;</span>,
-      <span class="hljs-attr">&quot;body&quot;</span>: [
-          <span class="hljs-string">&quot;#ifndef ONLINE_JUDGE&quot;</span>,
-          <span class="hljs-string">&quot;freopen(\&quot;in.txt\&quot;,\&quot;r\&quot;,stdin);&quot;</span>,
-          <span class="hljs-string">&quot;#endif&quot;</span>
-      ],
-      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;filein&quot;</span>
-  &#125;
+<p>&#125;</code></pre>:hexoPostRenderEscape–&gt;</p>
+<h2 id="三-快速编辑"><a class="markdownIt-Anchor" href="#三-快速编辑"></a> 三 快速编辑</h2>
+<ul>
+<li>在<code>文件</code>-&gt;<code>首选项</code>-&gt;<code>用户代码片段</code>-&gt;<code>cpp.json</code>中添加</li>
+</ul>
+<pre><code class="hljs json">&#123;
+	<span class="hljs-attr">&quot;acminit&quot;</span> : &#123;
+		<span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;acminit&quot;</span>,
+		<span class="hljs-attr">&quot;body&quot;</span>: [
+			<span class="hljs-string">&quot;// Author : Wqr_&quot;</span>,
+			<span class="hljs-string">&quot;// Time : $&#123;CURRENT_YEAR_SHORT&#125;/$&#123;CURRENT_MONTH&#125;/$&#123;CURRENT_DATE&#125;&quot;</span>,
+			<span class="hljs-string">&quot;#include&lt;bits/stdc++.h&gt;&quot;</span>,
+			<span class="hljs-string">&quot;#define iofuck std::ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)&quot;</span>,
+			<span class="hljs-string">&quot;#define INF 0x3f3f3f3f&quot;</span>,
+			<span class="hljs-string">&quot;using namespace std;&quot;</span>,
+			<span class="hljs-string">&quot;typedef long long ll;&quot;</span>,
+			<span class="hljs-string">&quot;int main()&#123;&quot;</span>,
+			<span class="hljs-string">&quot;    $0&quot;</span>,
+			<span class="hljs-string">&quot;&#125;&quot;</span>
+		],
+		<span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;acminit&quot;</span>
+	&#125;,
+	<span class="hljs-attr">&quot;filein&quot;</span> : &#123;
+		<span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;filein&quot;</span>,
+		<span class="hljs-attr">&quot;body&quot;</span>: [
+			<span class="hljs-string">&quot;#ifndef ONLINE_JUDGE&quot;</span>,
+    		<span class="hljs-string">&quot;freopen(\&quot;in.txt\&quot;,\&quot;r\&quot;,stdin);&quot;</span>,
+    		<span class="hljs-string">&quot;#endif&quot;</span>
+		],
+		<span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;filein&quot;</span>
+	&#125;
 &#125;
 </code></pre>
-</li>
-</ul>
 
             </article>
             <hr>
@@ -532,31 +539,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "ACM VSCode Win 配置&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -598,6 +589,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

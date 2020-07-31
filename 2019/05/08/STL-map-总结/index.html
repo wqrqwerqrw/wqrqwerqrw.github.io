@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                STL-map 总结
+              
             </span>
 
             
@@ -175,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      14
        分钟
     </span>
   
@@ -206,31 +208,118 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="STL-map-总结"><a href="#STL-map-总结" class="headerlink" title="STL-map 总结"></a>STL-map 总结</h1><h2 id="文档链接"><a href="#文档链接" class="headerlink" title="文档链接"></a><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/map">文档链接</a></h2><h2 id="map基本操作"><a href="#map基本操作" class="headerlink" title="map基本操作"></a>map基本操作</h2><ul>
+              <h1 id="stl-map-总结"><a class="markdownIt-Anchor" href="#stl-map-总结"></a> STL-map 总结</h1>
+<h2 id="文档链接"><a class="markdownIt-Anchor" href="#文档链接"></a> <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/map">文档链接</a></h2>
+<h2 id="map基本操作"><a class="markdownIt-Anchor" href="#map基本操作"></a> map基本操作</h2>
+<ul>
 <li>在STL的头文件中<code>&lt;map&gt;</code>中定义了模版类map和multimap，用有序二叉树表存储类型为<code>pair&lt;const Key, T&gt;</code>的元素对序列. 序列中的元素以 const Key 部分作为标识, map 中所有元素的Key值必须是唯一的，multimap 则允许有重复的 Key 值.</li>
-<li>可以将map看作是由Key标识元素的元素集合，这类容器也被称为“关联容器”，可以通过一个Key值来快速决定一个元素，因此非常适合于需要按照Key值查找元素的容器. </li>
+<li>可以将map看作是由Key标识元素的元素集合，这类容器也被称为“关联容器”，可以通过一个Key值来快速决定一个元素，因此非常适合于需要按照Key值查找元素的容器.</li>
 <li>map模版类需要四个模版参数，第一个是键值类型，第二个是元素类型，第三个是比较算子，第四个是分配器类型。其中键值类型和元素类型是必要的.</li>
-<li>定义map对象的代码示例：<pre><code class="hljs cpp"><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; m;</code></pre></li>
-<li>基本操作<br>&lt;!–hexoPostRenderEscape:<pre><code class="hljs cpp"><span class="hljs-comment">/*  向map中插入元素  */</span><br><span class="hljs-comment">// [key]操作是map很有特色的操作,如果在map中存在键值为key的元素对, 则返回该元素对的值域部分,否则将会创建一个键值为key的元素对,值域为默认值。所以可以用该操作向map中插入元素对或修改已经存在的元素对的值域部分.</span><br>m[key] = value;<br>m.insert(<span class="hljs-built_in">make_pair</span>(key, value));    <span class="hljs-comment">//  也可以直接调用insert方法插入元素对,insert操作会返回一个pair,当map中没有与key相匹配的键值时,其first是指向插入元素对的迭代器,其second为true;若map中已经存在与key相等的键值时,其first是指向该元素对的迭代器,second为false。</span></li>
+<li>定义map对象的代码示例：</li>
 </ul>
-<p><span class="hljs-comment">/*  查找元素  */</span><br><span class="hljs-comment">// 要注意的是,当与该键值相匹配的元素对不存在时,会创建键值为key（当另一个元素是整形时，m[key]=0）的元素对.</span><br><span class="hljs-keyword">int</span> i = m[key];<br><span class="hljs-comment">// 如果map中存在与key相匹配的键值时,find操作将返回指向该元素对的迭代器,否则,返回的迭代器等于map的end()(参见vector中提到的begin()和end()操作).</span><br><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;::iterator it = m.find(key);   </p>
-<p><span class="hljs-comment">/*  删除元素  */</span><br><span class="hljs-comment">// 删除与指定key键值相匹配的元素对,并返回被删除的元素的个数.</span><br>m.erase(key);<br><span class="hljs-comment">//  删除由迭代器it所指定的元素对,并返回指向下一个元素对的迭代器.</span><br>m.erase(it);    </p>
-<p><span class="hljs-comment">/*  其他操作  */</span><br>m.size();       <span class="hljs-comment">//  返回元素个数</span><br>m.empty();      <span class="hljs-comment">//  判断是否为空</span><br>m.clear();      <span class="hljs-comment">//  清空所有元素</span></code></pre>:hexoPostRenderEscape–&gt;</p>
-<h2 id="map的排序"><a href="#map的排序" class="headerlink" title="map的排序"></a>map的排序</h2><ul>
-<li><p>为了实现快速查找, map内部本身就是按序存储的(比如红黑树). 在我们插入<code>&lt;key, value&gt;</code>键值对时, 就会按照key的大小顺序进行存储, 这也是作为key的类型必须能够进行&lt;运算比较的原因. 但有些时候需要用特殊的规则进行排序, 这时可以用<code>vector</code>进行间接地排序</p>
-</li>
-<li><p>map中通过<code>pair</code>储存数据, 所以定义</p>
+<pre><code class="hljs cpp"><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; m;</code></pre>
+<ul>
+<li>基本操作</li>
+</ul>
+<pre><code class="hljs cpp"><span class="hljs-comment">/*  向map中插入元素  */</span>
+<span class="hljs-comment">// [key]操作是map很有特色的操作,如果在map中存在键值为key的元素对, 则返回该元素对的值域部分,否则将会创建一个键值为key的元素对,值域为默认值。所以可以用该操作向map中插入元素对或修改已经存在的元素对的值域部分.</span>
+m[key] = value; 
+m.insert(<span class="hljs-built_in">make_pair</span>(key, value));    <span class="hljs-comment">//  也可以直接调用insert方法插入元素对,insert操作会返回一个pair,当map中没有与key相匹配的键值时,其first是指向插入元素对的迭代器,其second为true;若map中已经存在与key相等的键值时,其first是指向该元素对的迭代器,second为false。</span>
+
+<span class="hljs-comment">/*  查找元素  */</span>
+<span class="hljs-comment">// 要注意的是,当与该键值相匹配的元素对不存在时,会创建键值为key（当另一个元素是整形时，m[key]=0）的元素对.</span>
+<span class="hljs-keyword">int</span> i = m[key]; 
+<span class="hljs-comment">// 如果map中存在与key相匹配的键值时,find操作将返回指向该元素对的迭代器,否则,返回的迭代器等于map的end()(参见vector中提到的begin()和end()操作).</span>
+<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;::iterator it = m.find(key);   
+
+<span class="hljs-comment">/*  删除元素  */</span>
+<span class="hljs-comment">// 删除与指定key键值相匹配的元素对,并返回被删除的元素的个数.</span>
+m.erase(key);   
+<span class="hljs-comment">//  删除由迭代器it所指定的元素对,并返回指向下一个元素对的迭代器.</span>
+m.erase(it);    
+
+<span class="hljs-comment">/*  其他操作  */</span>
+m.size();       <span class="hljs-comment">//  返回元素个数</span>
+m.empty();      <span class="hljs-comment">//  判断是否为空</span>
+m.clear();      <span class="hljs-comment">//  清空所有元素</span></code></pre>
+<h2 id="map的排序"><a class="markdownIt-Anchor" href="#map的排序"></a> map的排序</h2>
+<ul>
+<li>为了实现快速查找, map内部本身就是按序存储的(比如红黑树). 在我们插入<code>&lt;key, value&gt;</code>键值对时, 就会按照key的大小顺序进行存储, 这也是作为key的类型必须能够进行&lt;运算比较的原因. 但有些时候需要用特殊的规则进行排序, 这时可以用<code>vector</code>进行间接地排序</li>
+<li>map中通过<code>pair</code>储存数据, 所以定义</li>
+</ul>
 <pre><code class="hljs cpp"><span class="hljs-built_in">map</span>&lt;key, value&gt; m;
 <span class="hljs-keyword">typedef</span> <span class="hljs-built_in">pair</span>&lt;key, value&gt; pa;
 <span class="hljs-comment">//把m中的值复制到vec中</span>
-<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;pa&gt; <span class="hljs-title">vec</span><span class="hljs-params">(m.begin(), m.end())</span></span>;</code></pre></li>
-<li><p>之后定义排序函数通过<code>vector</code>排序</p>
+<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;pa&gt; <span class="hljs-title">vec</span><span class="hljs-params">(m.begin(), m.end())</span></span>;</code></pre>
+<ul>
+<li>
+<p>之后定义排序函数通过<code>vector</code>排序</p>
 </li>
-<li><p>例题<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1236">hdu-1236</a><br>&lt;!–hexoPostRenderEscape:<pre><code class="hljs cpp"><span class="hljs-comment">/*<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></span><br><span class="hljs-comment">    &gt; File Name: c.cpp</span><br><span class="hljs-comment">    &gt; Author: Wqr_</span><br><span class="hljs-comment">    &gt; Mail: <a href="mailto:&#x78;&#117;&#x65;&#x64;&#117;&#97;&#110;&#x77;&#101;&#x69;&#x40;&#x31;&#x32;&#54;&#x2e;&#x63;&#111;&#x6d;">&#x78;&#117;&#x65;&#x64;&#117;&#97;&#110;&#x77;&#101;&#x69;&#x40;&#x31;&#x32;&#54;&#x2e;&#x63;&#111;&#x6d;</a> </span><br><span class="hljs-comment">    &gt; Created Time: 2019年05月06日 星期一 19时40分20秒</span><br><span class="hljs-comment"> <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</span></p>
+<li>
+<p>例题<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1236">hdu-1236</a></p>
 </li>
 </ul>
-<p><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">typedef</span> <span class="hljs-built_in">pair</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; pa;<br><span class="hljs-keyword">int</span> fen[<span class="hljs-number">20</span>];<br><span class="hljs-comment">//定义比较函数</span><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-keyword">const</span> pa &amp;a, <span class="hljs-keyword">const</span> pa &amp;b)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(a.second != b.second)<br>        <span class="hljs-keyword">return</span> a.second &gt; b.second;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> a.first.compare(b.first) &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n, m, g;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;m, &amp;g);<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; jifen;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)&#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, fen + i + <span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-built_in">string</span> hao;<br>            <span class="hljs-keyword">int</span> num;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; hao &gt;&gt; num;<br>            jifen[hao] = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; num; j++)&#123;<br>                <span class="hljs-keyword">int</span> in;<br>                <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;in);<br>                jifen[hao] += fen[in];<br>            &#125;<br>            <span class="hljs-keyword">if</span>(jifen[hao] &gt;= g)&#123;<br>                ans++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;<br>        <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;pa&gt; <span class="hljs-title">vec</span><span class="hljs-params">(jifen.begin(), jifen.end())</span></span>;<br>        <span class="hljs-comment">// 排序</span><br>        sort(vec.begin(), vec.end(), cmp);<br>        <span class="hljs-keyword">for</span>(pa vecc : vec)&#123;<br>            <span class="hljs-keyword">if</span>(vecc.second &gt;= g)<br>            <span class="hljs-built_in">cout</span> &lt;&lt; vecc.first &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; vecc.second &lt;&lt; <span class="hljs-built_in">endl</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;</code></pre>:hexoPostRenderEscape–&gt;</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">/*************************************************************************</span>
+<span class="hljs-comment">    &gt; File Name: c.cpp</span>
+<span class="hljs-comment">    &gt; Author: Wqr_</span>
+<span class="hljs-comment">    &gt; Mail: xueduanwei@126.com </span>
+<span class="hljs-comment">    &gt; Created Time: 2019年05月06日 星期一 19时40分20秒</span>
+<span class="hljs-comment"> ************************************************************************/</span>
 
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-built_in">pair</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; pa;
+<span class="hljs-keyword">int</span> fen[<span class="hljs-number">20</span>];
+<span class="hljs-comment">//定义比较函数</span>
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-keyword">const</span> pa &amp;a, <span class="hljs-keyword">const</span> pa &amp;b)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(a.second != b.second)
+        <span class="hljs-keyword">return</span> a.second &gt; b.second;
+    <span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-keyword">return</span> a.first.compare(b.first) &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n, m, g;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n)&#123;
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;m, &amp;g);
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; jifen;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)&#123;
+            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, fen + i + <span class="hljs-number">1</span>);
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;
+            <span class="hljs-built_in">string</span> hao;
+            <span class="hljs-keyword">int</span> num;
+            <span class="hljs-built_in">cin</span> &gt;&gt; hao &gt;&gt; num;
+            jifen[hao] = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; num; j++)&#123;
+                <span class="hljs-keyword">int</span> in;
+                <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;in);
+                jifen[hao] += fen[in];
+            &#125;
+            <span class="hljs-keyword">if</span>(jifen[hao] &gt;= g)&#123;
+                ans++;
+            &#125;
+        &#125;
+        <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;pa&gt; <span class="hljs-title">vec</span><span class="hljs-params">(jifen.begin(), jifen.end())</span></span>;
+        <span class="hljs-comment">// 排序</span>
+        sort(vec.begin(), vec.end(), cmp);
+        <span class="hljs-keyword">for</span>(pa vecc : vec)&#123;
+            <span class="hljs-keyword">if</span>(vecc.second &gt;= g)
+            <span class="hljs-built_in">cout</span> &lt;&lt; vecc.first &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; vecc.second &lt;&lt; <span class="hljs-built_in">endl</span>;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
             </article>
             <hr>
             <div>
@@ -407,31 +496,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "STL-map 总结&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -473,6 +546,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

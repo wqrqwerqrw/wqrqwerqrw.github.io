@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                poj-2253 poj-1797 最短路变形
+              
             </span>
 
             
@@ -206,12 +208,17 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="poj-2253"><a href="#poj-2253" class="headerlink" title="poj-2253"></a><a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/B">poj-2253</a></h1><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul>
-<li><p>复制一下别人的题意，有两只青蛙和若干块石头，现在已知这些东西的坐标，两只青蛙A坐标和青蛙B坐标是第一个和第二个坐标，现在A青蛙想要到B青蛙那里去，并且A青蛙可以借助任意石头的跳跃，而从A到B有若干通路，问从A到B的所有通路上的最大边</p>
+              <h1 id="poj-2253"><a class="markdownIt-Anchor" href="#poj-2253"></a> <a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/B">poj-2253</a></h1>
+<h2 id="题意"><a class="markdownIt-Anchor" href="#题意"></a> 题意</h2>
+<ul>
+<li>
+<p>复制一下别人的题意，有两只青蛙和若干块石头，现在已知这些东西的坐标，两只青蛙A坐标和青蛙B坐标是第一个和第二个坐标，现在A青蛙想要到B青蛙那里去，并且A青蛙可以借助任意石头的跳跃，而从A到B有若干通路，问从A到B的所有通路上的最大边</p>
 </li>
-<li><p>从a到b有n条路径, 寻找n条路经中边最大长度最小的</p>
+<li>
+<p>从a到b有n条路径, 寻找n条路经中边最大长度最小的</p>
 </li>
-<li><p>code</p>
+<li>
+<p>code</p>
 </li>
 </ul>
 <pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
@@ -296,14 +303,17 @@ point ps[<span class="hljs-number">250</span>];
     &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/PKU_ZZY/article/details/52434239">关于Dijkstra成立条件的一篇博文</a></li>
 </ul>
-<h1 id="poj-1797"><a href="#poj-1797" class="headerlink" title="poj-1797"></a><a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/C">poj-1797</a></h1><h2 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h2><ul>
-<li><p>上一个是找所有路径中最长路径最短的, 这个是找所有路径中最短路径最长的</p>
+<h1 id="poj-1797"><a class="markdownIt-Anchor" href="#poj-1797"></a> <a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/C">poj-1797</a></h1>
+<h2 id="题意-2"><a class="markdownIt-Anchor" href="#题意-2"></a> 题意</h2>
+<ul>
+<li>
+<p>上一个是找所有路径中最长路径最短的, 这个是找所有路径中最短路径最长的</p>
 </li>
-<li><p>code</p>
+<li>
+<p>code</p>
 </li>
 </ul>
 <pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
@@ -375,7 +385,6 @@ point ps[<span class="hljs-number">250</span>];
     &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
 
             </article>
             <hr>
@@ -551,31 +560,15 @@ point ps[<span class="hljs-number">250</span>];
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "poj-2253 poj-1797 最短路变形&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -617,6 +610,13 @@ point ps[<span class="hljs-number">250</span>];
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

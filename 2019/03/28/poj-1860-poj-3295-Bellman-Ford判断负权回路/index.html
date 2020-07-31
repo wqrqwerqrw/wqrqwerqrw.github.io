@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                poj-1860 poj-3295 Bellman-Ford判断负权回路
+              
             </span>
 
             
@@ -206,16 +208,20 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="poj-1860"><a href="#poj-1860" class="headerlink" title="poj-1860"></a>poj-1860</h1><ul>
+              <h1 id="poj-1860"><a class="markdownIt-Anchor" href="#poj-1860"></a> poj-1860</h1>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/E">link</a></li>
 </ul>
-<h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><blockquote>
+<h2 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h2>
+<blockquote>
 <p>有多个兑换点, 每个兑换点可以兑换两种货币. 假设本来有的货币种类为s, 问能否通过不断兑换最终回到s并且使总金增加</p>
 </blockquote>
-<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><ul>
+<h2 id="理解"><a class="markdownIt-Anchor" href="#理解"></a> 理解</h2>
+<ul>
 <li>如果存在正权回路则说明可以钱无限增加, 找到正权回路直接输出<code>YES</code>就行了, 否则输出<code>NO</code></li>
 </ul>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
+<h2 id="code"><a class="markdownIt-Anchor" href="#code"></a> code</h2>
+<pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
 <span class="hljs-comment">    &gt; File Name : poj-1860.cpp</span>
 <span class="hljs-comment">    &gt; Author : Wqr_</span>
 <span class="hljs-comment">    &gt; Mail : xueduanwei@126.com</span>
@@ -282,17 +288,20 @@
     &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
-<h1 id="poj-3295"><a href="#poj-3295" class="headerlink" title="poj-3295"></a>poj-3295</h1><ul>
+<h1 id="poj-3295"><a class="markdownIt-Anchor" href="#poj-3295"></a> poj-3295</h1>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://vjudge.net/contest/66569#problem/E">link</a></li>
 </ul>
-<h2 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h2><blockquote>
+<h2 id="题目大意-2"><a class="markdownIt-Anchor" href="#题目大意-2"></a> 题目大意</h2>
+<blockquote>
 <p>有f个农场, 每个农场有n个点m条路, 有w个虫洞, 问针对每个农场能否看到以前的自己</p>
 </blockquote>
-<h2 id="理解-1"><a href="#理解-1" class="headerlink" title="理解"></a>理解</h2><ul>
+<h2 id="理解-2"><a class="markdownIt-Anchor" href="#理解-2"></a> 理解</h2>
+<ul>
 <li>判断是否有负权回路, 有就可以</li>
 </ul>
-<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
+<h2 id="code-2"><a class="markdownIt-Anchor" href="#code-2"></a> code</h2>
+<pre><code class="hljs cpp"><span class="hljs-comment">/**********************************************************</span>
 <span class="hljs-comment">    &gt; File Name : poj-3295.cpp</span>
 <span class="hljs-comment">    &gt; Author : Wqr_</span>
 <span class="hljs-comment">    &gt; Mail : xueduanwei@126.com</span>
@@ -538,31 +547,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "poj-1860 poj-3295 Bellman-Ford判断负权回路&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -604,6 +597,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

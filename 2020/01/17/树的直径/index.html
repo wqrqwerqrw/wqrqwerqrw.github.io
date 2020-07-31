@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                树的直径
+              
             </span>
 
             
@@ -206,10 +208,13 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="树的直径"><a href="#树的直径" class="headerlink" title="树的直径"></a>树的直径</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+              <h1 id="树的直径"><a class="markdownIt-Anchor" href="#树的直径"></a> 树的直径</h1>
+<h2 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h2>
+<ul>
 <li>树中所有最短路径距离的最大值即为树的直径</li>
 </ul>
-<h2 id="求法"><a href="#求法" class="headerlink" title="求法"></a>求法</h2><ol>
+<h2 id="求法"><a class="markdownIt-Anchor" href="#求法"></a> 求法</h2>
+<ol>
 <li>首先在树上任取一点<code>u</code>, 记录距离<code>u</code>最远的节点为<code>d1</code>, <code>d1</code>即为树直径的端点之一</li>
 <li>寻找距离<code>d1</code>最远的节点<code>d2</code></li>
 <li><code>d1</code>到<code>d2</code>的路径即为树的直径</li>
@@ -231,10 +236,11 @@
         dfs(e.v);
     &#125;
 &#125;</code></pre>
-
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
+<h2 id="拓展"><a class="markdownIt-Anchor" href="#拓展"></a> 拓展</h2>
+<ul>
 <li>利用树的直径可以在<code>O(n)</code>的求出每个结点的最远点</li>
-<li>可以证明的是 : <ul>
+<li>可以证明的是 :
+<ul>
 <li>一个点的最远点一定在树的直径的端点上</li>
 </ul>
 </li>
@@ -261,8 +267,8 @@
     <span class="hljs-comment">// max(dis[i][0], dis[i][1]) 即为所求</span>
 &#125;
 </code></pre>
-
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><blockquote>
+<h2 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h2>
+<blockquote>
 <p>世界上一共有n个国家，标号从1∼n。他们由n−1条边连接着，经过每条边都有一定的时间花费。任意两个国家之间两两可达。火山哥一共决定去K个国家。现在他想要知道:如果他从第i个国家出发，经过这K个国家的最短时间是多少？</p>
 </blockquote>
 <blockquote>
@@ -555,31 +561,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "树的直径&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -621,6 +611,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

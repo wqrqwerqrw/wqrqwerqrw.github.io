@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                19.6.2 CF 2019 GR3 解题报告
+              
             </span>
 
             
@@ -206,7 +208,10 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="19-6-2-CF-2019-GR3-解题报告-4-8"><a href="#19-6-2-CF-2019-GR3-解题报告-4-8" class="headerlink" title="19.6.2 CF 2019 GR3 解题报告 (4 / 8)"></a>19.6.2 CF 2019 GR3 解题报告 (4 / 8)</h1><h2 id="link"><a href="#link" class="headerlink" title="link"></a><a target="_blank" rel="noopener" href="http://codeforces.com/contest/1148">link</a></h2><h2 id="A-Another-One-Bites-The-Dust"><a href="#A-Another-One-Bites-The-Dust" class="headerlink" title="A. Another One Bites The Dust"></a>A. Another One Bites The Dust</h2><ul>
+              <h1 id="1962-cf-2019-gr3-解题报告-4-8"><a class="markdownIt-Anchor" href="#1962-cf-2019-gr3-解题报告-4-8"></a> 19.6.2 CF 2019 GR3 解题报告 (4 / 8)</h1>
+<h2 id="link"><a class="markdownIt-Anchor" href="#link"></a> <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1148">link</a></h2>
+<h2 id="a-another-one-bites-the-dust"><a class="markdownIt-Anchor" href="#a-another-one-bites-the-dust"></a> A. Another One Bites The Dust</h2>
+<ul>
 <li>直接猜</li>
 <li>ac代码</li>
 </ul>
@@ -246,9 +251,9 @@ ll a, b, c;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 </code></pre>
-
-<h2 id="B-Born-This-Way"><a href="#B-Born-This-Way" class="headerlink" title="B. Born This Way"></a>B. Born This Way</h2><ul>
-<li>二分 + 暴力 </li>
+<h2 id="b-born-this-way"><a class="markdownIt-Anchor" href="#b-born-this-way"></a> B. Born This Way</h2>
+<ul>
+<li>二分 + 暴力</li>
 <li>ac代码</li>
 </ul>
 <pre><code class="hljs cpp"><span class="hljs-comment">/*************************************************************************</span>
@@ -301,8 +306,8 @@ ll a[nmax], b[nmax];
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 </code></pre>
-
-<h2 id="C-Crazy-Diamond"><a href="#C-Crazy-Diamond" class="headerlink" title="C. Crazy Diamond"></a>C. Crazy Diamond</h2><ul>
+<h2 id="c-crazy-diamond"><a class="markdownIt-Anchor" href="#c-crazy-diamond"></a> C. Crazy Diamond</h2>
+<ul>
 <li>刚开始用的选择排序, 果断t了</li>
 <li>注意到数据只是<code>1~n</code>, 就是说直接通过当前位置找到要改变的位置</li>
 <li>ac代码</li>
@@ -380,8 +385,8 @@ ll a[nmax], b[nmax];
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 </code></pre>
-
-<h2 id="D-Dirty-Deeds-Done-Dirt-Cheap"><a href="#D-Dirty-Deeds-Done-Dirt-Cheap" class="headerlink" title="D. Dirty Deeds Done Dirt Cheap"></a>D. Dirty Deeds Done Dirt Cheap</h2><ul>
+<h2 id="d-dirty-deeds-done-dirt-cheap"><a class="markdownIt-Anchor" href="#d-dirty-deeds-done-dirt-cheap"></a> D. Dirty Deeds Done Dirt Cheap</h2>
+<ul>
 <li>注意到有两种对<code>a&gt;b</code>和<code>a&lt;b</code>, 输入时将两种对分别储存起来</li>
 <li>对于<code>a&lt;b</code>的, 按a的降序进行排列, 对<code>a&gt;b</code>的, 按b的升序进行排列就能保证符合题目要求</li>
 <li>ac代码</li>
@@ -636,31 +641,15 @@ ll a[nmax], b[nmax];
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "19.6.2 CF 2019 GR3 解题报告&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -702,6 +691,13 @@ ll a[nmax], b[nmax];
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 

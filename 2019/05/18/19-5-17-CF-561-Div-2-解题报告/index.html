@@ -57,7 +57,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -148,6 +148,8 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
+                19.5.17 CF #561 (Div. 2) 解题报告
+              
             </span>
 
             
@@ -165,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      730 字
+      731 字
     </span>
   
 
@@ -206,7 +208,10 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="19-5-17-CF-561-Div-2-解题报告-3-6"><a href="#19-5-17-CF-561-Div-2-解题报告-3-6" class="headerlink" title="19.5.17 CF #561 (Div. 2) 解题报告(3 / 6)"></a>19.5.17 CF #561 (Div. 2) 解题报告(3 / 6)</h1><h2 id="link"><a href="#link" class="headerlink" title="link"></a><a target="_blank" rel="noopener" href="http://codeforces.com/contest/1166">link</a></h2><h2 id="A-Silent-Classroom"><a href="#A-Silent-Classroom" class="headerlink" title="A. Silent Classroom"></a>A. Silent Classroom</h2><ul>
+              <h1 id="19517-cf-561-div-2-解题报告3-6"><a class="markdownIt-Anchor" href="#19517-cf-561-div-2-解题报告3-6"></a> 19.5.17 CF #561 (Div. 2) 解题报告(3 / 6)</h1>
+<h2 id="link"><a class="markdownIt-Anchor" href="#link"></a> <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1166">link</a></h2>
+<h2 id="a-silent-classroom"><a class="markdownIt-Anchor" href="#a-silent-classroom"></a> A. Silent Classroom</h2>
+<ul>
 <li>统计每个首字母出现的次数,设为<code>n</code>, 然后累加C(n, 2)</li>
 <li>ac代码</li>
 </ul>
@@ -250,8 +255,8 @@
     <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
-<h2 id="B-All-the-Vowels-Please"><a href="#B-All-the-Vowels-Please" class="headerlink" title="B. All the Vowels Please"></a>B. All the Vowels Please</h2><ul>
+<h2 id="b-all-the-vowels-please"><a class="markdownIt-Anchor" href="#b-all-the-vowels-please"></a> B. All the Vowels Please</h2>
+<ul>
 <li>模拟输出即可</li>
 <li>ac代码</li>
 </ul>
@@ -304,8 +309,8 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 </code></pre>
-
-<h2 id="C-A-Tale-of-Two-Lands"><a href="#C-A-Tale-of-Two-Lands" class="headerlink" title="C. A Tale of Two Lands"></a>C. A Tale of Two Lands</h2><ul>
+<h2 id="c-a-tale-of-two-lands"><a class="markdownIt-Anchor" href="#c-a-tale-of-two-lands"></a> C. A Tale of Two Lands</h2>
+<ul>
 <li>首先注意到两个数相比较, 如果第二个数使得判断条件为假, 则第一个数比第二个数大的数相比较肯定为假, 所以具有单调性, 可以用二分解决, 朴素算法会t(t了(泣))</li>
 <li>这题要注意数据范围为阶乘级, 所以要用<code>long long</code>类型输出答案(因为这个wa了(泣))</li>
 <li>ac代码</li>
@@ -364,7 +369,6 @@
     <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
 
             </article>
             <hr>
@@ -540,31 +544,15 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "19.5.17 CF #561 (Div. 2) 解题报告&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "❡"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -606,6 +594,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 
