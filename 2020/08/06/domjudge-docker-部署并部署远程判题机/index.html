@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Wqr_">
+  <meta name="keywords" content="">
+  <title>domjudge docker 部署并部署远程判题机 - Wqr_Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wqr_Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/01/08/1cZtX5Mh4dWAYFr.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+                domjudge docker 部署并部署远程判题机
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-06 19:23">
+      2020年8月6日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      899 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="domjudge-docker-部署并部署远程判题机"><a class="markdownIt-Anchor" href="#domjudge-docker-部署并部署远程判题机"></a> domjudge docker 部署并部署远程判题机</h1>
+<p><a name="sA1L4"></a></p>
+<h2 id="环境"><a class="markdownIt-Anchor" href="#环境"></a> 环境</h2>
+<p>主服务器 :</p>
+<ul>
+<li>阿里云</li>
+<li>Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-72-generic x86_64)</li>
+<li>双核</li>
+</ul>
+<p>另外一个判题服务器:</p>
+<ul>
+<li>华为云</li>
+<li>Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-72-generic x86_64)</li>
+<li>单核<br />
+<a name="v8xDJ"></a></li>
+</ul>
+<h2 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h2>
+<p><a name="jgV55"></a></p>
+<h3 id="1-准备工作"><a class="markdownIt-Anchor" href="#1-准备工作"></a> 1. 准备工作</h3>
+<p><a name="1JhR9"></a></p>
+<h4 id="11-更改参数"><a class="markdownIt-Anchor" href="#11-更改参数"></a> 1.1 更改参数</h4>
+<ul>
+<li>在<code>/etc/default/grub</code>中的<code>GRUB_CMDLINE_LINUX</code>参数中添加一段内容<code>cgroup_enable=memory swapaccount=1</code></li>
+<li><img src="https://i.loli.net/2020/08/06/JpuXgRNDVKSIj7v.png" srcset="/img/loading.gif" alt="image.png" /></li>
+<li>执行 <code>grub-update</code></li>
+<li>重启服务器<br />
+<a name="f1uVS"></a></li>
+</ul>
+<h4 id="12-安装-docker"><a class="markdownIt-Anchor" href="#12-安装-docker"></a> 1.2 安装 docker</h4>
+<p><a name="6sYKT"></a></p>
+<h5 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h5>
+<pre><code class="hljs shell">sudo apt install curl
+curl -fsSL get.docker.com -o get-docker.sh
+sudo sh get-docker.sh --mirror Aliyun</code></pre>
+<p><a name="4BOG0"></a></p>
+<h5 id="启用"><a class="markdownIt-Anchor" href="#启用"></a> 启用</h5>
+<pre><code class="hljs shell">sudo systemctl enable docker
+sudo systemctl start docker</code></pre>
+<p><a name="7xYVd"></a></p>
+<h5 id="换源"><a class="markdownIt-Anchor" href="#换源"></a> 换源</h5>
+<p>由于用的阿里服务器, 所以用的阿里源<br />替换 <code>/etc/docker/daemon.json</code> 为如下内容</p>
+<pre><code class="hljs json">&#123;
+    <span class="hljs-attr">&quot;registry-mirrors&quot;</span>: [
+        <span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>
+    ]
+&#125;</code></pre>
+<p><a name="mQGWV"></a></p>
+<h5 id="重启"><a class="markdownIt-Anchor" href="#重启"></a> 重启</h5>
+<pre><code class="hljs shell">sudo systemctl daemon-reload
+sudo systemctl restart docker</code></pre>
+<p><a name="mlrda"></a></p>
+<h3 id="2-部署"><a class="markdownIt-Anchor" href="#2-部署"></a> 2. 部署</h3>
+<p><a name="NerH2"></a></p>
+<h4 id="21-部署mariadb"><a class="markdownIt-Anchor" href="#21-部署mariadb"></a> 2.1 部署MariaDB</h4>
+<pre><code class="hljs shell">docker run -it --name dj-mariadb -e MYSQL_ROOT_PASSWORD=rootpw -e MYSQL_USER=domjudge -e MYSQL_PASSWORD=djpw -e MYSQL_DATABASE=domjudge -p 13306:3306 mariadb --max-connections=1000</code></pre>
+<p><a name="WFwXy"></a></p>
+<h4 id="22-部署domserver"><a class="markdownIt-Anchor" href="#22-部署domserver"></a> 2.2 部署DomServer</h4>
+<pre><code class="hljs shell">docker run -v /sys/fs/cgroup:/sys/fs/cgroup:ro --link dj-mariadb:mariadb -it -e MYSQL_HOST=mariadb -e MYSQL_USER=domjudge -e MYSQL_DATABASE=domjudge -e MYSQL_PASSWORD=djpw -e MYSQL_ROOT_PASSWORD=rootpw -p 12345:80 --name domserver domjudge/domserver:latest</code></pre>
+<ul>
+<li>其中 <code>12345:80</code> 中的 <code>12345</code> 可以指定为你想要的端口, 如 <code>80</code> , 注意要将端口开放</li>
+</ul>
+<p>执行完命令之后应该已经可以通过 ip地址访问你的 <code>domjudge</code> 了</p>
+<ul>
+<li>默认的用户名为 <code>admin</code></li>
+<li>默认的密码通过以下命令查询</li>
+</ul>
+<pre><code class="hljs shell">docker exec -it domserver cat /opt/domjudge/domserver/etc/initial_admin_password.secret</code></pre>
+<p><a name="jE9bL"></a></p>
+<h4 id="23-部署domjudge判题机"><a class="markdownIt-Anchor" href="#23-部署domjudge判题机"></a> 2.3 部署DomJudge(判题机)</h4>
+<p><strong>注意</strong> 此处开始两台服务器有所不同<br />
+<a name="cw0Ya"></a></p>
+<h5 id="主服务器"><a class="markdownIt-Anchor" href="#主服务器"></a> 主服务器</h5>
+<pre><code class="hljs shell">docker run -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name judgehost-0 --link domserver:domserver --hostname judgedaemon-0 -e DAEMON_ID=0 domjudge/judgehost:latest</code></pre>
+<pre><code class="hljs shell">docker run -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name judgehost-1 --link domserver:domserver --hostname judgedaemon-0 -e DAEMON_ID=1 domjudge/judgehost:latest</code></pre>
+<p>这两条命令中有所不同的是</p>
+<ul>
+<li><code>DAEMON_ID</code> 代表 CPU 的第几个核心, 如 <code>DAEMON_ID=0</code> 则代表 <code>CPU0</code> , 此处绝对不要超过 <img src="https://cdn.nlark.com/yuque/__latex/852290f98ab4fb9b16859268ae58850b.svg#card=math&amp;code=%28%E6%A0%B8%E5%BF%83%E6%95%B0%20-%201%29&amp;height=24&amp;width=89" srcset="/img/loading.gif" alt="" /> 否则报错了后会非常麻烦</li>
+<li><code>--name judgehost-1</code> 这是 docker 容器的名字, 不可以相同</li>
+</ul>
+<p>最后, 在网页控制界面的 <code>users</code>  里将用户 <code>judgehost</code> 的密码改为 <code>password</code> <br />这时应该已经有两个判题机, 并且都已经在运行了<br />
+<a name="IS5uR"></a></p>
+<h5 id="另一个判题机"><a class="markdownIt-Anchor" href="#另一个判题机"></a> 另一个判题机</h5>
+<p>首先进入docker容器的终端</p>
+<pre><code class="hljs shell">socker exec -it domserver /bin/bash</code></pre>
+<p>之后 <code>换源(debian)(可选)</code> , <code>apt-get update</code> , <code>apt-get install vim(你想要的编辑器)</code> <br />在 docker 的交互界面中修改 <code>/opt/domjudge/domserver/etc/restapi.secret</code> , 首先你会看到</p>
+<pre><code class="hljs angelscript"># Randomly generated on host <span class="hljs-number">80693</span>c983685, Wed Feb <span class="hljs-number">19</span> <span class="hljs-number">07</span>:<span class="hljs-number">43</span>:<span class="hljs-number">20</span> UTC <span class="hljs-number">2020</span>
+# Format: <span class="hljs-string">&#x27;&lt;ID&gt; &lt;API url&gt; &lt;user&gt; &lt;password&gt;&#x27;</span>
+<span class="hljs-keyword">default</span> http:<span class="hljs-comment">//localhost/api    judgehost       uWttAwgXaAhH6G7W</span></code></pre>
+<p>在后面添加一行, 修改后:</p>
+<pre><code class="hljs angelscript"># Randomly generated on host <span class="hljs-number">80693</span>c983685, Wed Feb <span class="hljs-number">19</span> <span class="hljs-number">07</span>:<span class="hljs-number">43</span>:<span class="hljs-number">20</span> UTC <span class="hljs-number">2020</span>
+# Format: <span class="hljs-string">&#x27;&lt;ID&gt; &lt;API url&gt; &lt;user&gt; &lt;password&gt;&#x27;</span>
+<span class="hljs-keyword">default</span> http:<span class="hljs-comment">//localhost/api    judgehost       uWttAwgXaAhH6G7W</span>
+<span class="hljs-keyword">default</span> http:<span class="hljs-comment">//主服务器ip地址/api    judgehost       uWttAwgXaAhH6G7W</span></code></pre>
+<p>之后 <code>exit</code> 退出 docker<br />执行</p>
+<pre><code class="hljs shell">docker run -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name judgehost-0 --link domserver:domserver --hostname judgedaemon-1 -e DAEMON_ID=0 -e DOMSERVER_BASEURL=http://ip地址/ domjudge/judgehost:latest</code></pre>
+<p>注意其中修改或添加的几个参数</p>
+<ul>
+<li><code>--hostname judgedaemon-1</code> 不能与主服务器的对应参数相同(其实我也没试过)</li>
+<li><code>DOMSERVER_BASEURL=http://ip地址/</code></li>
+</ul>
+<p>现在, 不出意外的话 <code>domjudge</code> 已经有 3 个判题机了, 并且都在运行了<br /><img src="https://i.loli.net/2020/08/06/EVnG6Su2hHfRoxe.png" srcset="/img/loading.gif" alt="image.png" /></p>
+<hr />
+<p>常用的 docker 命令</p>
+<ul>
+<li><code>docker ps</code> 查看正在运行的容器</li>
+<li><code>docker ps -a</code> 查看所有容器</li>
+<li><code>docker start/stop/restart 容器哈希值前n位</code> 容器操作</li>
+<li><code>docker rm 容器哈希值前n位</code></li>
+<li><code>docker images</code> 查看镜像</li>
+<li><code>docker rmi</code> 删除镜像</li>
+<li><code>socker exec -it domserver /bin/bash</code> 进入 docker容器的终端</li>
+</ul>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://hub.docker.com/r/domjudge/domserver/">官方镜像地址</a><br /><a target="_blank" rel="noopener" href="https://cubercsl.cn/note/DOMjudge-Note.html">CSL的博客</a><br /><a target="_blank" rel="noopener" href="https://blog.csdn.net/Radium_1209/article/details/105691608">一篇 CSDN 博客</a></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/01/17/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/">
+                        <span class="hidden-mobile">树的直径</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "left",
+      visible: "hover",
+      
+      icon: "❡"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
