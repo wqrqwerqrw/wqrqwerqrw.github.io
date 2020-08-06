@@ -167,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      899 字
+      911 字
     </span>
   
 
@@ -284,7 +284,7 @@ sudo systemctl restart docker</code></pre>
 <pre><code class="hljs shell">docker run -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name judgehost-1 --link domserver:domserver --hostname judgedaemon-0 -e DAEMON_ID=1 domjudge/judgehost:latest</code></pre>
 <p>这两条命令中有所不同的是</p>
 <ul>
-<li><code>DAEMON_ID</code> 代表 CPU 的第几个核心, 如 <code>DAEMON_ID=0</code> 则代表 <code>CPU0</code> , 此处绝对不要超过 <img src="https://cdn.nlark.com/yuque/__latex/852290f98ab4fb9b16859268ae58850b.svg#card=math&amp;code=%28%E6%A0%B8%E5%BF%83%E6%95%B0%20-%201%29&amp;height=24&amp;width=89" srcset="/img/loading.gif" alt="" /> 否则报错了后会非常麻烦</li>
+<li><code>DAEMON_ID</code> 代表 CPU 的第几个核心, 如 <code>DAEMON_ID=0</code> 则代表 <code>CPU0</code> , 此处绝对不要超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">核</mi><mi mathvariant="normal">心</mi><mi mathvariant="normal">数</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(核心数-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">核</span><span class="mord cjk_fallback">心</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 否则报错了后会非常麻烦</li>
 <li><code>--name judgehost-1</code> 这是 docker 容器的名字, 不可以相同</li>
 </ul>
 <p>最后, 在网页控制界面的 <code>users</code>  里将用户 <code>judgehost</code> 的密码改为 <code>password</code> <br />这时应该已经有两个判题机, 并且都已经在运行了<br />
