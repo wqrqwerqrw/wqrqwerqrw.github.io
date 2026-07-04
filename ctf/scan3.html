@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>scan3</title>
+<style>
+  body{font-family:monospace;background:#0b0b0b;color:#ddd;padding:16px;font-size:13px;}
+  h2{color:#6cf;border-top:1px solid #333;padding-top:10px;margin-top:14px;}
+  .ok{color:#3f6} .err{color:#c66} .info{color:#fc6} .warn{color:#f96}
+  pre{white-space:pre-wrap;word-break:break-all;background:#151515;padding:6px;border-left:3px solid #555;max-height:260px;overflow:auto;margin:2px 0 8px}
+  #out div{padding:1px 0}
+</style>
+</head>
+<body>
+<h2>scan3: 8091 deep probe + WebSocket + dense port scan</h2>
+<div id="out"></div>
+<script>
+const out=document.querySelector('#out');
+function log(c,m){const d=document.createElement('div');d.className=c;d.textContent=m;out.appendChild(d);}
+function dump(title,txt){const h=document.createElement('div');h.className='ok';h.textContent='### '+title;out.appendChild(h);const p=document.createElement('pre');p.textContent=(''+txt).slice(0,1500);out.appendChild(p);}
+
+// no-cors 存活探测：连上=alive，拒绝=refused，超时=timeout
+function alive(url,t=5000){
+  return new Promise(res=>{
+    const ctl=new AbortController();
+    const tm=setTimeout(()=>{ctl.abort();res('timeout');},t);
+    fetch(url,{mode:'no-cors',signal:ctl.signal,cache:'no-store'})
+      .then(()=>{clearTimeout(tm);res('alive');})
+      .catch(()=>{clearTimeout(tm);res('refused');});
+  });
+}
+
+// cors 读 body（能读到说明对方配了 CORS）
+async function readBody(url){
+  try{
+    const r=await fetch(url,{cache:'no-store'});
+    const t=await r.text();
+    log('ok',`READ OK [${r.status}] ${url} len=${t.length}`);
+    if(t.trim()) dump(url,t);
+    return t;
+  }catch(e){ log('err',`READ FAIL ${url}`); return null;}
+}
+
+// WebSocket 探测：WS 不受 CORS 限制
+function wsProbe(url,t=3500){
+  return new Promise(res=>{
+    const msgs=[];
+    let done=false,opened=false;
+    let ws;
+    try{ ws=new WebSocket(url);}catch(e){res({state:'ctor_fail',msgs:[String(e)]});return;}
+    const finish=(s)=>{if(done)return;done=true;clearTimeout(tm);try{ws.close();}catch(e){};res({state:s,opened,msgs});};
+    const tm=setTimeout(()=>finish('timeout'),t);
+    ws.onopen=()=>{opened=true;msgs.push('OPEN');};
+    ws.onmessage=(e)=>{
+      if(typeof e.data==='string') msgs.push('MSG:'+e.data.slice(0,300));
+      else msgs.push('MSG:[binary]');
+    };
+    ws.onerror=()=>msgs.push('ERR');
+    ws.onclose=(e)=>{msgs.push(`CLOSE code=${e.code} reason=${e.reason}`);finish('closed');};
+  });
+}
+
+(async()=>{
+  log('info','=== Part 1: 8091 SANDBOX_SRV — no-cors alive (multi-host) ===');
+  for(const h of ['127.0.0.1','localhost','0.0.0.0']){
+    const s=await alive(`http://${h}:8091/`,5000);
+    log(s==='alive'?'ok':(s==='timeout'?'warn':'err'), `8091 ${h} -> ${s}`);
+  }
+
+  log('info','=== Part 2: 8091 cors read body (多路径) ===');
+  const paths=['/','/flag','/env','/environ','/api','/api/','/sandbox','/exec','/cmd','/run','/eval','/shell','/info','/status','/health','/version','/token','/config','/debug','/proc/self/environ'];
+  for(const p of paths) await readBody(`http://127.0.0.1:8091${p}`);
+
+  log('info','=== Part 3: WebSocket 探测（绕过 CORS）===');
+  log('info','8091 WS ws://127.0.0.1:8091/ ...');
+  const w1=await wsProbe('ws://127.0.0.1:8091/');
+  log(w1.opened?'ok':'err', `8091 WS: state=${w1.state} opened=${w1.opened} | ${w1.msgs.join(' | ')}`);
+  log('info','8091 WS ws://127.0.0.1:8091/sandbox ...');
+  const w1b=await wsProbe('ws://127.0.0.1:8091/sandbox');
+  log(w1b.opened?'ok':'err', `8091 WS /sandbox: state=${w1b.state} opened=${w1b.opened} | ${w1b.msgs.join(' | ')}`);
+  log('info','9528 WS ws://127.0.0.1:9528/ ...');
+  const w2=await wsProbe('ws://127.0.0.1:9528/');
+  log(w2.opened?'ok':'err', `9528 WS: state=${w2.state} opened=${w2.opened} | ${w2.msgs.join(' | ')}`);
+
+  log('info','=== Part 4: 密集端口扫描 8000-8200 / 9000-9200 / 9500-9600 ===');
+  const ports=[];
+  for(let p=8000;p<=8200;p++)ports.push(p);
+  for(let p=9000;p<=9200;p++)ports.push(p);
+  for(let p=9500;p<=9600;p++)ports.push(p);
+  const alivePorts=[];
+  for(let i=0;i<ports.length;i+=100){
+    const batch=ports.slice(i,i+100);
+    const res=await Promise.all(batch.map(p=>alive(`http://127.0.0.1:${p}/`,900).then(s=>({p,s}))));
+    for(const {p,s} of res) if(s==='alive'){alivePorts.push(p);log('ok',`ALIVE 127.0.0.1:${p}`);}
+  }
+  log('info',`dense scan done. alive: ${alivePorts.join(',')||'none'}`);
+  log('info','=== ALL DONE ===');
+})();
+</script>
+</body>
+</html>
