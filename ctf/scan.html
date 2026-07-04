@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>recon</title>
+<style>
+  body{font-family:monospace;background:#0b0b0b;color:#ddd;padding:16px;font-size:14px;}
+  h2{color:#6cf}
+  .alive{color:#3f6;font-weight:bold}
+  .dead{color:#844}
+  .info{color:#fc6}
+  pre{white-space:pre-wrap;word-break:break-all;background:#151515;padding:8px;border-left:3px solid #444}
+  #out div{padding:1px 0}
+</style>
+</head>
+<body>
+<h2>Local recon — port scan + CDP probe</h2>
+<div>UA: <span id="ua"></span></div>
+<div>Location: <span id="loc"></span></div>
+<h2>Port scan (127.0.0.1)</h2>
+<div id="out"></div>
+<h2>CDP / content probe</h2>
+<div id="cdp"></div>
+<script>
+const $ = s=>document.querySelector(s);
+$('#ua').textContent = navigator.userAgent;
+$('#loc').textContent = location.href;
+const out = $('#out'), cdp = $('#cdp');
+function log(el,cls,msg){const d=document.createElement('div');d.className=cls;d.textContent=msg;el.appendChild(d);}
+
+// 常见本地端口
+const ports = [80,443,3000,3306,5000,5900,6080,7000,8000,8080,8081,8090,8091,8092,8888,9000,9001,9222,9223,9229,9500,9528,9529,1337,4444,5555,6379,27017,11211];
+const hosts = ['127.0.0.1','localhost','0.0.0.0'];
+
+// 用 fetch no-cors 探测端口是否有服务监听
+// 连上 -> resolve(opaque) ; 连接被拒 -> reject(TypeError: Failed to fetch)
+function probe(url, timeout=2500){
+  return new Promise((resolve)=>{
+    const ctl = new AbortController();
+    const t = setTimeout(()=>{ctl.abort();resolve({url,state:'timeout'});},timeout);
+    fetch(url,{mode:'no-cors',signal:ctl.signal,cache:'no-store'})
+      .then(()=>{clearTimeout(t);resolve({url,state:'alive'});})
+      .catch(e=>{clearTimeout(t);resolve({url,state:'refused',err:String(e)});});
+  });
+}
+
+(async()=>{
+  const tasks=[];
+  for(const h of hosts) for(const p of ports){
+    const url=`http://${h}:${p}/`;
+    tasks.push(probe(url).then(r=>{
+      if(r.state==='alive')      log(out,'alive',`ALIVE   ${url}`);
+      else if(r.state==='timeout')log(out,'info', `TIMEOUT ${url}`);
+      // refused 太多,不打印,减少噪音
+    }));
+  }
+  await Promise.all(tasks);
+  log(out,'info','--- port scan done ---');
+
+  // CDP 探测: /json/version 与 /json/list 允许跨源读取(text/json)
+  const cdpPorts=[9222,9223,9229,9528,8091];
+  for(const p of cdpPorts){
+    for(const path of ['/json/version','/json/list','/json']){
+      const u=`http://127.0.0.1:${p}${path}`;
+      try{
+        const r=await fetch(u,{cache:'no-store'});
+        const txt=await r.text();
+        log(cdp,'alive',`CDP READ OK ${u}`);
+        const pre=document.createElement('pre');pre.textContent=txt.slice(0,2000);cdp.appendChild(pre);
+      }catch(e){ /* CORS/refused, 跳过 */ }
+    }
+  }
+  log(cdp,'info','--- cdp probe done ---');
+})();
+</script>
+</body>
+</html>
