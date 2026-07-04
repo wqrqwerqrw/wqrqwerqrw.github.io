@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>dump search</title>
+<style>
+  body{font-family:monospace;background:#0b0b0b;color:#ddd;padding:16px;font-size:13px;margin:0}
+  h2{color:#6cf;margin:14px 0 6px}
+  h3{color:#fc6;margin:12px 0 4px}
+  .bar{margin:8px 0;padding:10px;background:#151515;border-left:3px solid #6cf}
+  .ok{color:#3f6}.err{color:#c66}.info{color:#fc6}.hit{color:#ff0}
+  .flag{color:#3f6;font-size:17px;font-weight:bold;background:#0a3a0a;padding:10px;margin:6px 0;border:1px solid #3f6;word-break:break-all}
+  code{background:#222;padding:1px 5px;border-radius:3px}
+  pre{white-space:pre-wrap;word-break:break-all;background:#1a1a1a;padding:6px;margin:4px 0;max-height:160px;overflow:auto;font-size:11px}
+  .small{color:#888;font-size:11px}
+</style>
+</head>
+<body>
+<h2>Crashpad .dmp / 任意文件 → 搜 FLAG</h2>
+<div class="small">原理：chromium 崩溃时 Crashpad 把 /proc/pid/environ 明文写进 .dmp。FLAG=xxx 以 ASCII 直接躺着，搜得到。</div>
+
+<h3>方式1：选目录（推荐）</h3>
+<div class="bar">
+  点下面按钮，导航到 <code>/home/gem/.config/browser/Crashpad</code> 选整个目录<br>
+  <input type="file" id="dir" webkitdirectory directory multiple>
+</div>
+
+<h3>方式2：选单个/多个文件</h3>
+<div class="bar">
+  手动选 <code>.dmp</code>，或选 <code>/var/log/gem/chrome.log</code> 顺便扫<br>
+  <input type="file" id="files" multiple>
+</div>
+
+<h3>结果</h3>
+<div id="out"></div>
+
+<script>
+const out=document.querySelector('#out');
+function log(c,m){const d=document.createElement('div');d.className=c;d.textContent=m;out.appendChild(d);}
+function flag(m){const d=document.createElement('div');d.className='flag';d.textContent=m;out.appendChild(d);out.scrollIntoView(false);}
+const enc=new TextDecoder('latin1');   // latin1 保字节原样，搜 ASCII 安全
+
+function scan(name,bytes){
+  const txt=enc.decode(bytes);
+  const needles=['FLAG=','flag=','CTF_','CTF{','FLAG{','CTF_CHALLENGE_FLAG'];
+  let hits=[];
+  for(const n of needles){
+    let i=0;
+    while((i=txt.indexOf(n,i))>=0){
+      let j=txt.length;                         // 截到 \0/\n/不可见
+      for(let k=i+n.length;k<txt.length&&k<i+300;k++){
+        const c=txt.charCodeAt(k);
+        if(c===0||c===10||c===13){j=k;break;}
+      }
+      hits.push({needle:n,ctx:txt.slice(i,j).replace(/[^\x20-\x7e]/g,'')});
+      i=j;
+    }
+  }
+  log('info',`扫描 ${name}  (${bytes.length} bytes) → ${hits.length} 命中`);
+  if(hits.length===0) return;
+  for(const h of hits){
+    if(h.ctx.startsWith('FLAG=')) flag('🎯 '+h.ctx);
+    else log('hit','  ['+h.needle+'] '+h.ctx);
+  }
+}
+async function handleFiles(fileList){
+  const arr=[...fileList];
+  log('info','共 '+arr.length+' 个文件');
+  let dumped=0;
+  for(const f of arr){
+    const nm=f.webkitRelativePath||f.name;
+    // 只扫 .dmp 和 .log，跳过大文件 cache，加速
+    if(!/\.(dmp|log)$/i.test(nm) && f.size>50*1024*1024){continue;}
+    try{
+      const buf=await f.arrayBuffer();
+      scan(nm, new Uint8Array(buf));
+      if(/\.dmp$/i.test(nm)) dumped++;
+    }catch(e){log('err',nm+' 读失败: '+e);}
+  }
+  log('ok',`--- 扫描完成。共扫 ${dumped} 个 .dmp ---`);
+  log('info','若 0 命中且 0 个 .dmp：说明还没崩过，或 --disable-breakpad 关了 dump。去地址栏访问 chrome://crash 触发崩溃，再回来选目录。');
+}
+document.querySelector('#dir').onchange=e=>{out.innerHTML='';log('info','开始扫目录...');handleFiles(e.target.files);};
+document.querySelector('#files').onchange=e=>{out.innerHTML='';log('info','开始扫文件...');handleFiles(e.target.files);};
+</script>
+</body>
+</html>
